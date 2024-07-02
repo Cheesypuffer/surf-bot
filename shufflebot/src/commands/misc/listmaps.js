@@ -32,7 +32,7 @@ function votesToStars(upvotes,downvotes) {
     // define return value
     string = '';
     // i = the index of star we are on. i only goes to 5
-    for (let i=1; i<5; i++) {
+    for (let i=0; i<5; i++) {
       // if the index of the star we are on is less than the total filled stars (stars variable), than add a filled star
       if (i<Math.round(stars)) {
         string+='★';
