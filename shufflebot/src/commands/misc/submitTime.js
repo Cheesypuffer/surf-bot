@@ -32,7 +32,7 @@ module.exports = {
     
     callback: async (client, interaction) => {
         await interaction.deferReply()
-        const query = mapzz.findOne({name: `${interaction.options.get('map').value}`})
+        const query = mapzz.findOne({name: interaction.options.get('map').value})
         const hasRole = interaction.member.roles.cache.has('1257704302428815521')
         if (query && hasRole) {
             const newRecord = new record({
@@ -57,9 +57,9 @@ module.exports = {
                 value: `${interaction.options.get('proof').value}`
             },
         );
+        recordchannel.send({embeds: [embed]})
+        recordchannel.send(`${interaction.options.get('proof').value}`)
             ///recordchannel.send(`${interaction.user} has achieved a time of ${interaction.options.get('time').value} on ${interaction.options.get('map').value}, ${interaction.options.get('proof').url}`)
-            recordchannel.send({embeds: [embed]})
-            recordchannel.send(`${interaction.options.get('proof').value}`)
         }
     }
 }
