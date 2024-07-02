@@ -45,6 +45,7 @@ module.exports = {
             }
             const role = interaction.guild.roles.cache.get(`${roles[map.tier-1]}`)
             const file = new AttachmentBuilder(map.icon)
+            const file2 = new AttachmentBuilder(map.thumbnail)
             const embed = new EmbedBuilder()
                 .setTitle(`${map.name}`)
                 .setDescription(`Tier ${map.tier}`)
@@ -54,14 +55,16 @@ module.exports = {
                 } else {
                     embed.setImage('https://media.discordapp.net/attachments/1256006687366713427/1257000435462570077/Untitled.jpg?ex=6682d061&is=66817ee1&hm=4a6f24c89a27314977d3e6dfa0f0112824a34ae4cd9ce7c14cd155a9c2eb5f48&=&format=webp')
                 }
+                embed.setThumbnail(map.thumbnail)
                 embed.setURL(map.link)
                 embed.setTimestamp()
-                embed.setThumbnail(`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`)
+                ///embed.setThumbnail(`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`)
                 embed.addFields(
                     { name: 'Ping:', value: `<@&${roles[map.tier-1]}>` },
+                    { name: `Upvotes: ${map.upvotes}`, value: `Downvotes: ${map.downvotes}`}
                 )
                 embed.setAuthor({name:`${interaction.user.tag}'s roll is . . .`, iconURL:`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`})
-            interaction.channel.send({embeds: [embed]}, {files: [file]});
+            interaction.channel.send({embeds: [embed]}, {files: [file, file2]});
             interaction.editReply('⠀')
         } catch (error) {
             console.log(error)

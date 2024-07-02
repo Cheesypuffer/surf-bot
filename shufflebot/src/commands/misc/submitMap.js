@@ -27,6 +27,12 @@ module.exports = {
             description:'icon of map',
             required:false,
             type:ApplicationCommandOptionType.String
+        },
+        {
+            name:'thumbnail',
+            description:'thumbnail of map',
+            required:false,
+            type:ApplicationCommandOptionType.String
         }
     ],
 
@@ -54,7 +60,8 @@ module.exports = {
                         name: `${interaction.options.get('name').value}`,
                         tier: `${interaction.options.get('tier').value}`,
                         link: `${interaction.options.get('link').value}`,
-                        icon: `${interaction.options.get('icon').value}`
+                        icon: `${interaction.options.get('icon').value}`,
+                        thumbnail: `${interaction.options.get('thumbnail').value}`
                     })
                     file = new AttachmentBuilder(map.icon)
                 } else {
@@ -62,7 +69,9 @@ module.exports = {
                         name: `${interaction.options.get('name').value}`,
                         tier: `${interaction.options.get('tier').value}`,
                         link: `${interaction.options.get('link').value}`,
-                        icon: 'https://media.discordapp.net/attachments/1256006687366713427/1257000435462570077/Untitled.jpg?ex=6682d061&is=66817ee1&hm=4a6f24c89a27314977d3e6dfa0f0112824a34ae4cd9ce7c14cd155a9c2eb5f48&=&format=webp'
+                        icon: 'https://media.discordapp.net/attachments/1256006687366713427/1257000435462570077/Untitled.jpg?ex=6682d061&is=66817ee1&hm=4a6f24c89a27314977d3e6dfa0f0112824a34ae4cd9ce7c14cd155a9c2eb5f48&=&format=webp',
+                        thumbnail: 'https://cdn.discordapp.com/attachments/1256006687366713427/1257771232955207820/missingno.png?ex=66859e3e&is=66844cbe&hm=53e5fc4c5178852dffa13a29e55f1617bb0166ebcdbb474accc6a61d6e6694a8&'
+
                     })
                     file = new AttachmentBuilder('https://media.discordapp.net/attachments/1256006687366713427/1257000435462570077/Untitled.jpg?ex=6682d061&is=66817ee1&hm=4a6f24c89a27314977d3e6dfa0f0112824a34ae4cd9ce7c14cd155a9c2eb5f48&=&format=webp')
                 }
