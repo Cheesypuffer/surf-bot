@@ -30,7 +30,8 @@ module.exports = {
         for(const mapRecord of mapRecords) {
             var recordTime = mapRecord.time
             var userTag = (await client.users.fetch(mapRecord.userId)).tag
-            mapTimes.push({recordTime, userTag})
+            var recordProof = mapRecord.proof
+            mapTimes.push({recordTime, userTag, mapLink})
         }
         /// Okay, so we got our sorting function here
         mapTimes.sort((a, b) => a.recordTime - b.recordTime);
@@ -40,7 +41,7 @@ module.exports = {
         var recordsToDisplay = mapTimes.slice(0, 20)
         var readableData = []
         for(const recordToDisplay of recordsToDisplay) {
-            readableData.push({name: `${recordToDisplay.userTag}`, value: `${prettyMs(recordToDisplay.recordTime*1000)}`})
+            readableData.push({name: `${recordToDisplay.userTag} ${recordToDisplay.recordProof}`, value: `${prettyMs(recordToDisplay.recordTime*1000)}`})
         }
         const embed = new EmbedBuilder()
             .setTitle(`${interaction.options.get('map').value} Records`)
