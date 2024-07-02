@@ -14,6 +14,6 @@ module.exports = {
         for (chosenMap of maps) {
             readablemaps.push(chosenMap.name)
         }
-        interaction.editReply(tostring(readablemaps))
+        interaction.editReply(readablemaps.toString())
     }
 }
