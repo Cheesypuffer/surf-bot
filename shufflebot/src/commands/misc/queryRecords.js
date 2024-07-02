@@ -31,7 +31,7 @@ module.exports = {
             var recordTime = mapRecord.time
             var userTag = (await client.users.fetch(mapRecord.userId)).tag
             var recordProof = mapRecord.proof
-            mapTimes.push({recordTime, userTag, mapLink})
+            mapTimes.push({recordTime, userTag, recordProof})
         }
         /// Okay, so we got our sorting function here
         mapTimes.sort((a, b) => a.recordTime - b.recordTime);
