@@ -50,7 +50,7 @@ module.exports = {
             await mapToVote.save(votes)
             const indx = mapToVote.downvotes.indexOf(interaction.user.id)
             mapToVote.downvotes.splice(indx, 1)
-            mapToVote.save(indx)
+            await mapToVote.save(indx)
             interaction.editReply('You hath upvoted thy map.')
         }
     }
