@@ -21,7 +21,7 @@ module.exports = {
         if (mapToVote) {
             var votes = mapToVote.upvotes
             votes.push(interaction.user.id)
-            await votes.save()
+            await mapToVote.save(votes)
             interaction.editReply('You hath upvoted thy map.')
         } else {
             interaction.editReply(`That map doesn't exist!`)
