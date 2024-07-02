@@ -45,8 +45,8 @@ module.exports = {
                 name: interaction.options.get('name').value
             }
             const oldMap = await maps.findOne(query)
-
-            if (!oldMap) {
+            const hasRole = interaction.member.roles.cache.has('1257704302428815521')
+            if (!oldMap && hasRole) {
                 var file = null
                 var map = null
                 if (interaction.options.get('icon')) {

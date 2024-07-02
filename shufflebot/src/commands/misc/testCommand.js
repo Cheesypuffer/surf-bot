@@ -2,7 +2,7 @@ const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, Attachme
 const maps = require('../../models/maps')
 
 module.exports = {
-    name:'testcomamand',
+    name:'testcomamnd',
     description:'test',
     deleted: true,
     /**
