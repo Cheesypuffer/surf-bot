@@ -30,7 +30,7 @@ module.exports = {
                 }
             }
             if(readablemaps.length === 1) {
-                mapToVote = usuablemaps[1]
+                mapToVote = usuablemaps[0]
             } else if (readablemaps.length === 0) {
                 interaction.editReply(`Map not found.`)
                 return
