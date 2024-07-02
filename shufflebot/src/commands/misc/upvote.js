@@ -39,7 +39,7 @@ module.exports = {
                 return
             }
         }
-        if (mapToVote && (mapToVote.upvotes.includes(interaction.user.id) === false) && (mapToVote.upvotes.includes(interaction.user.id) === false)) {
+        if (mapToVote && (mapToVote.upvotes.includes(interaction.user.id) === false) && (mapToVote.downvotes.includes(interaction.user.id) === false)) {
             var votes = mapToVote.upvotes
             votes.push(interaction.user.id)
             await mapToVote.save(votes)
