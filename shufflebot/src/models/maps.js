@@ -14,14 +14,14 @@ const maps = new Schema({
         required:true
     },
     upvotes: {
-        type: Number,
+        type: Array,
         required:true,
-        default:0
+        default:[]
     },
     downvotes: {
-        type: Number,
+        type: Array,
         required:true,
-        default:0
+        default:[]
     },
     icon: {
         type: String,

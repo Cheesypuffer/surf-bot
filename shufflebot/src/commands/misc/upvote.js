@@ -13,5 +13,12 @@ module.exports = {
             required:true,
             type: ApplicationCommandOptionType.String
         }
-    ]
+    ],
+
+    callback: async (client, interaction) => {
+        var mapToVote = mapz.findOne({name: interaction.options.get('map').value})
+        if (mapToVote) {
+            const votes = mapToVote.upvotes
+        }
+    }
 }
