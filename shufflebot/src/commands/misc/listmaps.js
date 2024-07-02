@@ -41,10 +41,10 @@ function votesToStars(upvotes, downvotes) {
     return stars;
   } 
   // converts int 0-5 to star emojis
-  function starsToString(stars) {
+  function starsToString(starz) {
     let string = '';
     for (let i = 0; i < 5; i++) {
-      if (i < Math.round(stars)) {
+      if (i < Math.round(starz)) {
         string += '★';
       } else {
         string += '☆';
