@@ -61,7 +61,7 @@ module.exports = {
                 ///embed.setThumbnail(`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`)
                 embed.addFields(
                     { name: 'Ping:', value: `<@&${roles[map.tier-1]}>` },
-                    { name: `Upvotes: ${map.upvotes}`, value: `Downvotes: ${map.downvotes}`}
+                    { name: `Upvotes: ${map.upvotes.length}`, value: `Downvotes: ${map.downvotes.length}`}
                 )
                 embed.setAuthor({name:`${interaction.user.tag}'s roll is . . .`, iconURL:`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`})
             interaction.channel.send({embeds: [embed]}, {files: [file, file2]});
