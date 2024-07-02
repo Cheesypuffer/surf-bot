@@ -44,7 +44,7 @@ module.exports = {
             votes.push(interaction.user.id)
             await mapToVote.save(votes)
             interaction.editReply('You hath upvoted thy map.')
-        } else if(mapToVote.upvotes.includes(interaction.user.id) === false) {
+        } else if(mapToVote.upvotes.includes(interaction.user.id) === true) {
             var votes = mapToVote.upvotes
             votes.push(interaction.user.id)
             await mapToVote.save(votes)
