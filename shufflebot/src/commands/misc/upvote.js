@@ -17,8 +17,29 @@ module.exports = {
 
     callback: async (client, interaction) => {
         await interaction.deferReply()
-        var mapToVote = await mapz.findOne({name: interaction.options.get('map').value})
-        if (mapToVote && (mapToVote.upvotes.includes(interaction.user.id) === false) && (mapToVote.downvotes.includes(interaction.user.id) === false)) {
+        var mapToVoteRaw = await mapz.findOne({name: interaction.options.get('map').value})
+        var allMaps = await mapz.find({})
+        var res = []
+        var mapToVote = null
+        if (!mapToVoteRaw) {
+            for(const mapToVote1 of allMaps) {
+                if((mapToVote1.name).includes(interaction.options.get('map').value)) {
+                    res.push(mapToVote1.name)
+                }
+            }
+            if(res.length === 1) {
+                mapToVote === res[1]
+            } else if (res.length === 0) {
+                interaction.reply(`Map not found.`)
+                return
+            } else {
+                var readableMapsString = readablemaps.toString()
+                readableMapsString = readableMapsString.replace(/ *, */g, '\n');
+                interaction.editReply(`Map not found. Did you mean: ${readableMapsString}`)
+                return
+            }
+        }
+        if (mapToVote && (mapToVote.upvotes.includes(interaction.user.id) === false) && (mapToVote.upvotes.includes(interaction.user.id) === false)) {
             var votes = mapToVote.upvotes
             votes.push(interaction.user.id)
             await mapToVote.save(votes)
