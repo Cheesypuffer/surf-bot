@@ -19,6 +19,7 @@ module.exports = {
         var mapToVote = mapz.findOne({name: interaction.options.get('map').value})
         if (mapToVote) {
             const votes = mapToVote.upvotes
+            votes.push(interaction.user.id)
         }
     }
 }
