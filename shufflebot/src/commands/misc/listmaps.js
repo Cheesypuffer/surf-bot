@@ -15,9 +15,9 @@ module.exports = {
             const name = chosenMap.name
             const stars = starsToString(votesToStars(chosenMap.upvotes, chosenMap.downvotes))
             const tier = `T${chosenMap.tier}`
-            readablemaps.push(tostring({stars, tier, name}))
+            readablemaps.push(toString({stars, tier, name}))
         }
-        var readableMapsString = tostring(readablemaps)
+        var readableMapsString = toString(readablemaps)
         readableMapsString = readableMapsString.replace(/ *, */g, '\n');
         interaction.editReply(readableMapsString)
     }
