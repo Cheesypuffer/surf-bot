@@ -30,7 +30,7 @@ module.exports = {
             if(res.length === 1) {
                 mapToVote === res[1]
             } else if (res.length === 0) {
-                interaction.reply(`Map not found.`)
+                interaction.editReply(`Map not found.`)
                 return
             } else {
                 var readableMapsString = readablemaps.toString()
@@ -39,7 +39,7 @@ module.exports = {
                 return
             }
         }
-        if (mapToVote && (mapToVote.downvotes.includes(interaction.user.id) === false) && (mapToVote.downvotes.includes(interaction.user.id) === false)) {
+        if (mapToVote && (mapToVote.downvotes.includes(interaction.user.id) === false) && (mapToVote.upvotes.includes(interaction.user.id) === false)) {
             var votes = mapToVote.downvotes
             votes.push(interaction.user.id)
             await mapToVote.save(votes)
