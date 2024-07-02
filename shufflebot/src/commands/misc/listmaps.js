@@ -14,6 +14,6 @@ module.exports = {
         for (chosenMap of maps) {
             readablemaps.push(chosenMap.name)
         }
-        interaction.editReply(readablemaps)
+        console.log(readablemaps)
     }
 }
