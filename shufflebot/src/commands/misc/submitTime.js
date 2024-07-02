@@ -34,7 +34,7 @@ module.exports = {
         await interaction.deferReply()
         const query = mapzz.findOne({name: `${interaction.options.get('map').value}`})
         const hasRole = interaction.member.roles.cache.has('1257704302428815521')
-        if (!query && hasRole) {
+        if (query && hasRole) {
             const newRecord = new record({
                 userId: interaction.user.id,
                 guildId: interaction.guildId,
