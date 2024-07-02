@@ -24,7 +24,7 @@ module.exports = {
         if (!mapToVoteRaw) {
             for(const mapToVote1 of allMaps) {
                 if((mapToVote1.name).includes(interaction.options.get('map').value)) {
-                    readablemaps.push(mapToVote1.name)
+                    readablemaps.push(mapToVote1)
                 }
             }
             if(readablemaps.length === 1) {
