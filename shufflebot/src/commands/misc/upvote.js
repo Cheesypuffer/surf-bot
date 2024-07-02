@@ -16,9 +16,9 @@ module.exports = {
     ],
 
     callback: async (client, interaction) => {
-        var mapToVote = mapz.findOne({name: interaction.options.get('map').value})
+        var mapToVote = await mapz.findOne({name: interaction.options.get('map').value})
         if (mapToVote) {
-            const votes = mapToVote.upvotes
+            var votes = await mapToVote.upvotes
             votes.push(interaction.user.id)
         }
     }
