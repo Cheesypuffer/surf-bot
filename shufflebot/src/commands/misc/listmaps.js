@@ -9,7 +9,7 @@ module.exports = {
 
     callback: async (client, interaction) => {
         await interaction.deferReply()
-        const maps = mapz.find({})
+        const maps = await mapz.find({})
         var readablemaps = []
         for (chosenMap of maps) {
             readablemaps.push(chosenMap.name)
