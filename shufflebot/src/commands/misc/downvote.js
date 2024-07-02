@@ -18,13 +18,13 @@ module.exports = {
     callback: async (client, interaction) => {
         await interaction.deferReply()
         var mapToVote = await mapz.findOne({name: interaction.options.get('map').value})
-        if (mapToVote) {
+        if (mapToVote && (mapToVote.downvotes.includes(interaction.user.id) === false)) {
             var votes = mapToVote.downvotes
             votes.push(interaction.user.id)
             await mapToVote.save(votes)
             interaction.editReply('You hath downvoted thy map.')
         } else {
-            interaction.editReply(`That map doesn't exist!`)
+            interaction.editReply(`That map doesn't exist, or you have already downvoted it.`)
         }
     }
 }
