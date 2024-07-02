@@ -22,8 +22,10 @@ module.exports = {
         var res = []
         if (!mapToVoteRaw) {
             for(const mapToVote1 of allMaps) {
+                console.log('a')
                 if(toString(mapToVote1.name).includes(interaction.options.get('map').value)) {
                     res.push(mapToVote1.name)
+                    console.log('p')
                 }
             }
             console.log(res)
