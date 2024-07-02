@@ -32,7 +32,7 @@ function votesToStars(upvotes, downvotes) {
     let stars = (netVotes / (upvotes + downvotes)) * 5;
   
     // Ensure stars are within the 1-5 range
-    stars = Math.max(1, Math.min(5, stars));
+    stars = Math.min(Math.max(stars, 0), 5)
   
     return stars;
   }
