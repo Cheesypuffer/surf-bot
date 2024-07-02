@@ -30,7 +30,7 @@ module.exports = {
             if(readablemaps.length === 1) {
                 mapToVote === mapToVoteRaw
             } else if (readablemaps.length === 0) {
-                interaction.reply(`Map not found.`)
+                interaction.editReply(`Map not found.`)
                 return
             } else {
                 var readableMapsString = readablemaps.toString()
