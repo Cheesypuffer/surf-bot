@@ -39,7 +39,7 @@ function votesToStars(upvotes, downvotes) {
     // Ensure stars are within the 1-5 range
     stars = Math.max(1, Math.min(5, stars));
     return stars;
-  }
+  } 
   // converts int 0-5 to star emojis
   function starsToString(stars) {
     let string = '';
