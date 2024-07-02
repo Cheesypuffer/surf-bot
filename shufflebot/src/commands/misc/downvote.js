@@ -51,6 +51,7 @@ module.exports = {
             const indx = mapToVote.upvotes.indexOf(interaction.user.id)
             mapToVote.upvotes.splice(indx, 1)
             mapToVote.save(indx)
+            interaction.editReply('You hath downvoted thy map.')
         }
     }
 }
