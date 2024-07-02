@@ -24,29 +24,32 @@ module.exports = {
 }
 
 // javascript function to convert amount of upvotes and downvotes to a number 1-5
-function votesToStars(upvotes,downvotes) {
-      // Calculate the net votes (upvotes - downvotes)
-     const netVotes = upvotes - downvotes;
-     // Calculate the stars based on the net votes
-     let stars = (netVotes / (upvotes + downvotes)) * 5;
-     // Ensure stars are within the 1-5 range
-     stars = Math.max(1, Math.min(5, stars));
-     return stars;
+function votesToStars(upvotes, downvotes) {
+    // Calculate the net votes (upvotes - downvotes)
+    const netVotes = upvotes - downvotes;
+  
+    // Calculate the stars based on the net votes
+    let stars = (netVotes / (upvotes + downvotes)) * 5;
+  
+    // Ensure stars are within the 1-5 range
+    stars = Math.max(1, Math.min(5, stars));
+  
+    return stars;
   }
+  
   // converts int 0-5 to star emojis
   function starsToString(stars) {
-    // define return value
-    string = '';
-    // i = the index of star we are on. i only goes to 5
-    for (let i=0; i<5; i++) {
-      // if the index of the star we are on is less than the total filled stars (stars variable), than add a filled star
-      if (i<Math.round(stars)) {
-        string+='★';
-      // if not, add an empty star
+    let string = '';
+    for (let i = 0; i < 5; i++) {
+      if (i < Math.round(stars)) {
+        string += '★';
       } else {
-        string+='☆';
+        string += '☆';
       }
     }
-    // return the string
-    return string
+    return string;
   }
+  
+  // Example usage
+  console.log(starsToString(votesToStars(10, 5))); // Should output '★★★☆☆' (3 filled stars)
+  console.log(starsToString(votesToStars(2, 8))); // Should output '☆☆☆☆☆' (0 filled stars)
