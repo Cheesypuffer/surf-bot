@@ -14,7 +14,7 @@ module.exports = {
         for (chosenMap of maps) {
             const name = chosenMap.name
             ///const stars = ///starsToString(votesToStars(chosenMap.upvotes, chosenMap.downvotes))
-            const stars = votesToStars(chosenMap.upvotes, chosenMap.downvotes)
+            const stars = (chosenMap.upvotes - chosenMap.downvotes)/(chosenMap.upvotes+chosenMap.downvotes)
             const tier = `T${chosenMap.tier}`
             readablemaps.push(`${stars} / ${tier} / ${name}`)
         }
