@@ -14,6 +14,8 @@ module.exports = {
         for (chosenMap of maps) {
             readablemaps.push(chosenMap.name)
         }
-        interaction.editReply(readablemaps.toString())
+        var readableMapsString = readablemaps.toString()
+        readableMapsString = readableMapsString.replace(/ *, */g, '<br>');
+        interaction.editReply(readableMapsString)
     }
 }
