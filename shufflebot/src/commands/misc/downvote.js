@@ -28,7 +28,7 @@ module.exports = {
                 }
             }
             if(readablemaps.length === 1) {
-                mapToVote === mapToVoteRaw
+                mapToVote = readablemaps[1]
             } else if (readablemaps.length === 0) {
                 interaction.editReply(`Map not found.`)
                 return
