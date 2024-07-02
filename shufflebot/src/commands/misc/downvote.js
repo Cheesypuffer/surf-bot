@@ -35,7 +35,7 @@ module.exports = {
             } else {
                 var readableMapsString = readablemaps.toString()
                 readableMapsString = readableMapsString.replace(/ *, */g, '\n');
-                interaction.editReply(`Map not found. Did you mean: ${readableMapsString}`)
+                interaction.editReply(`Map not found. Did you mean: \n ${readableMapsString}`)
                 return
             }
         }
@@ -44,8 +44,13 @@ module.exports = {
             votes.push(interaction.user.id)
             await mapToVote.save(votes)
             interaction.editReply('You hath downvoted thy map.')
-        } else {
-            interaction.editReply(`That map doesn't exist, or you have already voted on it.`)
+        } else if(mapToVote.upvotes.includes(interaction.user.id) === false) {
+            var votes = mapToVote.downvotes
+            votes.push(interaction.user.id)
+            await mapToVote.save(votes)
+            const indx = mapToVote.upvotes.indexOf(interaction.user.id)
+            mapToVote.upvotes.splice(indx, 1)
+            mapToVote.save(indx)
         }
     }
 }
