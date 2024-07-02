@@ -2,8 +2,8 @@ const {Client, Interaction, ApplicationCommandOptionType, EmbedBuilder } = requi
 const record = require('../../models/times')
 const mapzz = require('../../models/maps')
 module.exports = {
-    name:'submittime',
-    description:'Submit them best time on a map to the database.',
+    name:'removetime',
+    description:'Remove a time on a map from the database.',
     options: [
         {
             name:'map',
