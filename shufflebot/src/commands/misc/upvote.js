@@ -44,7 +44,7 @@ module.exports = {
             votes.push(interaction.user.id)
             await mapToVote.save(votes)
             interaction.editReply('You hath upvoted thy map.')
-        } else if(mapToVote.upvotes.includes(interaction.user.id) === true) {
+        } else if(mapToVote.upvotes.includes(interaction.user.id) === false) {
             var votes = mapToVote.upvotes
             votes.push(interaction.user.id)
             await mapToVote.save(votes)
@@ -52,6 +52,8 @@ module.exports = {
             mapToVote.downvotes.splice(indx, 1)
             await mapToVote.save(indx)
             interaction.editReply('You hath upvoted thy map.')
+        } else {
+            interaction.editReply('You hath already upvoted thy map.')
         }
     }
 }
