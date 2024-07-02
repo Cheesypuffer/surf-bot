@@ -17,7 +17,18 @@ module.exports = {
 
     callback: async (client, interaction) => {
         await interaction.deferReply()
-        var mapToVote = await mapz.findOne({name: interaction.options.get('map').value})
+        var mapToVoteRaw = await mapz.findOne({name: interaction.options.get('map').value})
+        var allMaps = await mapz.find({})
+        var res = []
+        if (!mapToVoteRaw) {
+            for(const mapToVote1 of allMaps) {
+                if(toString(mapToVote1.name).includes(interaction.options.get('map').value)) {
+                    res.push(mapToVote1.name)
+                }
+            }
+            console.log(res)
+            return
+        }
         if (mapToVote && (mapToVote.downvotes.includes(interaction.user.id) === false) && (mapToVote.upvotes.includes(interaction.user.id) === false)) {
             var votes = mapToVote.downvotes
             votes.push(interaction.user.id)
