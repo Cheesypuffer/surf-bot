@@ -15,7 +15,7 @@ module.exports = {
             readablemaps.push(chosenMap.name)
         }
         var readableMapsString = readablemaps.toString()
-        readableMapsString = readableMapsString.replace(/ *, */g, '<br>');
+        readableMapsString = readableMapsString.replace(/ *, */g, '\n');
         interaction.editReply(readableMapsString)
     }
 }
