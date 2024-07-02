@@ -32,7 +32,7 @@ module.exports = {
     
     callback: async (client, interaction) => {
         await interaction.deferReply()
-        const query = mapzz.findOne({name: interaction.options.get('map').value})
+        const query = await mapzz.findOne({name: interaction.options.get('map').value})
         const hasRole = interaction.member.roles.cache.has('1257704302428815521')
         if (query && hasRole) {
             const newRecord = new record({
