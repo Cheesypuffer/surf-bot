@@ -12,10 +12,10 @@ module.exports = {
         const maps = await mapz.find({})
         var readablemaps = []
         for (chosenMap of maps) {
-            const name = chosenMap.name
+            const name = toString(chosenMap.name)
             const stars = starsToString(votesToStars(chosenMap.upvotes, chosenMap.downvotes))
             const tier = `T${chosenMap.tier}`
-            readablemaps.push(toString({stars, tier, name}))
+            readablemaps.push(`${stars} / ${tier} / ${name}`)
         }
         var readableMapsString = toString(readablemaps)
         readableMapsString = readableMapsString.replace(/ *, */g, '\n');
