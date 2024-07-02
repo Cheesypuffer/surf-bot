@@ -35,9 +35,7 @@ module.exports = {
         const query = mapzz.findOne({map: interaction.options.get('map').value, time: interaction.options.get('time').value, proof: interaction.options.get('proof').value})
         const hasRole = interaction.member.roles.cache.has('1257704302428815521')
         if (query && hasRole) {
-            const result = await maps.deleteOne({map: interaction.options.get('map').value, time: interaction.options.get('time').value, proof: interaction.options.get('proof').value})
-
-            const { default: prettyMs} = await import('pretty-ms')
+            const result = await record.deleteOne({map: interaction.options.get('map').value, time: interaction.options.get('time').value, proof: interaction.options.get('proof').value})
             const recordchannel = client.channels.cache.get('1256343173748359379')
             interaction.editReply('Record deleted.')
         }
