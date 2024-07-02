@@ -11,10 +11,10 @@ module.exports = {
         await interaction.deferReply()
         const maps = await mapz.find({})
         var readablemaps = []
-        const name = chosenMap.name
-        const stars = starsToString(votesToStars(chosenMap.upvotes, chosenMap.downvotes))
-        const tier = `T${chosenMap.tier}`
         for (chosenMap of maps) {
+            const name = chosenMap.name
+            const stars = starsToString(votesToStars(chosenMap.upvotes, chosenMap.downvotes))
+            const tier = `T${chosenMap.tier}`
             readablemaps.push({stars, tier, name})
         }
         var readableMapsString = readablemaps.toString()
