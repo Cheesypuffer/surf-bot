@@ -20,7 +20,7 @@ module.exports = {
         var mapToVoteRaw = await mapz.findOne({name: interaction.options.get('map').value})
         var allMaps = await mapz.find({})
         var readablemaps = []
-        var mapToVote = null
+        var mapToVote = mapToVoteRaw
         if (!mapToVoteRaw) {
             for(const mapToVote1 of allMaps) {
                 if((mapToVote1.name).includes(interaction.options.get('map').value)) {
