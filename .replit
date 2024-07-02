@@ -1,0 +1,8 @@
+modules = ["nodejs-20"]
+run = "nodemon shufflebot/src/index.js"
+
+[nix]
+channel = "stable-23_11"
+
+[deployment]
+run = ["sh", "-c", "nodemon"]
