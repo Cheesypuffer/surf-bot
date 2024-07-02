@@ -36,7 +36,7 @@ function votesToStars(upvotes,downvotes) {
   function starsToString(stars) {
     let string = '';
     for (let i = 0; i < 5; i++) {
-      if (i-2 < Math.round(stars)) {
+      if (i > Math.round(stars)) {
         string += '★';
       } else {
         string += '☆';
