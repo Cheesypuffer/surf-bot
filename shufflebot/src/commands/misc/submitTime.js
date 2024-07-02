@@ -61,7 +61,7 @@ module.exports = {
         recordchannel.send(`${interaction.options.get('proof').value}`)
             ///recordchannel.send(`${interaction.user} has achieved a time of ${interaction.options.get('time').value} on ${interaction.options.get('map').value}, ${interaction.options.get('proof').url}`)
         } else {
-            interaction.reply('The map that you are trying to submit a time to does not exist. Please ask a Curator to create the map, or check for typos.')
+            interaction.editReply('The map that you are trying to submit a time to does not exist. Please ask a Curator to create the map, or check for typos.')
         }
     }
 }
