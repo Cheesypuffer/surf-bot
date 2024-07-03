@@ -37,9 +37,9 @@ module.exports = {
                 if (selectedMaps.length === 0) {
                   break; // No more maps to display
               }
-                const readablemaps = selectedMaps.slice(startIndex, endIndex);
+                
                 if (sortingMode === 1) {
-                  readablemaps.sort((a, b) => {
+                  selectedMaps.sort((a, b) => {
                     const nameA = a.split('| surf_')[1]
                     const nameB = b.split('| surf_')[1]
                     if (nameA < nameB) {
@@ -53,9 +53,9 @@ module.exports = {
                     return 0;
                   });
                 } else if (sortingMode === 2) {
-                  readablemaps.sort()
+                  selectedMaps.sort()
                 } else if (sortingMode === 3) {
-                  readablemaps.sort((a, b) => {
+                  selectedMaps.sort((a, b) => {
                     const nameA = a.split('| T')[1]
                     const nameB = b.split('| T')[1]
                     if (nameA < nameB) {
@@ -69,7 +69,7 @@ module.exports = {
                     return 0;
                   });
                 }
-
+                const readablemaps = selectedMaps.slice(startIndex, endIndex);
                 const readableMapsString = (readablemaps).join('\n');
 
                 const embed = new EmbedBuilder()
