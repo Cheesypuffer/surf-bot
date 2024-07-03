@@ -31,12 +31,9 @@ const client = new Client({
 
 client.on('interactionCreate', async (interaction) => {
     if (interaction.isButton()) {
-        await interaction.deferReply({ephemeral:true})
         const role = interaction.guild.roles.cache.get(interaction.customId);
-        if (!role) {
-            interaction.reply({content: 'what'})
-            return;
-        }
+        if (!role) {return;}
+        await interaction.deferReply({ephemeral:true})
 
         const hasRole = interaction.member.roles.cache.has(role.id)
 
