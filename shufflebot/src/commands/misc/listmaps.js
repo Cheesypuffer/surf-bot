@@ -25,19 +25,19 @@ module.exports = {
             while (true) {
                 const startIndex = (pageNumber - 1) * mapsPerPage;
                 const endIndex = startIndex + mapsPerPage;
-                const selectedMaps = maps.slice(startIndex, endIndex);
+                
 
                 if (selectedMaps.length === 0) {
                     break; // No more maps to display
                 }
 
-                const readablemaps = selectedMaps.map(chosenMap => {
+                const selectedMaps = maps.map(chosenMap => {
                     const name = (chosenMap.name)
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
                     const tier = `T${chosenMap.tier}`;
                     return `${starsToString(stars)} | ${tier} | ${name}`;
                 });
-                
+                const readablemaps = selectedMaps.slice(startIndex, endIndex);
                 if (sortingMode === 1) {
                   readablemaps.sort((a, b) => {
                     const nameA = a.split('| surf_')[1]
