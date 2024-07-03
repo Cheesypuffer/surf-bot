@@ -2,6 +2,16 @@ const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, Attachme
 const { default: mongoose } = require("mongoose");
 const records  = require('../../models/times')
 const mapz = require('../../models/maps')
+const buttons = [
+  {
+    id:'PageLeft',
+    label:'<--'
+  },
+  {
+    id:'PageRight',
+    label:'-->'
+  },
+]
 
 module.exports = {
     name:'listmaps',
@@ -38,8 +48,8 @@ module.exports = {
             new ButtonBuilder().setCustomId(role.id).setLabel(role.label).setStyle(ButtonStyle.Link))
         })
         interaction.channel.send(
-          {embeds: [embed]},
-          {components: [row]}
+          {components: [row]},
+          {embeds: [embed]}
         )
         interaction.editReply('⠀')
     }
@@ -69,13 +79,3 @@ console.log(starsToString(votesToStars(10, 5))); // Should output '★★★☆�
 console.log(starsToString(votesToStars(2, 8))); // Should output '☆☆☆☆☆' (0 filled stars)
 console.log(starsToString(votesToStars(0, 0))); // Should output '☆☆☆☆☆' (0 filled stars)
 
-const buttons = [
-  {
-    id:'PageLeft',
-    label:'<--'
-  },
-  {
-    id:'PageRight',
-    label:'-->'
-  },
-]
