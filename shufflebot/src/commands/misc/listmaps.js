@@ -23,7 +23,7 @@ module.exports = {
 
             }
             const tier = `T${chosenMap.tier}`
-            readablemaps.push(`${chosenMap.upvotes.length} / ${chosenMap.downvotes.length} / ${stars} / ${tier} / ${name},`)
+            readablemaps.push(`${stars} / ${tier} / ${name}`)
         }
         var readableMapsString = readablemaps.toString()
         readableMapsString = readableMapsString.replace(/ *, */g, '\n');
