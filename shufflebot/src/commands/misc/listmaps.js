@@ -16,9 +16,9 @@ module.exports = {
             ///const stars = ///starsToString(votesToStars(chosenMap.upvotes, chosenMap.downvotes))
             if ((chosenMap.upvotes+chosenMap.downvotes) <= 0) {
                 var stars = 0
-            } else if ((chosenMap.upvotes-chosenMap.downvotes) <= 0) {
-                var stars = 0
-            } else {
+            } 
+            
+            else {
                 var stars = (chosenMap.upvotes - chosenMap.downvotes)/(chosenMap.upvotes+chosenMap.downvotes)
             }
             const tier = `T${chosenMap.tier}`
@@ -31,21 +31,21 @@ module.exports = {
 }
 
 // javascript function to convert amount of upvotes and downvotes to a number 1-5
-///function votesToStars(upvotes, downvotes) {
+function votesToStars(upvotes, downvotes) {
     // Calculate the total votes
-   /// const totalVotes = upvotes + downvotes;
+    const totalVotes = upvotes + downvotes;
     // Handle edge case: Zero votes
-    ///if (totalVotes === 0) {
-   ///   return 0; // Return 0 stars if there are no votes
-   /// }
+    if (totalVotes === 0) {
+      return 0; // Return 0 stars if there are no votes
+    }
     // Calculate the proportion of upvotes
-   /// const upvoteProportion = upvotes / totalVotes;
+    const upvoteProportion = upvotes / totalVotes;
     // Scale the proportion to a 1-5 star range
-   /// let starss = upvoteProportion * 5;
+    let stars = upvoteProportion * 5;
     // Ensure stars are within the 1-5 range
-   ///starss = Math.max(1, Math.min(5, starss));
-    ///return starss;
-  ///} 
+    stars = Math.max(1, Math.min(5, stars));
+    return stars;
+  } 
   // converts int 0-5 to star emojis
   function starsToString(starz) {
     let string = '';
@@ -59,6 +59,6 @@ module.exports = {
     return string;
   }
   // Example usage
-  ///console.log(starsToString(votesToStars(10, 5))); // Should output '★★★☆☆' (3 filled stars)
-  ///console.log(starsToString(votesToStars(2, 8))); // Should output '☆☆☆☆☆' (0 filled stars)
-  ///console.log(starsToString(votesToStars(0, 0))); // Should output '☆☆☆☆☆' (0 filled stars)
+  console.log(starsToString(votesToStars(10, 5))); // Should output '★★★☆☆' (3 filled stars)
+  console.log(starsToString(votesToStars(2, 8))); // Should output '☆☆☆☆☆' (0 filled stars)
+  console.log(starsToString(votesToStars(0, 0))); // Should output '☆☆☆☆☆' (0 filled stars)
