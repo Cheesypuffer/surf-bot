@@ -68,7 +68,7 @@ module.exports = {
             readableData.push({name: `${recordToDisplay.userTag} ${recordToDisplay.recordProof}`, value: `${prettyMs(recordToDisplay.recordTime*1000)}`})
         }
         const embed = new EmbedBuilder()
-            .setTitle(`${interaction.options.get('map').value} Records`)
+            .setTitle(`${mapToDisplay.name} Records`)
             .setDescription('Top 20')
             .setColor('Gold')
             .setTimestamp()
@@ -83,6 +83,6 @@ module.exports = {
             }
             embed.addFields(readableData)
         interaction.channel.send({embeds: [embed]}, {files: [file]});
-        interaction.editReply('Here you go')
+        interaction.editReply('⠀')
      }
 }
