@@ -28,13 +28,13 @@ module.exports = {
                 }
 
                 const readablemaps = selectedMaps.map(chosenMap => {
-                    const name = chosenMap.name;
+                    const name = (chosenMap.name).split('_')[0];
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
                     const tier = `T${chosenMap.tier}`;
                     return `${starsToString(stars)} | ${tier} | ${name}`;
                 });
 
-                const readableMapsString = readablemaps.join('\n');
+                const readableMapsString = ((readablemaps).sort()).join('\n');
 
                 const embed = new EmbedBuilder()
                     .setTitle('Map list')
