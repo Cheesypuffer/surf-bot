@@ -31,7 +31,7 @@ module.exports = {
                     const name = chosenMap.name;
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
                     const tier = `T${chosenMap.tier}`;
-                    return `${starsToString(stars)} / ${tier} / ${name}`;
+                    return `${starsToString(stars)} | ${tier} | ${name}`;
                 });
 
                 const readableMapsString = readablemaps.join('\n');
