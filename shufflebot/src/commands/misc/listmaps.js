@@ -51,10 +51,9 @@ module.exports = {
           {components: [row], embeds: [embed]}
         )
         interaction.editReply(`⠀`)
-        const collectorFilter = i => i.user.id === interaction.user.id;
 
         try {
-	        const confirmation = await response.awaitMessageComponent({ filter: collectorFilter, time: 6000000 });
+	        const confirmation = await response.awaitMessageComponent({ time: 6000000 });
 
           if(confirmation.customId === 'PageLeft') {
             if (pageNumber > 1) {
