@@ -49,7 +49,11 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setTitle(`${map.name}`)
                 .setDescription(`Tier ${map.tier}`)
-                .setColor(role.hexColor)
+                if (role) {
+                    embed.setColor(role.hexColor)
+                } else {
+                    embed.setColor('Blurple')
+                }
                 if (map.icon) {
                     embed.setImage(map.icon)
                 } else {
