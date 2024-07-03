@@ -3,7 +3,10 @@ const mapz = require('../../models/maps');
 
 const buttons = [
   { id: 'PageLeft', label: '<--' },
-  { id: 'PageRight', label: '-->' }
+  { id: 'PageRight', label: '-->' },
+  { id: 'Mode1', label: 'Name'},
+  { id: 'Mode2', label: 'Rating'},
+  { id: 'Mode3', label: 'Tier'}
 ];
 
 module.exports = {
@@ -17,6 +20,7 @@ module.exports = {
             let pageNumber = 1;
             const maps = await mapz.find({});
             const mapsPerPage = 20;
+            let sortingMode = 1
 
             while (true) {
                 const startIndex = (pageNumber - 1) * mapsPerPage;
@@ -33,22 +37,38 @@ module.exports = {
                     const tier = `T${chosenMap.tier}`;
                     return `${starsToString(stars)} | ${tier} | ${name}`;
                 });
-
-                readablemaps.sort((a, b) => {
-                  const nameA = a.split('| surf_')[1]
-                  const nameB = b.split('| surf_')[1]
-                  console.log(nameA)
-                  console.log(nameB)
-                  if (nameA < nameB) {
-                    return -1;
-                  }
-                  if (nameA > nameB) {
-                    return 1;
-                  }
                 
-                  // names must be equal
-                  return 0;
-                });
+                if (sortingMode === 1) {
+                  readablemaps.sort((a, b) => {
+                    const nameA = a.split('| surf_')[1]
+                    const nameB = b.split('| surf_')[1]
+                    if (nameA < nameB) {
+                      return -1;
+                    }
+                    if (nameA > nameB) {
+                      return 1;
+                    }
+                  
+                    // names must be equal
+                    return 0;
+                  });
+                } else if (sortingMode === 2) {
+                  readablemaps.sort()
+                } else if (sortingMode === 3) {
+                  readablemaps.sort((a, b) => {
+                    const nameA = a.split('| T')[1]
+                    const nameB = b.split('| T')[1]
+                    if (nameA < nameB) {
+                      return -1;
+                    }
+                    if (nameA > nameB) {
+                      return 1;
+                    }
+                  
+                    // names must be equal
+                    return 0;
+                  });
+                }
 
                 const readableMapsString = (readablemaps).join('\n');
 
@@ -86,6 +106,27 @@ module.exports = {
                 } else if (confirmation.customId === 'PageRight') {
                   if (pageNumber < Math.ceil(maps.length/20)) {
                     pageNumber++;
+                    await confirmation.update('⠀')
+                  } else {
+                    await confirmation.update('⠀')
+                  }
+                } else if (confirmation.customId === 'Mode1') {
+                  if (!sortingMode===1) {
+                    sortingMode = 1
+                    await confirmation.update('⠀')
+                  } else {
+                    await confirmation.update('⠀')
+                  }
+                } else if (confirmation.customId === 'Mode2') {
+                  if (!sortingMode===2) {
+                    sortingMode = 2
+                    await confirmation.update('⠀')
+                  } else {
+                    await confirmation.update('⠀')
+                  }
+                } else if (confirmation.customId === 'Mode3') {
+                  if (!sortingMode===3) {
+                    sortingMode = 3
                     await confirmation.update('⠀')
                   } else {
                     await confirmation.update('⠀')
