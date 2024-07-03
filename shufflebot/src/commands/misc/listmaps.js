@@ -22,7 +22,7 @@ module.exports = {
         const maps = await mapz.find({})
         var readablemaps = []
         var pageNumber = 1
-        for (let i = pageNumber-1; i<pageNumber+20; i++) {
+        for (let i = (pageNumber-1)*20; i<pageNumber*20+20; i++) {
           const chosenMap = maps[i]
           const name = chosenMap.name
           ///const stars = ///starsToString(votesToStars(chosenMap.upvotes, chosenMap.downvotes))
@@ -47,7 +47,7 @@ module.exports = {
           row.components.push(
             new ButtonBuilder().setCustomId(role.id).setLabel(role.label).setStyle(ButtonStyle.Primary))
         })
-        const response = interaction.editReply(`{components: [row], embeds: [embed]}`)
+        const response = interaction.editReply({components: [row], embeds: [embed]})
 
         try {
 	        const confirmation = await response.awaitMessageComponent({ time: 6000000 });
@@ -59,7 +59,7 @@ module.exports = {
             }
           }
 
-          if(confirmation.customId === 'PageRight') {
+          else if(confirmation.customId === 'PageRight') {
             pageNumber++
             this.callback(client, interaction)
           }
