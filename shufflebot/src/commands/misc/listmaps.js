@@ -34,7 +34,7 @@ module.exports = {
 // javascript function to convert amount of upvotes and downvotes to a number 1-5
 // javascript function to convert amount of upvotes and downvotes to a number 1-5
 function votesToStars(upvotes, downvotes) {
-  return Math.min(Math.max(Math.round((upvotes + downvotes)/(downvotes+upvotes)*5),0),5);
+  return Math.min(Math.max(Math.round((upvotes)/(downvotes+upvotes)*5),0),5);
 }
 
 // converts int 0-5 to star emojis
