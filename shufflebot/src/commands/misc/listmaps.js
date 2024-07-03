@@ -28,25 +28,13 @@ module.exports = {
                 }
 
                 const readablemaps = selectedMaps.map(chosenMap => {
-                    const name = (chosenMap.name.replace((chosenMap.name).split('_')[0], '')).replace('_', '')
+                    const name = (chosenMap.name)
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
                     const tier = `T${chosenMap.tier}`;
                     return `${starsToString(stars)} | ${tier} | ${name}`;
                 });
 
-                readablemaps.sort((a, b) => {
-                  const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-                  const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-                  if (nameA < nameB) {
-                    return -1;
-                  }
-                  if (nameA > nameB) {
-                    return 1;
-                  }
-                
-                  // names must be equal
-                  return 0;
-                });
+                readablemaps.sort((a, b) => a.localeCompare(b));
 
                 const readableMapsString = (readablemaps).join('\n');
 
