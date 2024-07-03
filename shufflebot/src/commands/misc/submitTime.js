@@ -35,6 +35,7 @@ module.exports = {
         const query1 = {name: interaction.options.get('map').value}
         const query = await maps.findOne(query1)
         const hasRole = interaction.member.roles.cache.has('1257704302428815521')
+        const oldRecord = await record.findOne({userId: interaction.user.id})
         if (query && hasRole) {
             const newRecord = new record({
                 userId: interaction.user.id,
@@ -43,23 +44,12 @@ module.exports = {
                 time: interaction.options.get('time').value,
                 proof: interaction.options.get('proof').value
             })
-            await newRecord.save()
-            const { default: prettyMs} = await import('pretty-ms')
-            const recordchannel = client.channels.cache.get('1256343173748359379')
-            interaction.editReply('New record submitted.')
-            const embed = new EmbedBuilder()
-            .setTitle(`${interaction.options.get('map').value}`)
-            .setDescription(`${prettyMs(interaction.options.get('time').value*1000, {verbose: true})}`)
-            .setColor('Gold')
-            .addFields(
-            
-            {
-                name: `Author: ${interaction.user.tag}`,
-                value: `${interaction.options.get('proof').value}`
-            },
-        );
-        recordchannel.send({embeds: [embed]})
-        recordchannel.send(`${interaction.options.get('proof').value}`)
+            if (oldRecord) {
+                if(oldRecord.time>newRecord.time) {
+                    await record.deleteOne({userId: interaction.user.id})
+                    newRecord.save()
+                }
+            }
             ///recordchannel.send(`${interaction.user} has achieved a time of ${interaction.options.get('time').value} on ${interaction.options.get('map').value}, ${interaction.options.get('proof').url}`)
         } else if (!query) {
             interaction.editReply('The map that you are trying to submit a time to does not exist. Please ask a Curator to create the map, or check for typos.')
