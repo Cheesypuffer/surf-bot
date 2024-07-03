@@ -114,6 +114,7 @@ module.exports = {
                   if (!sortingMode===1) {
                     sortingMode = 1
                     await confirmation.update('⠀')
+                    this.callback(client, interaction)
                   } else {
                     await confirmation.update('⠀')
                   }
@@ -121,6 +122,7 @@ module.exports = {
                   if (!sortingMode===2) {
                     sortingMode = 2
                     await confirmation.update('⠀')
+                    this.callback(client, interaction)
                   } else {
                     await confirmation.update('⠀')
                   }
@@ -128,6 +130,7 @@ module.exports = {
                   if (!sortingMode===3) {
                     sortingMode = 3
                     await confirmation.update('⠀')
+                    this.callback(client, interaction)
                   } else {
                     await confirmation.update('⠀')
                   }
