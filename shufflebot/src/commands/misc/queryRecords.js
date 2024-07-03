@@ -40,6 +40,7 @@ module.exports = {
             }
             if(readablemaps.length === 1) {
                 mapToDisplay = usuablemaps[0]
+                mapRecords = usuablemaps
             } else if (readablemaps.length === 0) {
                 interaction.editReply(`Map not found.`)
                 return
