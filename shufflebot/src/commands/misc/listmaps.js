@@ -43,7 +43,7 @@ module.exports = {
 
                 const row = new ActionRowBuilder();
                 buttons.forEach((role) => {
-                    row.addComponent(
+                    row.components.push(
                         new ButtonBuilder()
                             .setCustomId(role.id)
                             .setLabel(role.label)
