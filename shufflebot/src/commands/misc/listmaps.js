@@ -15,7 +15,7 @@ module.exports = {
             const name = chosenMap.name
             ///const stars = ///starsToString(votesToStars(chosenMap.upvotes, chosenMap.downvotes))
             if ((chosenMap.upvotes.length+chosenMap.downvotes.length) <= 0) {
-                var stars = 0
+                var stars = '☆☆☆☆☆'
             } 
             
             else {
