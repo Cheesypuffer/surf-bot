@@ -46,7 +46,7 @@ module.exports = {
         const file2 = new AttachmentBuilder(map.thumbnail)
         const embed = new EmbedBuilder()
             .setTitle(`${map.name}`)
-            .setDescription(`Tier ${map.tier}`)
+            .setDescription(`Tier ${map.tier} \n [Servers hosting this map](https://teamwork.tf/community/quickplay/map/${map.name}?gamemode=)`)
             .setColor(role.hexColor)
             if (map.icon) {
                 embed.setImage(map.icon)
