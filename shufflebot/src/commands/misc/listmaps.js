@@ -19,7 +19,8 @@ module.exports = {
             } 
             
             else {
-                var stars = starsToString(chosenMap.upvotes.length, chosenMap.downvotes.length)
+              var stars = starsToString(votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length))
+
             }
             const tier = `T${chosenMap.tier}`
             readablemaps.push(`${chosenMap.upvotes.length} / ${chosenMap.downvotes.length} / ${stars} / ${tier} / ${name},`)
