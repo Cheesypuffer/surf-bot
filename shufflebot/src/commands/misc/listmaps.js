@@ -22,10 +22,10 @@ module.exports = {
                 var stars = starsToString(chosenMap.upvotes.length, chosenMap.downvotes.length)
             }
             const tier = `T${chosenMap.tier}`
-            readablemaps.push(`${chosenMap.upvotes.length} / ${chosenMap.downvotes.length} / ${stars} / ${tier} / ${name}`)
+            readablemaps.push(`${chosenMap.upvotes.length} / ${chosenMap.downvotes.length} / ${stars} / ${tier} / ${name},`)
         }
         var readableMapsString = readablemaps.toString()
-        ///readableMapsString = readableMapsString.replace(/ *, */g, '\n');
+        readableMapsString = readableMapsString.replace(/ *, */g, '\n');
         interaction.editReply(readableMapsString)
     }
 }
