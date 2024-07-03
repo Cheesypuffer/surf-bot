@@ -21,19 +21,19 @@ module.exports = {
         await interaction.deferReply()
         const maps = await mapz.find({})
         var readablemaps = []
-        for (chosenMap of maps) {
-            const name = chosenMap.name
-            ///const stars = ///starsToString(votesToStars(chosenMap.upvotes, chosenMap.downvotes))
-            if ((chosenMap.upvotes.length+chosenMap.downvotes.length) <= 0) {
-                var stars = '☆☆☆☆☆'
-            } 
-            
-            else {
-              var stars = starsToString(votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length))
-
-            }
-            const tier = `T${chosenMap.tier}`
-            readablemaps.push(`${stars} / ${tier} / ${name}`)
+        for (let i = pageNumber-1; i<pageNumber+20; i++) {
+          const chosenMap = maps[i]
+          const name = chosenMap.name
+          ///const stars = ///starsToString(votesToStars(chosenMap.upvotes, chosenMap.downvotes))
+          if ((chosenMap.upvotes.length+chosenMap.downvotes.length) <= 0) {
+            var stars = '☆☆☆☆☆'
+          } 
+                      
+          else {
+            var stars = starsToString(votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length))
+          }
+          const tier = `T${chosenMap.tier}`
+          readablemaps.push(`${stars} / ${tier} / ${name}`)
         }
         var readableMapsString = readablemaps.toString()
         readableMapsString = readableMapsString.replace(/ *, */g, '\n');
@@ -47,10 +47,29 @@ module.exports = {
           row.components.push(
             new ButtonBuilder().setCustomId(role.id).setLabel(role.label).setStyle(ButtonStyle.Primary))
         })
-        interaction.channel.send(
+        const response = interaction.channel.send(
           {components: [row], embeds: [embed]}
         )
-        interaction.editReply('⠀')
+        interaction.update()
+        const collectorFilter = i => i.user.id === interaction.user.id;
+
+        try {
+	        const confirmation = await response.awaitMessageComponent({ filter: collectorFilter, time: 600_000 });
+
+          if(confirmation.customId === 'PageLeft') {
+            if (pageNumber > 1) {
+              pageNumber--
+              this.callback(client, interaction)
+            }
+          }
+
+          if(confirmation.customId === 'PageRight') {
+            pageNumber--
+            this.callback(client, interaction)
+          }
+        } catch (e) {
+	      await interaction.editReply({ content: 'Timeout', components: [] });
+        }
     }
 }
 
