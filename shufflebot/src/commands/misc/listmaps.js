@@ -8,6 +8,7 @@ module.exports = {
     description:'Lists the maps currently in the map selection.',
 
     callback: async (client, interaction) => {
+        await interaction.deferReply()
         const maps = await mapz.find({})
         var readablemaps = []
         for (chosenMap of maps) {
@@ -40,6 +41,7 @@ module.exports = {
           {embeds: [embed]},
           {components: [row]}
         )
+        interaction.editReply('⠀')
     }
 }
 

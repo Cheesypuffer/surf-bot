@@ -28,7 +28,7 @@ module.exports = {
             var maptier = 0
             var map = 'null'
             var nub = 0
-            ///await interaction.deferReply()
+            await interaction.deferReply()
             while (true && nub <= 1000) {
                 map = maps[
                     Math.floor(
@@ -72,6 +72,7 @@ module.exports = {
                 ///embed.setThumbnail(`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`)
                 embed.setAuthor({name:`${interaction.user.tag}'s roll is . . .`, iconURL:`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`})
             interaction.channel.send({embeds: [embed]}, {files: [file, file2]});
+            interaction.editReply('⠀')
         } catch (error) {
             console.log(error)
             interaction.reply('Uh oh, tell an admin.')
