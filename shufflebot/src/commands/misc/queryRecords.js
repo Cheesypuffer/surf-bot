@@ -27,8 +27,28 @@ module.exports = {
         var mapRecords = await records.find({map:interaction.options.get('map').value})
         var mapToDisplay = await mapz.findOne({name:interaction.options.get('map').value})
         if(!mapToDisplay) {
-            interaction.editReply(`That map does not exist.`)
-            return
+            var mapToVoteRaw = await mapz.findOne({name: interaction.options.get('map').value})
+            var allMaps = await mapz.find({})
+            var readablemaps = []
+            var usuablemaps = []
+            var map = mapToDisplay
+            for(const mapToVote1 of allMaps) {
+                if((mapToVote1.name).includes(interaction.options.get('map').value)) {
+                    readablemaps.push(mapToVote1.name)
+                    usuablemaps.push(mapToVote1)
+                }
+            }
+            if(readablemaps.length === 1) {
+                map = usuablemaps[0]
+            } else if (readablemaps.length === 0) {
+                interaction.editReply(`Map not found.`)
+                return
+            } else {
+                var readableMapsString = readablemaps.toString()
+                readableMapsString = readableMapsString.replace(/ *, */g, '\n');
+                interaction.editReply(`Map not found. Did you mean: \n${readableMapsString}`)
+                return
+            }
         }
         var mapTimes = []
         for(const mapRecord of mapRecords) {
