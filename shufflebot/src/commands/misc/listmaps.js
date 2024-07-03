@@ -17,7 +17,7 @@ module.exports = {
         await interaction.deferReply();
 
         try {
-            let sortingMode = 2;
+            let sortingMode = 1;
             let pageNumber = 1;
             const maps = await mapz.find({});
             const mapsPerPage = 20;
