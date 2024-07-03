@@ -48,8 +48,7 @@ module.exports = {
             new ButtonBuilder().setCustomId(role.id).setLabel(role.label).setStyle(ButtonStyle.Primary))
         })
         interaction.channel.send(
-          {components: [row]},
-          {embeds: [embed]}
+          {components: [row], embeds: [embed]}
         )
         interaction.editReply('⠀')
     }
