@@ -17,10 +17,10 @@ module.exports = {
         await interaction.deferReply();
 
         try {
+            let sortingMode = 2;
             let pageNumber = 1;
             const maps = await mapz.find({});
             const mapsPerPage = 20;
-            let sortingMode = 1
 
             while (true) {
                 const startIndex = (pageNumber - 1) * mapsPerPage;
