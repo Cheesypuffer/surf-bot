@@ -113,6 +113,7 @@ module.exports = {
                 } else if (confirmation.customId === 'ModeA') {
                   if (!sortingMode===1) {
                     sortingMode = 1
+                    console.log(sortingMode)
                     await confirmation.update('⠀')
                   } else {
                     await confirmation.update('⠀')
@@ -120,6 +121,7 @@ module.exports = {
                 } else if (confirmation.customId === 'ModeB') {
                   if (!sortingMode===2) {
                     sortingMode = 2
+                    console.log(sortingMode)
                     await confirmation.update('⠀')
                   } else {
                     await confirmation.update('⠀')
@@ -127,6 +129,7 @@ module.exports = {
                 } else if (confirmation.customId === 'ModeC') {
                   if (!sortingMode===3) {
                     sortingMode = 3
+                    console.log(sortingMode)
                     await confirmation.update('⠀')
                   } else {
                     await confirmation.update('⠀')
