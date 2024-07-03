@@ -14,15 +14,15 @@ module.exports = {
         for (chosenMap of maps) {
             const name = chosenMap.name
             ///const stars = ///starsToString(votesToStars(chosenMap.upvotes, chosenMap.downvotes))
-            if ((chosenMap.upvotes+chosenMap.downvotes) <= 0) {
+            if ((chosenMap.upvotes.length+chosenMap.downvotes.length) <= 0) {
                 var stars = 0
             } 
             
             else {
-                var stars = votesToStars(chosenMap.upvotes, chosenMap.downvotes)
+                var stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length)
             }
             const tier = `T${chosenMap.tier}`
-            readablemaps.push(`${chosenMap.upvotes} / ${chosenMap.downvotes} / ${stars} / ${tier} / ${name}`)
+            readablemaps.push(`${chosenMap.upvotes.length} / ${chosenMap.downvotes.length} / ${stars} / ${tier} / ${name}`)
         }
         var readableMapsString = readablemaps.toString()
         ///readableMapsString = readableMapsString.replace(/ *, */g, '\n');
@@ -34,7 +34,7 @@ module.exports = {
 // javascript function to convert amount of upvotes and downvotes to a number 1-5
 function votesToStars(upvotes, downvotes) {
   // Calculate the total votes
-  const totalVotes = upvotes + downvotes;
+  const totalVotes = upvotes.length + downvotes.length;
 
   // Handle edge case: Zero votes
   if (totalVotes === 0) {
@@ -42,7 +42,7 @@ function votesToStars(upvotes, downvotes) {
   }
 
   // Calculate the proportion of upvotes
-  const upvoteProportion = upvotes / totalVotes;
+  const upvoteProportion = upvotes.length / totalVotes;
 
   // Scale the proportion to a 1-5 star range
   let stars = upvoteProportion * 5;
