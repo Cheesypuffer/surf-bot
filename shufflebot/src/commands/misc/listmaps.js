@@ -28,12 +28,11 @@ module.exports = {
         var readableMapsString = readablemaps.toString()
         readableMapsString = readableMapsString.replace(/ *, */g, '\n');
         const embed = new EmbedBuilder()
-        .setTimestamp()
         .setTitle('Map List')
         .setDescription(readableMapsString)
         .setFooter({text: `Page 1`})
         interaction.channel.send({embeds: [embed]})
-        interaction.editReply('⠀')
+        interaction.deleteReply()
     }
 }
 
