@@ -63,11 +63,17 @@ module.exports = {
                 if (confirmation.customId === 'PageLeft') {
                     if (pageNumber > 1) {
                         pageNumber--;
-                        await confirmation.update('Successfully turned the page')
+                        await confirmation.update('⠀')
+                    } else {
+                      await confirmation.update('⠀')
                     }
                 } else if (confirmation.customId === 'PageRight') {
+                  if (pageNumber < Math.ceil(maps.length/20)) {
                     pageNumber++;
-                    await confirmation.update('Successfully turned the page')
+                    await confirmation.update('⠀')
+                  } else {
+                    await confirmation.update('⠀')
+                  }
                 }
             }
         } catch (e) {
