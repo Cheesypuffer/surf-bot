@@ -27,9 +27,6 @@ module.exports = {
                 const endIndex = startIndex + mapsPerPage;
                 
 
-                if (selectedMaps.length === 0) {
-                    break; // No more maps to display
-                }
 
                 const selectedMaps = maps.map(chosenMap => {
                     const name = (chosenMap.name)
@@ -37,6 +34,9 @@ module.exports = {
                     const tier = `T${chosenMap.tier}`;
                     return `${starsToString(stars)} | ${tier} | ${name}`;
                 });
+                if (selectedMaps.length === 0) {
+                  break; // No more maps to display
+              }
                 const readablemaps = selectedMaps.slice(startIndex, endIndex);
                 if (sortingMode === 1) {
                   readablemaps.sort((a, b) => {
