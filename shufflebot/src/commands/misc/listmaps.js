@@ -1,98 +1,85 @@
-const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, ActionRowBuilder, ButtonBuilder, ButtonStyle} = require("discord.js");
-const { default: mongoose } = require("mongoose");
-const records  = require('../../models/times')
-const mapz = require('../../models/maps')
+const { EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+const mapz = require('../../models/maps');
+
 const buttons = [
-  {
-    id:'PageLeft',
-    label:'<--'
-  },
-  {
-    id:'PageRight',
-    label:'-->'
-  },
-]
+  { id: 'PageLeft', label: '<--' },
+  { id: 'PageRight', label: '-->' }
+];
 
 module.exports = {
-    name:'listmaps',
-    description:'Lists the maps currently in the map selection.',
+    name: 'listmaps',
+    description: 'Lists the maps currently in the map selection.',
 
     callback: async (client, interaction) => {
-        await interaction.deferReply()
-        const maps = await mapz.find({})
-        var readablemaps = []
-        var pageNumber = 1
-        for (let i = pageNumber-1; i<pageNumber+20; i++) {
-          const chosenMap = maps[i]
-          const name = chosenMap.name
-          ///const stars = ///starsToString(votesToStars(chosenMap.upvotes, chosenMap.downvotes))
-          if ((chosenMap.upvotes.length+chosenMap.downvotes.length) <= 0) {
-            var stars = '☆☆☆☆☆'
-          } 
-                      
-          else {
-            var stars = starsToString(votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length))
-          }
-          const tier = `T${chosenMap.tier}`
-          readablemaps.push(`${stars} / ${tier} / ${name}`)
-        }
-        var readableMapsString = readablemaps.toString()
-        readableMapsString = readableMapsString.replace(/ *, */g, '\n');
-        const embed = new EmbedBuilder()
-        .setTitle('Map list')
-        .setDescription(readableMapsString)
-        .setFooter({text: `Page ${pageNumber}`})
-        const row = new ActionRowBuilder();
-        buttons.forEach((role) => {
-          row.components.push(
-            new ButtonBuilder().setCustomId(role.id).setLabel(role.label).setStyle(ButtonStyle.Primary))
-        })
-        const response = interaction.channel.send(
-          {components: [row], embeds: [embed]}
-        )
-        interaction.editReply(`⠀`)
+        await interaction.deferReply();
+
+        let pageNumber = 1;
 
         try {
-	        const confirmation = await response.awaitMessageComponent({ time: 6000000 });
+            while (true) {
+                const maps = await mapz.find({});
+                const startIndex = (pageNumber - 1) * 20;
+                const selectedMaps = maps.slice(startIndex, startIndex + 20);
 
-          if(confirmation.customId === 'PageLeft') {
-            if (pageNumber > 1) {
-              pageNumber--
-              this.callback(client, interaction)
+                const readablemaps = selectedMaps.map(chosenMap => {
+                    const name = chosenMap.name;
+                    const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
+                    const tier = `T${chosenMap.tier}`;
+                    return `${starsToString(stars)} / ${tier} / ${name}`;
+                });
+
+                const readableMapsString = readablemaps.join('\n');
+
+                const embed = new EmbedBuilder()
+                    .setTitle('Map list')
+                    .setDescription(readableMapsString)
+                    .setFooter(`Page ${pageNumber}`);
+
+                const row = new ActionRowBuilder();
+                buttons.forEach((role) => {
+                    row.addComponent(
+                        new ButtonBuilder()
+                            .setCustomId(role.id)
+                            .setLabel(role.label)
+                            .setStyle(ButtonStyle.Primary)
+                    );
+                });
+
+                await interaction.editReply({
+                    content: '⠀', // This is a workaround for a Discord API bug where an empty string might cause the embed not to display
+                    components: [row],
+                    embeds: [embed],
+                });
+
+                const collectorFilter = i => i.user.id === interaction.user.id;
+                const confirmation = await interaction.awaitMessageComponent({ filter: collectorFilter, time: 600000 });
+
+                if (confirmation.customId === 'PageLeft') {
+                    if (pageNumber > 1) {
+                        pageNumber--;
+                    }
+                } else if (confirmation.customId === 'PageRight') {
+                    pageNumber++;
+                }
             }
-          }
-
-          if(confirmation.customId === 'PageRight') {
-            pageNumber++
-            this.callback(client, interaction)
-          }
         } catch (e) {
-	      await interaction.editReply({ content: 'Timeout', components: [] });
+            await interaction.editReply({ content: 'Timeout', components: [] });
         }
     }
-}
+};
 
-// javascript function to convert amount of upvotes and downvotes to a number 1-5
-// javascript function to convert amount of upvotes and downvotes to a number 1-5
 function votesToStars(upvotes, downvotes) {
-  return Math.min(Math.max(Math.round((upvotes)/(downvotes+upvotes)*5),0),5);
+    return Math.min(Math.max(Math.round((upvotes) / (downvotes + upvotes) * 5), 0), 5);
 }
 
-// converts int 0-5 to star emojis
 function starsToString(stars) {
-  let string = '';
-  for (let i = 0; i < 5; i++) {
-    if (i < Math.round(stars)) {
-      string += '★';
-    } else {
-      string += '☆';
+    let string = '';
+    for (let i = 0; i < 5; i++) {
+        if (i < Math.round(stars)) {
+            string += '★';
+        } else {
+            string += '☆';
+        }
     }
-  }
-  return string;
+    return string;
 }
-
-// Example usage
-console.log(starsToString(votesToStars(10, 5))); // Should output '★★★☆☆' (3 filled stars)
-console.log(starsToString(votesToStars(2, 8))); // Should output '☆☆☆☆☆' (0 filled stars)
-console.log(starsToString(votesToStars(0, 0))); // Should output '☆☆☆☆☆' (0 filled stars)
-
