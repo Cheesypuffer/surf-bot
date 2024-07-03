@@ -1,6 +1,6 @@
 const {Client, Interaction, ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
 const record = require('../../models/times')
-const mapzz = require('../../models/maps')
+const maps = require('../../models/maps')
 module.exports = {
     name:'submittime',
     description:'Submit your best time on a map to the database.',
@@ -32,7 +32,8 @@ module.exports = {
     
     callback: async (client, interaction) => {
         await interaction.deferReply()
-        const query = await mapzz.findOne({name: interaction.options.get('map').value})
+        const query1 = {name: interaction.options.get('map').value}
+        const query = await maps.findOne(query1)
         const hasRole = interaction.member.roles.cache.has('1257704302428815521')
         if (query && hasRole) {
             const newRecord = new record({
@@ -60,8 +61,10 @@ module.exports = {
         recordchannel.send({embeds: [embed]})
         recordchannel.send(`${interaction.options.get('proof').value}`)
             ///recordchannel.send(`${interaction.user} has achieved a time of ${interaction.options.get('time').value} on ${interaction.options.get('map').value}, ${interaction.options.get('proof').url}`)
-        } else {
+        } else if (!query) {
             interaction.editReply('The map that you are trying to submit a time to does not exist. Please ask a Curator to create the map, or check for typos.')
+        } else {
+            interaction.editReply(`You aren't allowed to do that`)
         }
     }
 }
