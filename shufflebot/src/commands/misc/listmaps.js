@@ -39,7 +39,7 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setTitle('Map list')
                     .setDescription(readableMapsString)
-                    .setFooter(`Page ${pageNumber}`);
+                    .setFooter({text: `Page ${pageNumber}`});
 
                 const row = new ActionRowBuilder();
                 buttons.forEach((role) => {
