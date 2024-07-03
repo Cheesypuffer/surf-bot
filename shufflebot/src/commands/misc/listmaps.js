@@ -1,4 +1,4 @@
-const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction} = require("discord.js");
+const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, ActionRowBuilder, ButtonBuilder, ButtonStyle} = require("discord.js");
 const { default: mongoose } = require("mongoose");
 const records  = require('../../models/times')
 const mapz = require('../../models/maps')
@@ -27,10 +27,18 @@ module.exports = {
         var readableMapsString = readablemaps.toString()
         readableMapsString = readableMapsString.replace(/ *, */g, '\n');
         const embed = new EmbedBuilder()
-        .setTitle('Map List')
+        .setTitle('Map list')
         .setDescription(readableMapsString)
-        .setFooter({text: `Page 1`})
-        interaction.channel.send({embeds: [embed]})
+        .setFooter({text: `Page ${pageNumber}`})
+        const row = new ActionRowBuilder();
+        buttons.forEach((role) => {
+          row.components.push(
+            new ButtonBuilder().setCustomId(role.id).setLabel(role.label).setStyle(ButtonStyle.Link))
+        })
+        interaction.channel.send(
+          {embeds: [embed]},
+          {components: [row]}
+        )
     }
 }
 
@@ -57,3 +65,14 @@ function starsToString(stars) {
 console.log(starsToString(votesToStars(10, 5))); // Should output '★★★☆☆' (3 filled stars)
 console.log(starsToString(votesToStars(2, 8))); // Should output '☆☆☆☆☆' (0 filled stars)
 console.log(starsToString(votesToStars(0, 0))); // Should output '☆☆☆☆☆' (0 filled stars)
+
+const buttons = [
+  {
+    id:'PageLeft',
+    label:'<--'
+  },
+  {
+    id:'PageRight',
+    label:'-->'
+  },
+]
