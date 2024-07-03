@@ -16,7 +16,7 @@ module.exports = {
     ],
 
     callback: async (client, interaction) => {
-        await interaction.deferReply()
+        ///await interaction.deferReply()
         var mapToVoteRaw = await mapz.findOne({name: interaction.options.get('map').value})
         var allMaps = await mapz.find({})
         var readablemaps = []
@@ -62,7 +62,7 @@ module.exports = {
             )
             embed.setAuthor({name:`${interaction.user.tag} wants to get map info`, iconURL:`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`})
         interaction.channel.send({embeds: [embed]}, {files: [file, file2]});
-        interaction.editReply('⠀')
+        ///interaction.editReply('⠀')
     }
 }
 
