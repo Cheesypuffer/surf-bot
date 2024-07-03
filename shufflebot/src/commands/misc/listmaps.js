@@ -31,7 +31,7 @@ module.exports = {
         .setTimestamp()
         .setTitle('Map List')
         .setDescription(readableMapsString)
-        .setFooter('Page 1')
+        .setFooter({text: `Page 1`})
         interaction.channel.send({embeds: [embed]})
         interaction.editReply('⠀')
     }
