@@ -8,7 +8,6 @@ module.exports = {
     description:'Lists the maps currently in the map selection.',
 
     callback: async (client, interaction) => {
-        await interaction.deferReply()
         const maps = await mapz.find({})
         var readablemaps = []
         for (chosenMap of maps) {
@@ -32,8 +31,6 @@ module.exports = {
         .setDescription(readableMapsString)
         .setFooter({text: `Page 1`})
         interaction.channel.send({embeds: [embed]})
-        interaction.editReply('0')
-        interaction.deleteReply()
     }
 }
 
