@@ -27,7 +27,7 @@ module.exports = {
         var mapRecords = await records.find({map:interaction.options.get('map').value})
         var mapToDisplay = await mapz.findOne({name:interaction.options.get('map').value})
         if(!mapToDisplay) {
-            interaction.reply(`That map does not exist.`)
+            interaction.editReply(`That map does not exist.`)
             return
         }
         var mapTimes = []
