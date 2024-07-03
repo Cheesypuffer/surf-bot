@@ -51,14 +51,14 @@ module.exports = {
                     );
                 });
 
-                await interaction.editReply({
+               const response = await interaction.editReply({
                     content: '⠀', // Workaround for a Discord API bug where an empty string might cause the embed not to display
                     components: [row],
                     embeds: [embed],
                 });
 
                 const collectorFilter = i => i.user.id === interaction.user.id;
-                const confirmation = await interaction.awaitMessageComponent({ filter: collectorFilter, time: 600000 });
+                const confirmation = await response.awaitMessageComponent({ filter: collectorFilter, time: 600000 });
 
                 if (confirmation.customId === 'PageLeft') {
                     if (pageNumber > 1) {
