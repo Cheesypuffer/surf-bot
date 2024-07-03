@@ -38,7 +38,7 @@ function votesToStars(upvotes, downvotes) {
 
   // Handle edge case: Zero votes
   if (totalVotes === 0) {
-    return 0; // Return 0 stars if there are no votes
+    return '☆☆☆☆☆'; // Return 0 stars if there are no votes
   }
 
   // Calculate the proportion of upvotes
