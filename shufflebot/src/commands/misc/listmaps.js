@@ -50,7 +50,7 @@ module.exports = {
         const response = interaction.channel.send(
           {components: [row], embeds: [embed]}
         )
-        interaction.editReply(`\n`)
+        interaction.editReply(`⠀`)
         const collectorFilter = i => i.user.id === interaction.user.id;
 
         try {
