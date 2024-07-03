@@ -43,6 +43,9 @@ module.exports = {
         for(const recordToDisplay of recordsToDisplay) {
             readableData.push({name: `${recordToDisplay.userTag} ${recordToDisplay.recordProof}`, value: `${prettyMs(recordToDisplay.recordTime*1000)}`})
         }
+        if(!mapz.findOne({name: interaction.options.get('map').value})) {
+            interaction.reply('You are trying to query a map for records, but the map does not exist.')
+        }
         const embed = new EmbedBuilder()
             .setTitle(`${interaction.options.get('map').value} Records`)
             .setDescription('Top 20')
