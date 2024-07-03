@@ -14,15 +14,15 @@ module.exports = {
         for (chosenMap of maps) {
             const name = chosenMap.name
             ///const stars = ///starsToString(votesToStars(chosenMap.upvotes, chosenMap.downvotes))
-            if ((chosenMap.upvotes+chosenMap.downvotes) <= 0) {
+            if ((chosenMap.upvotes.value+chosenMap.downvotes.value) <= 0) {
                 var stars = 0
             } 
             
             else {
-                var stars = votesToStars(chosenMap.upvotes, chosenMap.downvotes)
+                var stars = votesToStars(chosenMap.upvotes.value, chosenMap.downvotes.value)
             }
             const tier = `T${chosenMap.tier}`
-            readablemaps.push(`${chosenMap.upvotes},${chosenMap.downvotes}=${stars} / ${tier} / ${name}`)
+            readablemaps.push(`${chosenMap.upvotes.value},${chosenMap.downvotes.value}=${stars} / ${tier} / ${name}`)
         }
         var readableMapsString = readablemaps.toString()
         readableMapsString = readableMapsString.replace(/ *, */g, '\n');
