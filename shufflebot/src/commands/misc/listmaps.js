@@ -26,6 +26,7 @@ module.exports = {
         }
         var readableMapsString = readablemaps.toString()
         readableMapsString = readableMapsString.replace(/ *, */g, '\n');
+        var pageNumber = 1
         const embed = new EmbedBuilder()
         .setTitle('Map list')
         .setDescription(readableMapsString)
