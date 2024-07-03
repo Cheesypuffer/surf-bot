@@ -52,6 +52,7 @@ module.exports = {
                     return
                 }
             }
+            newRecord.save()
             interaction.editReply(`You have submitted a new time for ${interaction.options.get('map').value}`)
             ///recordchannel.send(`${interaction.user} has achieved a time of ${interaction.options.get('time').value} on ${interaction.options.get('map').value}, ${interaction.options.get('proof').url}`)
         } else if (!query) {
