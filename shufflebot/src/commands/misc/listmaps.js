@@ -4,9 +4,9 @@ const mapz = require('../../models/maps');
 const buttons = [
   { id: 'PageLeft', label: '<--' },
   { id: 'PageRight', label: '-->' },
-  { id: 'Mode1', label: 'Name'},
-  { id: 'Mode2', label: 'Rating'},
-  { id: 'Mode3', label: 'Tier'}
+  { id: 'ModeA', label: 'Name'},
+  { id: 'ModeB', label: 'Rating'},
+  { id: 'ModeC', label: 'Tier'}
 ];
 
 module.exports = {
@@ -110,21 +110,21 @@ module.exports = {
                   } else {
                     await confirmation.update('⠀')
                   }
-                } else if (confirmation.customId === 'Mode1') {
+                } else if (confirmation.customId === 'ModeA') {
                   if (!sortingMode===1) {
                     sortingMode = 1
                     await confirmation.update('⠀')
                   } else {
                     await confirmation.update('⠀')
                   }
-                } else if (confirmation.customId === 'Mode2') {
+                } else if (confirmation.customId === 'ModeB') {
                   if (!sortingMode===2) {
                     sortingMode = 2
                     await confirmation.update('⠀')
                   } else {
                     await confirmation.update('⠀')
                   }
-                } else if (confirmation.customId === 'Mode3') {
+                } else if (confirmation.customId === 'ModeC') {
                   if (!sortingMode===3) {
                     sortingMode = 3
                     await confirmation.update('⠀')
