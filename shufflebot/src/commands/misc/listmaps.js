@@ -32,6 +32,7 @@ module.exports = {
         .setDescription(readableMapsString)
         .setFooter({text: `Page 1`})
         interaction.channel.send({embeds: [embed]})
+        interaction.editReply('0')
         interaction.deleteReply()
     }
 }
