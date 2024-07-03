@@ -59,6 +59,6 @@ module.exports = {
     return string;
   }
   // Example usage
-  console.log(starsToString(votesToStars(10, 5))); // Should output '★★★☆☆' (3 filled stars)
-  console.log(starsToString(votesToStars(2, 8))); // Should output '☆☆☆☆☆' (0 filled stars)
-  console.log(starsToString(votesToStars(0, 0))); // Should output '☆☆☆☆☆' (0 filled stars)
+  ///console.log(starsToString(votesToStars(10, 5))); // Should output '★★★☆☆' (3 filled stars)
+  ///console.log(starsToString(votesToStars(2, 8))); // Should output '☆☆☆☆☆' (0 filled stars)
+  ///console.log(starsToString(votesToStars(0, 0))); // Should output '☆☆☆☆☆' (0 filled stars)
