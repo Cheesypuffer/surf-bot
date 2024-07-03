@@ -21,6 +21,7 @@ module.exports = {
         await interaction.deferReply()
         const maps = await mapz.find({})
         var readablemaps = []
+        var pageNumber = 1
         for (let i = pageNumber-1; i<pageNumber+20; i++) {
           const chosenMap = maps[i]
           const name = chosenMap.name
@@ -37,7 +38,6 @@ module.exports = {
         }
         var readableMapsString = readablemaps.toString()
         readableMapsString = readableMapsString.replace(/ *, */g, '\n');
-        var pageNumber = 1
         const embed = new EmbedBuilder()
         .setTitle('Map list')
         .setDescription(readableMapsString)
@@ -64,7 +64,7 @@ module.exports = {
           }
 
           if(confirmation.customId === 'PageRight') {
-            pageNumber--
+            pageNumber++
             this.callback(client, interaction)
           }
         } catch (e) {
