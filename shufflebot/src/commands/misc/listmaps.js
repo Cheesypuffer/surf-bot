@@ -35,8 +35,8 @@ module.exports = {
                 });
 
                 readablemaps.sort((a, b) => {
-                  const nameA = a.replace('★', '').replace('☆', '').replace('surf_', '')
-                  const nameB = b.replace('★', '').replace('☆', '').replace('surf_', '')
+                  const nameA = a.split('surf_')[1]
+                  const nameB = b.split('surf_')[1]
                   console.log(nameA)
                   console.log(nameB)
                   if (nameA < nameB) {
