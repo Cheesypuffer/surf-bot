@@ -28,7 +28,7 @@ module.exports = {
                 }
 
                 const readablemaps = selectedMaps.map(chosenMap => {
-                    const name = chosenMap.replaceOne((chosenMap.name).split('_')[0], '')
+                    const name = chosenMap.name.replace((chosenMap.name).split('_')[0], '')
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
                     const tier = `T${chosenMap.tier}`;
                     return `${starsToString(stars)} | ${tier} | ${name}`;
