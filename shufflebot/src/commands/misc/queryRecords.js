@@ -26,6 +26,10 @@ module.exports = {
         await interaction.deferReply()
         var mapRecords = await records.find({map:interaction.options.get('map').value})
         var mapToDisplay = await mapz.findOne({name:interaction.options.get('map').value})
+        if(!mapToDisplay) {
+            interaction.reply(`That map does not exist.`)
+            return
+        }
         var mapTimes = []
         for(const mapRecord of mapRecords) {
             var recordTime = mapRecord.time
@@ -42,10 +46,6 @@ module.exports = {
         var readableData = []
         for(const recordToDisplay of recordsToDisplay) {
             readableData.push({name: `${recordToDisplay.userTag} ${recordToDisplay.recordProof}`, value: `${prettyMs(recordToDisplay.recordTime*1000)}`})
-        }
-        if(!(mapz.findOne({name: interaction.options.get('map').value}))) {
-            interaction.editReply('You are trying to query a map for records, but the map does not exist.')
-            return
         }
         const embed = new EmbedBuilder()
             .setTitle(`${interaction.options.get('map').value} Records`)
