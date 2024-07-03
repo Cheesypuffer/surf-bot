@@ -48,8 +48,11 @@ module.exports = {
                 if(oldRecord.time>newRecord.time) {
                     await record.deleteOne({userId: interaction.user.id})
                     newRecord.save()
+                    interaction.editReply(`You have submitted a new time for ${interaction.options.get('map').value}`)
+                    return
                 }
             }
+            interaction.editReply(`You have submitted a new time for ${interaction.options.get('map').value}`)
             ///recordchannel.send(`${interaction.user} has achieved a time of ${interaction.options.get('time').value} on ${interaction.options.get('map').value}, ${interaction.options.get('proof').url}`)
         } else if (!query) {
             interaction.editReply('The map that you are trying to submit a time to does not exist. Please ask a Curator to create the map, or check for typos.')
