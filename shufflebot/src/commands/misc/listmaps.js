@@ -34,7 +34,19 @@ module.exports = {
                     return `${starsToString(stars)} | ${tier} | ${name}`;
                 });
 
-                readablemaps.sort((a, b) => a.localeCompare(b));
+                readablemaps.sort((a, b) => {
+                  const nameA = a.replace('★', '').replace('☆', '').replace('surf_', '')
+                  const nameB = b.replace('★', '').replace('☆', '').replace('surf_', '')
+                  if (nameA < nameB) {
+                    return -1;
+                  }
+                  if (nameA > nameB) {
+                    return 1;
+                  }
+                
+                  // names must be equal
+                  return 0;
+                });
 
                 const readableMapsString = (readablemaps).join('\n');
 
