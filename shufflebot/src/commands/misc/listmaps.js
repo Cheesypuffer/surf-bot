@@ -33,24 +33,7 @@ module.exports = {
 // javascript function to convert amount of upvotes and downvotes to a number 1-5
 // javascript function to convert amount of upvotes and downvotes to a number 1-5
 function votesToStars(upvotes, downvotes) {
-  // Calculate the total votes
-  const totalVotes = upvotes.length + downvotes.length;
-
-  // Handle edge case: Zero votes
-  if (totalVotes === 0) {
-    return '☆☆☆☆☆'; // Return 0 stars if there are no votes
-  }
-
-  // Calculate the proportion of upvotes
-  const upvoteProportion = upvotes.length / totalVotes;
-
-  // Scale the proportion to a 1-5 star range
-  let stars = upvoteProportion * 5;
-
-  // Ensure stars are within the 1-5 range
-  stars = Math.max(1, Math.min(5, stars));
-
-  return stars;
+  return Math.min(Math.max(Math.round((upvotes + downvotes)/(downvotes+upvotes)*5),0),5);
 }
 
 // converts int 0-5 to star emojis
