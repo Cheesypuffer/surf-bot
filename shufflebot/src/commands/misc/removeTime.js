@@ -12,16 +12,10 @@ module.exports = {
             type:ApplicationCommandOptionType.String
         },
         {
-            name:'time',
-            description:'the time that it took them to beat the surf, in seconds',
+            name:'user',
+            description:'the user that achieved the time',
             required:true,
-            type:ApplicationCommandOptionType.Number
-        },
-        {
-            name:'proof',
-            description:'a video of them achieving their time.',
-            required:true,
-            type:ApplicationCommandOptionType.String
+            type:ApplicationCommandOptionType.Mentionable
         }
     ],
     /**
@@ -32,10 +26,10 @@ module.exports = {
     
     callback: async (client, interaction) => {
         await interaction.deferReply()
-        const query = mapzz.findOne({map: interaction.options.get('map').value, time: interaction.options.get('time').value, proof: interaction.options.get('proof').value})
+        const query = mapzz.findOne({map: interaction.options.get('map').value, userId: interaction.options.get('user').value})
         const hasRole = interaction.member.roles.cache.has('1257704302428815521')
         if (query && hasRole) {
-            const result = await record.deleteOne({map: interaction.options.get('map').value, time: interaction.options.get('time').value, proof: interaction.options.get('proof').value})
+            const result = await record.deleteOne({map: interaction.options.get('map').value, userId: interaction.options.get('user').value})
             const recordchannel = client.channels.cache.get('1256343173748359379')
             interaction.editReply('Record deleted.')
         }
