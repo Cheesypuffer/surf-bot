@@ -45,7 +45,7 @@ module.exports = {
         const row = new ActionRowBuilder();
         buttons.forEach((role) => {
           row.components.push(
-            new ButtonBuilder().setCustomId(role.id).setLabel(role.label).setStyle(ButtonStyle.Link))
+            new ButtonBuilder().setCustomId(role.id).setLabel(role.label).setStyle(ButtonStyle.Primary))
         })
         interaction.channel.send(
           {components: [row]},
