@@ -43,7 +43,7 @@ function votesToStars(upvotes, downvotes) {
     // Scale the proportion to a 1-5 star range
     let starss = upvoteProportion * 5;
     // Ensure stars are within the 1-5 range
-    starss = Math.max(1, Math.min(5, stars));
+    starss = Math.max(1, Math.min(5, starss));
     return starss;
   } 
   // converts int 0-5 to star emojis
