@@ -51,8 +51,15 @@ module.exports = {
                 .setDescription(`Tier ${map.tier}`)
                 if (role) {
                     embed.setColor(role.hexColor)
+                    embed.addFields(
+                        { name: 'Ping:', value: `<@&${roles[map.tier-1]}>` },
+                        { name: `Upvotes: ${map.upvotes.length}`, value: `Downvotes: ${map.downvotes.length}`}
+                    )
                 } else {
                     embed.setColor('Blurple')
+                    embed.addFields(
+                        { name: `Upvotes: ${map.upvotes.length}`, value: `Downvotes: ${map.downvotes.length}`}
+                    )
                 }
                 if (map.icon) {
                     embed.setImage(map.icon)
@@ -63,10 +70,6 @@ module.exports = {
                 embed.setURL(map.link)
                 embed.setTimestamp()
                 ///embed.setThumbnail(`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`)
-                embed.addFields(
-                    { name: 'Ping:', value: `<@&${roles[map.tier-1]}>` },
-                    { name: `Upvotes: ${map.upvotes.length}`, value: `Downvotes: ${map.downvotes.length}`}
-                )
                 embed.setAuthor({name:`${interaction.user.tag}'s roll is . . .`, iconURL:`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`})
             interaction.channel.send({embeds: [embed]}, {files: [file, file2]});
             interaction.editReply('⠀')
