@@ -46,6 +46,9 @@ module.exports = {
             })
 
             if (oldRecord) {
+                console.log("oldRecord is defined!!")
+                console.log(oldRecord.time)
+                console.log(newRecord.time)
                 if(oldRecord.time>newRecord.time) {
                     await record.deleteOne({userId: interaction.user.id}, {map: interaction.options.get('map').value})
                     newRecord.save()
