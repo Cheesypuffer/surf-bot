@@ -40,7 +40,7 @@ module.exports = {
             }
             if(readablemaps.length === 1) {
                 mapToDisplay = usuablemaps[0]
-                mapRecords = await records.findOne(({map:usuablemaps[0].name}))
+                mapRecords = await records.find(({map:usuablemaps[0].name}))
             } else if (readablemaps.length === 0) {
                 interaction.editReply(`Map not found.`)
                 return
