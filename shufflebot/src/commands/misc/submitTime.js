@@ -47,7 +47,7 @@ module.exports = {
 
             if (oldRecord) {
                 if(oldRecord.time<newRecord.time) {
-                    await record.deleteOne({userId: interaction.user.id})
+                    await record.deleteOne({userId: interaction.user.id}, {map: interaction.options.get('map').value})
                     newRecord.save()
                     return
                 } else if (oldRecord.time===newRecord.time) {
