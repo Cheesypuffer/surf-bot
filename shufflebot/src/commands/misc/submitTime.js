@@ -44,21 +44,21 @@ module.exports = {
                 time: interaction.options.get('time').value,
                 proof: interaction.options.get('proof').value
             })
+
             if (oldRecord) {
                 if(oldRecord.time>newRecord.time) {
                     await record.deleteOne({userId: interaction.user.id})
                     newRecord.save()
                     interaction.editReply(`You have submitted a new time for ${interaction.options.get('map').value}`)
                     return
-                } elseif (oldRecord.time===newRecord.time) ;{
+                } else if (oldRecord.time===newRecord.time) {
                     interaction.editReply('Down to the millisecond? No.')
-                } elseif (oldRecord.time<newRecord.time) ;{
+                } else if (oldRecord.time<newRecord.time) {
                     interaction.editReply('That is not your best time')
                 }
             }
             newRecord.save()
             interaction.editReply(`You have submitted a new time for ${interaction.options.get('map').value}`)
-            ///recordchannel.send(`${interaction.user} has achieved a time of ${interaction.options.get('time').value} on ${interaction.options.get('map').value}, ${interaction.options.get('proof').url}`)
         } else if (!query) {
             interaction.editReply('The map that you are trying to submit a time to does not exist. Please ask a Curator to create the map, or check for typos.')
         } else {
