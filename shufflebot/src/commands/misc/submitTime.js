@@ -46,14 +46,14 @@ module.exports = {
             })
 
             if (oldRecord) {
-                if(oldRecord.time<newRecord.time) {
+                if(oldRecord.time>newRecord.time) {
                     await record.deleteOne({userId: interaction.user.id}, {map: interaction.options.get('map').value})
                     newRecord.save()
                     return
                 } else if (oldRecord.time===newRecord.time) {
                     interaction.editReply('Down to the millisecond? No.')
                     return
-                } else if (oldRecord.time>newRecord.time) {
+                } else if (oldRecord.time<newRecord.time) {
                     interaction.editReply('That is not your best time')
                     return
                 }
