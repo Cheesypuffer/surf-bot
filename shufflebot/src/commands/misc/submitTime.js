@@ -35,7 +35,7 @@ module.exports = {
         const query1 = {name: interaction.options.get('map').value}
         const query = await maps.findOne(query1)
         const hasRole = interaction.member.roles.cache.has('1257704302428815521')
-        const oldRecord = await record.findOne({userId: interaction.user.id})
+        const oldRecord = await record.findOne({userId: interaction.user.id}, {map: interaction.options.get('map').value})
         if (query && hasRole) {
             const newRecord = new record({
                 userId: interaction.user.id,
