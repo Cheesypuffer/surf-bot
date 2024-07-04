@@ -40,7 +40,7 @@ module.exports = {
             }
             if(readablemaps.length === 1) {
                 mapToDisplay = usuablemaps[0]
-                mapRecords = usuablemaps
+                mapRecords = await records.findOne(({map:usuablemaps[0].name}))
             } else if (readablemaps.length === 0) {
                 interaction.editReply(`Map not found.`)
                 return
@@ -54,7 +54,8 @@ module.exports = {
         var mapTimes = []
         for(const mapRecord of mapRecords) {
             var recordTime = mapRecord.time
-            var userTag = await client.users.fetch(mapRecord.userId).tag
+            var user = await client.users.fetch(mapRecord.userId)
+            var userTag = user.tag
             var recordProof = mapRecord.proof
             mapTimes.push({recordTime, userTag, recordProof})
         }
