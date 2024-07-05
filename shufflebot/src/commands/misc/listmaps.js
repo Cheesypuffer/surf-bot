@@ -35,7 +35,7 @@ module.exports = {
                     const tier = `T${chosenMap.tier}`;
                     var mapRecordForMap = await record.findOne(query)
                     if(mapRecordForMap) {
-                      return `${starsToString(stars)} | ${tier} | ${name} | ${mapRecordForMap.time}`;
+                      return `${starsToString(stars)} | ${tier} | ${name}`;
                     } else {
                       return `${starsToString(stars)} | ${tier} | ${name}`;
                     }
