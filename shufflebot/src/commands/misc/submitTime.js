@@ -52,9 +52,10 @@ module.exports = {
                 console.log(oldRecord.time)
                 console.log(newRecord.time)
                 if(oldRecord.time>newRecord.time) {
-                    await record.deleteOne({userId: interaction.user.id}, {map: interaction.options.get('map').value})
+                    deletedRecord = await record.deleteOne({userId: interaction.user.id}, {map: interaction.options.get('map').value})
                     newRecord.save()
-                    interaction.editReply(`You have submitted a new time for ${interaction.options.get('map').value}`)
+                    deletedRecord.save()
+                    interaction.editReply(`You have submitted a new best time for ${interaction.options.get('map').value}`)
                     return
                 } else if (oldRecord.time===newRecord.time) {
                     interaction.editReply('Down to the millisecond? No.')
