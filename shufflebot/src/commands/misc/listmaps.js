@@ -34,13 +34,14 @@ module.exports = {
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
                     const tier = `T${chosenMap.tier}`;
                     ///var mapRecordForMap = await record.findOne(query)
-                    return `${starsToString(stars)} | ${tier} | ${name}`;
+                    return `${starsToString(stars)} | ${tier} | ${name}`
                 });
                 if (selectedMaps.length === 0) {
                   break; // No more maps to display
-              }
+                }
                 
                 if (sortingMode === 1) {
+                  console.log(selectedMaps)
                   selectedMaps.sort((a, b) => {
                     const nameA = a.split('| surf_')[1]
                     const nameB = b.split('| surf_')[1]
