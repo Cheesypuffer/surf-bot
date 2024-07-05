@@ -15,11 +15,16 @@ module.exports = {
 
     callback: async (client, interaction) => {
         await interaction.deferReply();
-        const { default: prettyMs} = await import('pretty-ms')
+        //const { default: prettyMs} = await import('pretty-ms')
         try {
             let sortingMode = 1;
             let pageNumber = 1;
+            var matches = []
             const maps = await mapz.find({});
+            const records = await record.find({userId: interaction.user.id})
+            for (const RecordToDisplayRn in records) {
+              matches.push(RecordToDisplayRn.map)
+            }
             const mapsPerPage = 20;
 
             while (true) {
@@ -72,15 +77,17 @@ module.exports = {
                   });
                 }
                 const readablemaps = selectedMaps.slice(startIndex, endIndex);
-                readablemaps.sort((a, b) => {
-                  const nameA = a.split('| ')[2]
-                  const nameB = b.split('| ')[2]
-                  const prA = getRecord(interaction.user.id, nameA)
-                  const prB = getRecord(interaction.user.id, nameB)
-                  console.log(prA)
-                  console.log(prB)
-                  return 0;
-                })
+                //readablemaps.sort((a, b) => {
+                  //const nameA = a.split('| ')[2]
+                  //const nameB = b.split('| ')[2]
+                  //const prA = getRecord(interaction.user.id, nameA)
+                  //const prB = getRecord(interaction.user.id, nameB)
+                  //console.log(prA)
+                  //console.log(prB)
+                  //prA.then(function(value) {
+
+                  //})
+                //})
                 const readableMapsString = (readablemaps).join('\n');
 
                 const embed = new EmbedBuilder()
