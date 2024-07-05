@@ -34,8 +34,9 @@ module.exports = {
         await interaction.deferReply()
         const query1 = {name: interaction.options.get('map').value}
         const query = await maps.findOne(query1)
+        const query2 = ({userId: interaction.user.id}, {map: interaction.options.get('map').value})
         const hasRole = interaction.member.roles.cache.has('1257704302428815521')
-        const oldRecord = await record.findOne({userId: interaction.user.id}, {map: interaction.options.get('map').value})
+        const oldRecord = await record.findOne(query2)
         if (query && hasRole) {
             const newRecord = new record({
                 userId: interaction.user.id,
@@ -47,11 +48,13 @@ module.exports = {
 
             if (oldRecord) {
                 console.log("oldRecord is defined!!")
+                console.log(oldRecord)
                 console.log(oldRecord.time)
                 console.log(newRecord.time)
                 if(oldRecord.time>newRecord.time) {
                     await record.deleteOne({userId: interaction.user.id}, {map: interaction.options.get('map').value})
                     newRecord.save()
+                    interaction.editReply(`You have submitted a new time for ${interaction.options.get('map').value}`)
                     return
                 } else if (oldRecord.time===newRecord.time) {
                     interaction.editReply('Down to the millisecond? No.')
