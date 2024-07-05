@@ -41,7 +41,6 @@ module.exports = {
                 }
                 
                 if (sortingMode === 1) {
-                  console.log(selectedMaps)
                   selectedMaps.sort((a, b) => {
                     const nameA = a.split('| surf_')[1]
                     const nameB = b.split('| surf_')[1]
@@ -76,8 +75,10 @@ module.exports = {
                 readablemaps.sort((a, b) => {
                   const nameA = a.split('| ')[2]
                   const nameB = b.split('| ')[2]
-                  console.log(nameA)
-                  console.log(nameB)
+                  const prA = getRecord(interaction.user.id, nameA)
+                  const prB = getRecord(interaction.user.id, nameB)
+                  console.log(prA)
+                  console.log(prB)
                   return 0;
                 })
                 const readableMapsString = (readablemaps).join('\n');
@@ -164,4 +165,9 @@ function starsToString(stars) {
         }
     }
     return string;
+}
+
+async function getRecord(user, map) {
+  const recordToReturn = await record.findOne(({map: map}, {userId: user}))
+  return recordToReturn
 }
