@@ -28,7 +28,7 @@ module.exports = {
                 
 
 
-                const selectedMaps = maps.map(async chosenMap => {
+                const selectedMaps = maps.map(chosenMap => {
                     const name = (chosenMap.name)
                     ///const query = ({userId: interaction.user.id}, {map: name})
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
