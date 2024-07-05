@@ -51,6 +51,27 @@ client.on('interactionCreate', async (interaction) => {
     }
 })
 
+let status = [
+    {
+        name: 'idk, surfing',
+        type: ActivityType.Watching
+    },
+    {
+        name: 'idk, wurfing',
+        type: ActivityType.Watching
+    },
+    {
+        name: 'skial players voting rainbow again',
+        type: ActivityType.Watching
+    },
+]
+client.on('ready', (c) => {
+    console.log(`${client.user.tag} is online.`)
+    setInterval(() => {
+        let random = Math.floor(Math.random()*status.length)
+        client.user.setActivity(status[random])
+    }, 10000)
+})
 
 
 
