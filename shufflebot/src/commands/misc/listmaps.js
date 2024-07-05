@@ -34,11 +34,7 @@ module.exports = {
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
                     const tier = `T${chosenMap.tier}`;
                     ///var mapRecordForMap = await record.findOne(query)
-                    if (mapRecordForMap) {
-                      return `~~${starsToString(stars)} | ${tier} | ${name}~~ ${mapRecordForMap.time}`
-                    } else {
-                      return `${starsToString(stars)} | ${tier} | ${name}`
-                    }
+                    return `${starsToString(stars)} | ${tier} | ${name}`
                 });
                 if (selectedMaps.length === 0) {
                   break; // No more maps to display
@@ -77,6 +73,13 @@ module.exports = {
                   });
                 }
                 const readablemaps = selectedMaps.slice(startIndex, endIndex);
+                readablemaps.sort((a, b) => {
+                  const nameA = a.split('| ')[2]
+                  const nameB = b.split('| ')[2]
+                  console.log(nameA)
+                  console.log(nameB)
+                  return 0;
+                })
                 const readableMapsString = (readablemaps).join('\n');
 
                 const embed = new EmbedBuilder()
