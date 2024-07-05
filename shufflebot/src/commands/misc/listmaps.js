@@ -35,9 +35,9 @@ module.exports = {
                     const tier = `T${chosenMap.tier}`;
                     var mapRecordForMap = await record.findOne(query)
                     if (mapRecordForMap) {
-                      return await `~~${starsToString(stars)} | ${tier} | ${name}~~ ${mapRecordForMap.time}`
+                      return `~~${starsToString(stars)} | ${tier} | ${name}~~ ${mapRecordForMap.time}`
                     } else {
-                      return await `${starsToString(stars)} | ${tier} | ${name}`
+                      return `${starsToString(stars)} | ${tier} | ${name}`
                     }
                 });
                 if (selectedMaps.length === 0) {
@@ -46,9 +46,11 @@ module.exports = {
                 
                 if (sortingMode === 1) {
                   console.log(selectedMaps)
-                  selectedMaps.sort((a, b) => {
-                    const nameA = a.split('| surf_')[1]
-                    const nameB = b.split('| surf_')[1]
+                  selectedMaps.sort(async (a, b) => {
+                    const unwrappedA = await a
+                    const unwrappedB = await b
+                    const nameA = unwrappedA.split('| surf_')[1]
+                    const nameB = unwrappedB.split('| surf_')[1]
                     if (nameA < nameB) {
                       return -1;
                     }
@@ -62,9 +64,11 @@ module.exports = {
                 } else if (sortingMode === 2) {
                   selectedMaps.sort()
                 } else if (sortingMode === 3) {
-                  selectedMaps.sort((a, b) => {
-                    const nameA = a.split('| T')[1]
-                    const nameB = b.split('| T')[1]
+                  selectedMaps.sort(async (a, b) => {
+                    const unwrappedA = await a
+                    const unwrappedB = await b
+                    const nameA = unwrappedA.split('| T')[1]
+                    const nameB = unwrappedB.split('| T')[1]
                     if (nameA < nameB) {
                       return -1;
                     }
