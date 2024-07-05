@@ -1,6 +1,6 @@
 const { EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 const mapz = require('../../models/maps');
-
+const record = require('../../models/times')
 const buttons = [
   { id: 'PageLeft', label: '<--' },
   { id: 'PageRight', label: '-->' },
@@ -15,7 +15,7 @@ module.exports = {
 
     callback: async (client, interaction) => {
         await interaction.deferReply();
-
+        const { default: prettyMs} = await import('pretty-ms')
         try {
             let sortingMode = 1;
             let pageNumber = 1;
@@ -32,7 +32,12 @@ module.exports = {
                     const name = (chosenMap.name)
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
                     const tier = `T${chosenMap.tier}`;
-                    return `${starsToString(stars)} | ${tier} | ${name}`;
+                    const mapRecordForMap = record.findOne({userId: interaction.user.id}, {map: name})
+                    if(mapRecordForMap) {
+                      return `${starsToString(stars)} | ${tier} | ~~${name}~~ ${prettyMs(mapRecordForMap.time)}`;
+                    } else {
+                      return `${starsToString(stars)} | ${tier} | ${name}`;
+                    }
                 });
                 if (selectedMaps.length === 0) {
                   break; // No more maps to display
