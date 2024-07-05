@@ -26,10 +26,10 @@ module.exports = {
     
     callback: async (client, interaction) => {
         await interaction.deferReply()
-        const query = await record.findOne({userId: interaction.options.get('user').value}, {map: interaction.options.get('map').value})
+        const query = await record.find({userId: interaction.options.get('user').value}, {map: interaction.options.get('map').value})
         const hasRole = interaction.member.roles.cache.has('1257704302428815521')
         if (query && hasRole) {
-            const result = await record.deleteOne({userId: interaction.options.get('user').value}, {map: interaction.options.get('map').value})
+            const result = await record.deleteMany({userId: interaction.options.get('user').value}, {map: interaction.options.get('map').value})
             const recordchannel = client.channels.cache.get('1256343173748359379')
             result.save()
             interaction.editReply('Record deleted.')
