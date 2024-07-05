@@ -34,11 +34,7 @@ module.exports = {
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
                     const tier = `T${chosenMap.tier}`;
                     var mapRecordForMap = await record.findOne(query)
-                    if(mapRecordForMap) {
-                      return `${starsToString(stars)} | ${tier} | ${name}`;
-                    } else {
-                      return `${starsToString(stars)} | ${tier} | ${name}`;
-                    }
+                    return `${starsToString(stars)} | ${tier} | ${name}`;
                 });
                 if (selectedMaps.length === 0) {
                   break; // No more maps to display
