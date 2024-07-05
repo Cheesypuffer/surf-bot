@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "express": "^4.19.2",
+    "ping-monitor": "^0.8.2"
+  }
+}

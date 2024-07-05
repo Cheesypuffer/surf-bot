@@ -3,6 +3,8 @@ const {Client, IntentsBitField, EmbedBuilder, ActivityType} = require('discord.j
 const mongoose = require('mongoose');
 const eventHandler = require('./handlers/eventHandler');
 
+var http = require('http'); http.createServer(function (req, res) { res.write("I'm alive"); res.end(); }).listen(8080); 
+
 const client = new Client({
     intents: [
         IntentsBitField.Flags.Guilds,
@@ -11,6 +13,7 @@ const client = new Client({
         IntentsBitField.Flags.MessageContent,
     ]
 });
+
 
 
 
@@ -47,6 +50,7 @@ client.on('interactionCreate', async (interaction) => {
         await interaction.editReply(`You are now a ${role}er. c:`)
     }
 })
+
 
 
 
