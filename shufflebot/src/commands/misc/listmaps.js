@@ -28,13 +28,17 @@ module.exports = {
                 
 
 
-                const selectedMaps = maps.map(chosenMap => {
+                const selectedMaps = maps.map(async chosenMap => {
                     const name = (chosenMap.name)
-                    ///const query = ({userId: interaction.user.id}, {map: name})
+                    const query = ({userId: interaction.user.id}, {map: name})
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
                     const tier = `T${chosenMap.tier}`;
-                    ///var mapRecordForMap = await record.findOne(query)
-                    return `${starsToString(stars)} | ${tier} | ${name}`
+                    var mapRecordForMap = await record.findOne(query)
+                    if (mapRecordForMap) {
+                      return await `~~${starsToString(stars)} | ${tier} | ${name}~~ ${mapRecordForMap.time}`
+                    } else {
+                      return await `${starsToString(stars)} | ${tier} | ${name}`
+                    }
                 });
                 if (selectedMaps.length === 0) {
                   break; // No more maps to display
