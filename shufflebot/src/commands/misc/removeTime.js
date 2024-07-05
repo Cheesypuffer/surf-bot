@@ -31,7 +31,6 @@ module.exports = {
         if (query && hasRole) {
             const result = await record.deleteMany({userId: interaction.options.get('user').value}, {map: interaction.options.get('map').value})
             const recordchannel = client.channels.cache.get('1256343173748359379')
-            result.save()
             interaction.editReply('Record deleted.')
         }
     }
