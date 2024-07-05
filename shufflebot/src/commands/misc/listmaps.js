@@ -30,10 +30,10 @@ module.exports = {
 
                 const selectedMaps = maps.map(chosenMap => {
                     const name = (chosenMap.name)
-                    const query = ({userId: interaction.user.id}, {map: name})
+                    ///const query = ({userId: interaction.user.id}, {map: name})
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
                     const tier = `T${chosenMap.tier}`;
-                    var mapRecordForMap = record.findOne(query)
+                    ///var mapRecordForMap = await record.findOne(query)
                     if (mapRecordForMap) {
                       return `~~${starsToString(stars)} | ${tier} | ${name}~~ ${mapRecordForMap.time}`
                     } else {
