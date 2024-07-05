@@ -43,109 +43,111 @@ module.exports = {
                 if (selectedMaps.length === 0) {
                   break; // No more maps to display
                 }
-                
-                if (sortingMode === 1) {
-                  console.log(selectedMaps)
-                  selectedMaps.sort(async (a, b) => {
-                    const nameA = a.split('| surf_')[1]
-                    const nameB = b.split('| surf_')[1]
-                    if (nameA < nameB) {
-                      return -1;
-                    }
-                    if (nameA > nameB) {
-                      return 1;
-                    }
-                  
-                    // names must be equal
-                    return 0;
+
+                Promise.all(selectedMaps).then(async resolvedMaps => {
+                  if (sortingMode === 1) {
+                    console.log(resolveddMaps)
+                    resolvedMaps.sort(async (a, b) => {
+                      const nameA = a.split('| surf_')[1]
+                      const nameB = b.split('| surf_')[1]
+                      if (nameA < nameB) {
+                        return -1;
+                      }
+                      if (nameA > nameB) {
+                        return 1;
+                      }
+                    
+                      // names must be equal
+                      return 0;
+                    });
+                  } else if (sortingMode === 2) {
+                    resolvedMaps.sort()
+                  } else if (sortingMode === 3) {
+                    resolvedMaps.sort(async (a, b) => {
+                      const nameA = a.split('| T')[1]
+                      const nameB = b.split('| T')[1]
+                      if (nameA < nameB) {
+                        return -1;
+                      }
+                      if (nameA > nameB) {
+                        return 1;
+                      }
+                    
+                      // names must be equal
+                      return 0;
+                    });
+                  }
+                  const readablemaps = resolvedMaps.slice(startIndex, endIndex);
+                  const readableMapsString = (readablemaps).join('\n');
+  
+                  const embed = new EmbedBuilder()
+                      .setTitle('Map list')
+                      .setDescription(readableMapsString)
+                      .setFooter({text: `Page ${pageNumber}`});
+  
+                  const row = new ActionRowBuilder();
+                  buttons.forEach((role) => {
+                      row.components.push(
+                          new ButtonBuilder()
+                              .setCustomId(role.id)
+                              .setLabel(role.label)
+                              .setStyle(ButtonStyle.Primary)
+                      );
                   });
-                } else if (sortingMode === 2) {
-                  selectedMaps.sort()
-                } else if (sortingMode === 3) {
-                  selectedMaps.sort(async (a, b) => {
-                    const nameA = a.split('| T')[1]
-                    const nameB = b.split('| T')[1]
-                    if (nameA < nameB) {
-                      return -1;
-                    }
-                    if (nameA > nameB) {
-                      return 1;
-                    }
-                  
-                    // names must be equal
-                    return 0;
+  
+                 const response = await interaction.editReply({
+                      content: '⠀', // Workaround for a Discord API bug where an empty string might cause the embed not to display
+                      components: [row],
+                      embeds: [embed],
                   });
-                }
-                const readablemaps = selectedMaps.slice(startIndex, endIndex);
-                const readableMapsString = (readablemaps).join('\n');
-
-                const embed = new EmbedBuilder()
-                    .setTitle('Map list')
-                    .setDescription(readableMapsString)
-                    .setFooter({text: `Page ${pageNumber}`});
-
-                const row = new ActionRowBuilder();
-                buttons.forEach((role) => {
-                    row.components.push(
-                        new ButtonBuilder()
-                            .setCustomId(role.id)
-                            .setLabel(role.label)
-                            .setStyle(ButtonStyle.Primary)
-                    );
-                });
-
-               const response = await interaction.editReply({
-                    content: '⠀', // Workaround for a Discord API bug where an empty string might cause the embed not to display
-                    components: [row],
-                    embeds: [embed],
-                });
-
-                const collectorFilter = i => i.user.id === interaction.user.id;
-                const confirmation = await response.awaitMessageComponent({ filter: collectorFilter, time: 600000 });
-
-                if (confirmation.customId === 'PageLeft') {
-                    if (pageNumber > 1) {
-                        pageNumber--;
+  
+                  const collectorFilter = i => i.user.id === interaction.user.id;
+                  const confirmation = await response.awaitMessageComponent({ filter: collectorFilter, time: 600000 });
+  
+                  if (confirmation.customId === 'PageLeft') {
+                      if (pageNumber > 1) {
+                          pageNumber--;
+                          await confirmation.update('⠀')
+                      } else {
                         await confirmation.update('⠀')
+                      }
+                  } else if (confirmation.customId === 'PageRight') {
+                    if (pageNumber < Math.ceil(maps.length/20)) {
+                      pageNumber++;
+                      await confirmation.update('⠀')
                     } else {
                       await confirmation.update('⠀')
                     }
-                } else if (confirmation.customId === 'PageRight') {
-                  if (pageNumber < Math.ceil(maps.length/20)) {
-                    pageNumber++;
-                    await confirmation.update('⠀')
-                  } else {
-                    await confirmation.update('⠀')
+                  } else if (confirmation.customId === 'ModeA') {
+                    if (!(sortingMode===1)) {
+                      sortingMode = 1
+                      await confirmation.update('⠀')
+                    } else {
+                      await confirmation.update('⠀')
+                    }
+                  } else if (confirmation.customId === 'ModeB') {
+                    if (!(sortingMode===2)) {
+                      sortingMode = 2
+                      await confirmation.update('⠀')
+                    } else {
+                      await confirmation.update('⠀')
+                    }
+                  } else if (confirmation.customId === 'ModeC') {
+                    if (!(sortingMode===3)) {
+                      sortingMode = 3
+                      await confirmation.update('⠀')
+                    } else {
+                      await confirmation.update('⠀')
+                    }
                   }
-                } else if (confirmation.customId === 'ModeA') {
-                  if (!(sortingMode===1)) {
-                    sortingMode = 1
-                    await confirmation.update('⠀')
-                  } else {
-                    await confirmation.update('⠀')
-                  }
-                } else if (confirmation.customId === 'ModeB') {
-                  if (!(sortingMode===2)) {
-                    sortingMode = 2
-                    await confirmation.update('⠀')
-                  } else {
-                    await confirmation.update('⠀')
-                  }
-                } else if (confirmation.customId === 'ModeC') {
-                  if (!(sortingMode===3)) {
-                    sortingMode = 3
-                    await confirmation.update('⠀')
-                  } else {
-                    await confirmation.update('⠀')
-                  }
-                }
+                })
             }
-        } catch (e) {
-            console.error(e);
-            await interaction.editReply({ content: 'Timeout', components: [] });
-        }
+    } catch(e) {
+      console.log(e)
+      interaction.editReply('timeout')
     }
-};
+  }
+}
 
 function votesToStars(upvotes, downvotes) {
     return Math.min(Math.max(Math.round((upvotes) / (downvotes + upvotes) * 5), 0), 5);
