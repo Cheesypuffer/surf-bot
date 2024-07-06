@@ -47,8 +47,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setTitle(`${map.name}`)
             .setDescription(`Tier ${map.tier} \n [Servers hosting this map](https://teamwork.tf/community/quickplay/map/${map.name}?gamemode=)`)
-            .setColor(role.hexColor)
-            if (role.hexColor) {
+            if (role) {
                 embed.setColor(role.hexColor)
                 embed.addFields(
                     { name: 'Ping:', value: `<@&${roles[map.tier-1]}>` },
