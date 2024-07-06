@@ -76,14 +76,14 @@ module.exports = {
                 if (interaction.options.get('link')) {
                     const result = await maps.updateOne(query, {
                         $set: {
-                            tier: interaction.options.get('link').value
+                            link: interaction.options.get('link').value
                         }
                     }, options)
                 }
                 if (interaction.options.get('thumbnail')) {
                     const result = await maps.updateOne(query, {
                         $set: {
-                            tier: interaction.options.get('thumbnail').value
+                            thumbnail: interaction.options.get('thumbnail').value
                         }
                     }, options)
                 }
