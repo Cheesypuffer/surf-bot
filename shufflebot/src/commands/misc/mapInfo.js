@@ -68,9 +68,6 @@ module.exports = {
             embed.setURL(map.link)
             embed.setTimestamp()
             ///embed.setThumbnail(`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`)
-            embed.addFields(
-                { name: `Upvotes: ${map.upvotes.length}`, value: `Downvotes: ${map.downvotes.length}`}
-            )
             embed.setAuthor({name:`${interaction.user.tag} wants to get map info`, iconURL:`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`})
         interaction.channel.send({embeds: [embed]}, {files: [file, file2]});
         interaction.editReply('⠀')
