@@ -6,6 +6,9 @@ const maps = require('../../models/maps')
  * @param {Client} client 
  * @param {Message} message 
  */
+
+//Bloo89 Torture Device
+
 module.exports = async (client, message) => {
     if (message.author.id === '693185613775503400') {
         message.react('🥵')

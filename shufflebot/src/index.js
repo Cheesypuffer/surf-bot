@@ -73,9 +73,8 @@ client.on('ready', (c) => {
     }, 10000)
 })
 
-//Bloo89 Torture Device
 
-client.on('messageCreate')
+
 
 
 
