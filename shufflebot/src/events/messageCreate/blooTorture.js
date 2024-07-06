@@ -11,6 +11,9 @@ const maps = require('../../models/maps')
 
 module.exports = async (client, message) => {
     if (message.author.id === '693185613775503400') {
-        message.react('🥵')
+        //message.react('🥵')
+        if (message.content.includes('friend')) {
+            message.delete()
+        }
     }
 }
