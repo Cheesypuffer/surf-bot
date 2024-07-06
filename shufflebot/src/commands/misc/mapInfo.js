@@ -50,7 +50,7 @@ module.exports = {
             if (role) {
                 embed.setColor(role.hexColor)
                 embed.addFields(
-                    { name: 'Ping:', value: `<@&${roles[map.tier-1]}>` },
+                    { name: 'Ping:', value: `<@&${roles[map.tier]}>` },
                     { name: `Upvotes: ${map.upvotes.length}`, value: `Downvotes: ${map.downvotes.length}`}
                 )
             } else {
@@ -75,6 +75,7 @@ module.exports = {
 }
 
 const roles = [
+    '1258966846372188330',
     '1256006955261235282',  
     '1256007585157484606',        
     '1256007785423044789',        

@@ -85,7 +85,7 @@ module.exports = {
                     embed.setTimestamp()
                     embed.setThumbnail(`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`)
                     embed.addFields(
-                        { name: 'Ping:', value: `<@&${roles[map.tier-1]}>` },
+                        { name: 'Ping:', value: `<@&${roles[map.tier]}>` },
                 )
                 embed.setAuthor({name:`${interaction.user.tag} has submitted a map for the map selection:`, iconURL:`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`})
             interaction.channel.send({embeds: [embed]}, {files: [file]});
@@ -102,8 +102,17 @@ module.exports = {
 }
 
 const roles = [
-    '1256006955261235282',
-    '1256007585157484606',
-    '1256007785423044789',
-    '1256007829769293854'
+    '1258966846372188330',
+    '1256006955261235282',  
+    '1256007585157484606',        
+    '1256007785423044789',        
+    '1256007829769293854',       
+    '1256007936577241198',    
+    '1256008022216675480',     
+    '1256008084887703552',       
+    '1256008138235318373',       
+    '1256008173148442684',      
+    '1256008211824377997',     
+    '1256008250252595251',    
+    '1256008299556376627',
 ]

@@ -50,49 +50,61 @@ module.exports = {
             const query = {
                 name: interaction.options.get('name').value
             }
+            const options = { upsert : false }
             const oldMap = await maps.findOne(query)
             const hasRole = interaction.member.roles.cache.has('1257704302428815521')
-            if (!oldMap && hasRole) {
+            if (oldMap && hasRole) {
                 var file = null
                 var map = null
                 if (interaction.options.get('icon')) {
-                    map = new maps ({
-                        name: `${interaction.options.get('name').value}`,
-                        tier: `${interaction.options.get('tier').value}`,
-                        link: `${interaction.options.get('link').value}`,
-                        icon: `${interaction.options.get('icon').value}`,
-                        thumbnail: `${interaction.options.get('thumbnail').value}`
-                    })
                     file = new AttachmentBuilder(map.icon)
-                } else {
-                    map = new maps ({
-                        name: `${interaction.options.get('name').value}`,
-                        tier: `${interaction.options.get('tier').value}`,
-                        link: `${interaction.options.get('link').value}`,
-                        icon: 'https://media.discordapp.net/attachments/1256006687366713427/1257000435462570077/Untitled.jpg?ex=6682d061&is=66817ee1&hm=4a6f24c89a27314977d3e6dfa0f0112824a34ae4cd9ce7c14cd155a9c2eb5f48&=&format=webp',
-                        thumbnail: 'https://cdn.discordapp.com/attachments/1256006687366713427/1257771232955207820/missingno.png?ex=66859e3e&is=66844cbe&hm=53e5fc4c5178852dffa13a29e55f1617bb0166ebcdbb474accc6a61d6e6694a8&'
+                    const result = await maps.updateOne(query, {
+                        $set: {
+                            icon: interaction.options.get('icon').value
+                        }
+                    }, options)
+                }
 
-                    })
-                    file = new AttachmentBuilder('https://media.discordapp.net/attachments/1256006687366713427/1257000435462570077/Untitled.jpg?ex=6682d061&is=66817ee1&hm=4a6f24c89a27314977d3e6dfa0f0112824a34ae4cd9ce7c14cd155a9c2eb5f48&=&format=webp')
+                if (interaction.options.get('tier')) {
+                    const result = await maps.updateOne(query, {
+                        $set: {
+                            tier: interaction.options.get('tier').value
+                        }
+                    }, options)
+                }
+
+                if (interaction.options.get('link')) {
+                    const result = await maps.updateOne(query, {
+                        $set: {
+                            tier: interaction.options.get('link').value
+                        }
+                    }, options)
+                }
+                if (interaction.options.get('thumbnail')) {
+                    const result = await maps.updateOne(query, {
+                        $set: {
+                            tier: interaction.options.get('thumbnail').value
+                        }
+                    }, options)
                 }
                
                 const role = interaction.guild.roles.cache.get(`${roles[interaction.options.get('tier').value-1]}`)
                 const embed = new EmbedBuilder()
-                    .setTitle(`${map.name}`)
-                    .setDescription(`Tier ${map.tier}`)
+                    .setTitle(`${oldMap.name}`)
+                    .setDescription(`Tier ${oldMap.tier}`)
                     .setColor(0x0099FF)
-                    embed.setURL(map.link)
+                    embed.setURL(oldMap.link)
                     embed.setTimestamp()
                     embed.setThumbnail(`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`)
                     embed.addFields(
-                        { name: 'Ping:', value: `<@&${roles[map.tier-1]}>` },
+                        { name: 'Ping:', value: `<@&${roles[oldMap.tier]}>` },
                 )
-                embed.setAuthor({name:`${interaction.user.tag} has submitted a map for the map selection:`, iconURL:`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`})
+                embed.setAuthor({name:`${interaction.user.tag} has edited a map for the map selection:`, iconURL:`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`})
             interaction.channel.send({embeds: [embed]}, {files: [file]});
             interaction.editReply('⠀')
-            await map.save()
+            await oldMap.save()
             } else {
-                interaction.editReply('That map already exists!')
+                interaction.editReply('That map does not exist.')
             }
         } catch (error) {
             console.log(error)
@@ -102,8 +114,17 @@ module.exports = {
 }
 
 const roles = [
-    '1256006955261235282',
-    '1256007585157484606',
-    '1256007785423044789',
-    '1256007829769293854'
+    '1258966846372188330',
+    '1256006955261235282',  
+    '1256007585157484606',        
+    '1256007785423044789',        
+    '1256007829769293854',       
+    '1256007936577241198',    
+    '1256008022216675480',     
+    '1256008084887703552',       
+    '1256008138235318373',       
+    '1256008173148442684',      
+    '1256008211824377997',     
+    '1256008250252595251',    
+    '1256008299556376627',
 ]
