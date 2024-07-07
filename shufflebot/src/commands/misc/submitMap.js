@@ -1,6 +1,5 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction} = require("discord.js");
 const maps = require('../../models/maps')
-const rolez = require('../../models/roles')
 module.exports = {
     name:'submitmap',
     description:'Submits a map to be used in the map selection.',
