@@ -1,5 +1,4 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction} = require("discord.js");
-const maps = require('../../models/maps')
 const blootorture = require('../../models/bloosinferno')
 module.exports = {
     name:'addblooword',
