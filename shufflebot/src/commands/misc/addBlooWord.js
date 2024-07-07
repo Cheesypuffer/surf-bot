@@ -31,12 +31,7 @@ module.exports = {
             const options = { upsert : false }
             if (!oldWord && hasRole) {
                 interaction.editReply('⠀')
-                console.log(word)
                 var votes = oldMap.words.push(word)
-                console.log(votes)
-                console.log(oldMap)
-                console.log(oldMap.words)
-                oldMap.save(votes)
             } else {
                 interaction.editReply(
                     'That word  already exists'
