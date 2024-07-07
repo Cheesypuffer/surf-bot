@@ -52,7 +52,7 @@ module.exports = {
             }
             const options = { upsert : false }
             const oldMap = await maps.findOne(query)
-            const hasRole = interaction.member.roles.cache.has(interaction.guild.roles.cache.find(r => r.name === 'map curator'))
+            const hasRole = interaction.member.roles.cache.some(r => r.name === 'map curator')
             if (oldMap && hasRole) {
                 var file = null
                 var map = null

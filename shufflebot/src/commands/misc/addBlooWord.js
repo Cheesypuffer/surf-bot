@@ -27,8 +27,7 @@ module.exports = {
             const word = interaction.options.get('word').value
             const oldMap = await bloosinferno.findOne(query)
             const oldWord = oldMap.words.includes(interaction.options.get('word').value)
-            console.log(interaction.guild.roles.cache.find(r => r.name === 'balliff'))
-            const hasRole = interaction.member.roles.cache.has(interaction.guild.roles.cache.find(r => r.name === 'balliff'))
+            const hasRole = interaction.member.roles.cache.some(r => r.name === 'bailiff')
             const options = { upsert : false }
             if (!oldWord && hasRole) {
                 interaction.editReply('⠀')
