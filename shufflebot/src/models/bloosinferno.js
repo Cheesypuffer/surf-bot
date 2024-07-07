@@ -7,4 +7,4 @@ const bloowords = new Schema({
     }
 })
 
-module.exports = model('Bloowords', maps)
+module.exports = model('Bloowords', bloowords)
