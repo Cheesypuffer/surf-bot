@@ -51,7 +51,7 @@ module.exports = {
                 name: interaction.options.get('name').value
             }
             const oldMap = await maps.findOne(query)
-            const hasRole = interaction.member.roles.cache.has('1257704302428815521')
+            const hasRole = interaction.member.roles.cache.has(message.guild.roles.cache.find(r => r.name === 'map curator'))
             if (!oldMap && hasRole) {
                 var file = null
                 var map = null
