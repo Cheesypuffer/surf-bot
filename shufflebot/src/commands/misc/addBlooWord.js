@@ -1,5 +1,5 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, Attachment} = require("discord.js");
-const maps = require('../../models/bloosinferno')
+const bloosinferno = require('../../models/bloosinferno')
 module.exports = {
     name:'addblooword',
     description:'heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic',
@@ -25,15 +25,17 @@ module.exports = {
         try {
             const query = ({})
             const word = interaction.options.get('word').value
-            const oldMap = await maps.findOne(query)
+            const oldMap = await bloosinferno.findOne(query)
             const oldWord = oldMap.words.includes(interaction.options.get('word').value)
             const hasRole = interaction.member.roles.cache.has('1259292280272060478')
             const options = { upsert : false }
             if (!oldWord && hasRole) {
                 interaction.editReply('⠀')
+                console.log(word)
                 var votes = oldMap.words.push(word)
-                const result = await maps.updateOne(query, {
-                    $set: {
+                console.log(votes)
+                const result = await bloosinferno.updateOne(query, {
+                    $add: {
                         words: votes
                     }
                 }, options)
