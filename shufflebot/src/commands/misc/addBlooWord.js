@@ -23,14 +23,10 @@ module.exports = {
 
         
         try {
-            const query = {
-                word: interaction.options.get('word').value
-            }
-            const oldMap = await maps.findOne({query})
+            const oldMap = await maps.findOne({})
             console.log(oldMap)
             const hasRole = interaction.member.roles.cache.has('1257704302428815521')
             if (!oldMap && hasRole) {
-                var file = null
                 interaction.editReply('⠀')
 
             } else {
