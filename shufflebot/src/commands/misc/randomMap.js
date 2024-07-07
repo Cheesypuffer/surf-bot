@@ -43,7 +43,7 @@ module.exports = {
                     break
                 }
             }
-            const role = interaction.guild.roles.cache.some(r => r.name === `Tier ${map.tier}`)
+            const role = interaction.guild.roles.cache.find(r => r.name === `Tier ${map.tier}`)
             console.log(role)
             const file = new AttachmentBuilder(map.icon)
             const file2 = new AttachmentBuilder(map.thumbnail)
