@@ -1,7 +1,7 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, Attachment} = require("discord.js");
 const bloosinferno = require('../../models/bloosinferno')
 module.exports = {
-    name:'addblooword',
+    name:'removeblooword',
     description:'heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic',
     options:[
         {
@@ -29,13 +29,12 @@ module.exports = {
             const oldWord = oldMap.words.includes(interaction.options.get('word').value)
             const hasRole = interaction.member.roles.cache.has('1259292280272060478')
             const options = { upsert : false }
-            if (!oldWord && hasRole) {
+            if (oldWord && hasRole) {
                 interaction.editReply('⠀')
-                var votes = oldMap.words.push(word)
-                
+                var votes = oldMap.words.splice(oldMap.words.indexOf(oldWord), 1)
             } else {
                 interaction.editReply(
-                    'That word does already exist or you cant do that'
+                    'That word doesnt exist or you cant do that'
                 )
             }
         } catch (error) {
