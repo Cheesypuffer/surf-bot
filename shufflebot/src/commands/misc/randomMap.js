@@ -43,7 +43,7 @@ module.exports = {
                     break
                 }
             }
-            const role = interaction.guild.roles.cache.get(`${roles[map.tier-1]}`)
+            const role = interaction.guild.roles.cache.some(roles[map.tier])
             const file = new AttachmentBuilder(map.icon)
             const file2 = new AttachmentBuilder(map.thumbnail)
             const embed = new EmbedBuilder()
@@ -83,17 +83,17 @@ module.exports = {
 
 
 const roles = [
-    Client.guild.roles.cache.some(r => r.name === 'Tier 0'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 1'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 2'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 3'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 4'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 5'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 6'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 7'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 8'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 9'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 10'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 11'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 12'),
+    (r => r.name === 'Tier 0'),
+    (r => r.name === 'Tier 1'),
+    (r => r.name === 'Tier 2'),
+    (r => r.name === 'Tier 3'),
+    (r => r.name === 'Tier 4'),
+    (r => r.name === 'Tier 5'),
+    (r => r.name === 'Tier 6'),
+    (r => r.name === 'Tier 7'),
+    (r => r.name === 'Tier 8'),
+    (r => r.name === 'Tier 9'),
+    (r => r.name === 'Tier 10'),
+    (r => r.name === 'Tier 11'),
+    (r => r.name === 'Tier 12'),
 ]

@@ -76,7 +76,7 @@ module.exports = {
                     file = new AttachmentBuilder('https://media.discordapp.net/attachments/1256006687366713427/1257000435462570077/Untitled.jpg?ex=6682d061&is=66817ee1&hm=4a6f24c89a27314977d3e6dfa0f0112824a34ae4cd9ce7c14cd155a9c2eb5f48&=&format=webp')
                 }
                
-                const role = interaction.guild.roles.cache.get(`${roles[interaction.options.get('tier').value-1]}`)
+                const role = interaction.guild.roles.cache.some(roles[oldMap.tier])
                 const embed = new EmbedBuilder()
                     .setTitle(`${map.name}`)
                     .setDescription(`Tier ${map.tier}`)
@@ -102,17 +102,17 @@ module.exports = {
 }
 
 const roles = [
-    Client.guild.roles.cache.some(r => r.name === 'Tier 0'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 1'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 2'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 3'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 4'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 5'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 6'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 7'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 8'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 9'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 10'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 11'),
-    Client.guild.roles.cache.some(r => r.name === 'Tier 12'),
+    (r => r.name === 'Tier 0'),
+    (r => r.name === 'Tier 1'),
+    (r => r.name === 'Tier 2'),
+    (r => r.name === 'Tier 3'),
+    (r => r.name === 'Tier 4'),
+    (r => r.name === 'Tier 5'),
+    (r => r.name === 'Tier 6'),
+    (r => r.name === 'Tier 7'),
+    (r => r.name === 'Tier 8'),
+    (r => r.name === 'Tier 9'),
+    (r => r.name === 'Tier 10'),
+    (r => r.name === 'Tier 11'),
+    (r => r.name === 'Tier 12'),
 ]
