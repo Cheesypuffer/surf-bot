@@ -25,10 +25,10 @@ module.exports = {
         try {
             const query = ({})
             const oldMap = await maps.findOne(query)
-            const oldWord = await maps.words.includes()
+            const oldWord = await oldMap.words.includes()
             console.log(oldMap)
             const hasRole = interaction.member.roles.cache.has('1259292280272060478')
-            if (!oldMap && hasRole) {
+            if (!oldWord && hasRole) {
                 interaction.editReply('⠀')
                 var votes = oldMap.words.push(interaction.options.get('word').value)
                 const result = await maps.updateOne(query, {
