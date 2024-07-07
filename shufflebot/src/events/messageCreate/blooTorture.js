@@ -20,10 +20,12 @@ module.exports = async (client, message) => {
                 console.log(blooword)
                 if (message.content.includes(blooword.toString())) {
                     const banimage = new AttachmentBuilder('https://media.discordapp.net/attachments/1257792531156959303/1259291301489147945/banned.png?ex=668bceaa&is=668a7d2a&hm=693fc251547692b3782f2dc68ed58b32ee929f7ff1391358e2e4f7996f1c9a0e&=&format=webp&quality=lossless')
-                    message.channel.send(
-                        {content: gifs[Math.floor(Math.random()*5)]}
-                    )
-                    message.delete()
+                    if (message) {
+                        message.channel.send(
+                            {content: gifs[Math.floor(Math.random()*5)]}
+                        )
+                        message.delete()
+                    }
                 }
             }
         } catch (error) {
