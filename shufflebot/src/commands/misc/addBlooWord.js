@@ -24,13 +24,14 @@ module.exports = {
         
         try {
             const query = ({})
+            const word = interaction.options.get('word').value
             const oldMap = await maps.findOne(query)
             const oldWord = await oldMap.words.includes()
             console.log(oldMap)
             const hasRole = interaction.member.roles.cache.has('1259292280272060478')
             if (!oldWord && hasRole) {
                 interaction.editReply('⠀')
-                var votes = oldMap.words.push(interaction.options.get('word').value)
+                var votes = oldMap.words.push(word)
                 const result = await maps.updateOne(query, {
                     $set: {
                         words: votes
