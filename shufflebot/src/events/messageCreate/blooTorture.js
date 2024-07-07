@@ -1,4 +1,4 @@
-const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, Message} = require("discord.js");
+const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, Message, ThreadOnlyChannel} = require("discord.js");
 const maps = require('../../models/maps')
 const blootorture = require('../../models/bloosinferno')
 /**
@@ -12,10 +12,14 @@ const blootorture = require('../../models/bloosinferno')
 module.exports = async (client, message) => {
     if (message.author.id === '693185613775503400') {
         //message.react('🥵')
-        for(const blooword of blootorture.find(({}))) {
-            if (message.content.includes(blooword)) {
-                message.delete()
+        try {
+            for(const blooword of blootorture.find(({}))) {
+                if (message.content.includes(blooword)) {
+                    message.delete()
+                }
             }
+        } catch (error) {
+            console.log(error)
         }
     }
 }

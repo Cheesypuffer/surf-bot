@@ -35,7 +35,7 @@ module.exports = {
                 var map = null
                 const result = await blootorture.updateOne(query, {
                     $set: {
-                        words: await blootorture.findOne({}).push(interaction.options.get('word').value)
+                        words: await blootorture.find({}).push(interaction.options.get('word').value)
                     }
                 }, options)
 
