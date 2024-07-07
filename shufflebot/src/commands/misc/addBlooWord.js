@@ -1,15 +1,39 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction} = require("discord.js");
-const blootorture = require('../../models/bloosinferno')
+const maps = require('../../models/bloosinferno')
 module.exports = {
     name:'addblooword',
-    description:'heretic',
+    description:'heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic ',
     options:[
         {
-            name:'word',
-            description:'word to add',
+            name:'name',
+            description:'name of map',
             required:true,
             type:ApplicationCommandOptionType.String
         },
+        {
+            name:'tier',
+            description:'tier of map',
+            required:true,
+            type:ApplicationCommandOptionType.Integer
+        },
+        {
+            name:'link',
+            description:'link of map',
+            required:true,
+            type:ApplicationCommandOptionType.String
+        },
+        {
+            name:'icon',
+            description:'icon of map',
+            required:false,
+            type:ApplicationCommandOptionType.String
+        },
+        {
+            name:'thumbnail',
+            description:'thumbnail of map',
+            required:false,
+            type:ApplicationCommandOptionType.String
+        }
     ],
 
         /**
@@ -24,39 +48,51 @@ module.exports = {
         
         try {
             const query = {
-                word: interaction.options.get('word').value
+                name: interaction.options.get('name').value
             }
-            const options = { upsert : false }
-            const oldMap = await blootorture.findOne({})
-            console.log(oldMap)
+            const oldMap = await maps.findOne(query)
             const hasRole = interaction.member.roles.cache.has('1257704302428815521')
-            if (oldMap && hasRole) {
+            if (!oldMap && hasRole) {
                 var file = null
                 var map = null
-                const result = await blootorture.updateOne(query, {
-                    $set: {
-                        words: oldMap.words.push(interaction.options.get('word').value)
-                    }
-                }, options)
+                if (interaction.options.get('icon')) {
+                    map = new maps ({
+                        name: `${interaction.options.get('name').value}`,
+                        tier: `${interaction.options.get('tier').value}`,
+                        link: `${interaction.options.get('link').value}`,
+                        icon: `${interaction.options.get('icon').value}`,
+                        thumbnail: `${interaction.options.get('thumbnail').value}`
+                    })
+                    file = new AttachmentBuilder(map.icon)
+                } else {
+                    map = new maps ({
+                        name: `${interaction.options.get('name').value}`,
+                        tier: `${interaction.options.get('tier').value}`,
+                        link: `${interaction.options.get('link').value}`,
+                        icon: 'https://media.discordapp.net/attachments/1256006687366713427/1257000435462570077/Untitled.jpg?ex=6682d061&is=66817ee1&hm=4a6f24c89a27314977d3e6dfa0f0112824a34ae4cd9ce7c14cd155a9c2eb5f48&=&format=webp',
+                        thumbnail: 'https://cdn.discordapp.com/attachments/1256006687366713427/1257771232955207820/missingno.png?ex=66859e3e&is=66844cbe&hm=53e5fc4c5178852dffa13a29e55f1617bb0166ebcdbb474accc6a61d6e6694a8&'
 
+                    })
+                    file = new AttachmentBuilder('https://media.discordapp.net/attachments/1256006687366713427/1257000435462570077/Untitled.jpg?ex=6682d061&is=66817ee1&hm=4a6f24c89a27314977d3e6dfa0f0112824a34ae4cd9ce7c14cd155a9c2eb5f48&=&format=webp')
+                }
                
                 const role = interaction.guild.roles.cache.get(`${roles[interaction.options.get('tier').value-1]}`)
                 const embed = new EmbedBuilder()
-                    .setTitle(`${oldMap.name}`)
-                    .setDescription(`Tier ${oldMap.tier}`)
+                    .setTitle(`${map.name}`)
+                    .setDescription(`Tier ${map.tier}`)
                     .setColor(0x0099FF)
-                    embed.setURL(oldMap.link)
+                    embed.setURL(map.link)
                     embed.setTimestamp()
                     embed.setThumbnail(`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`)
                     embed.addFields(
-                        { name: 'Ping:', value: `<@&${roles[oldMap.tier]}>` },
+                        { name: 'Ping:', value: `<@&${roles[map.tier]}>` },
                 )
-                embed.setAuthor({name:`${interaction.user.tag} has edited a map for the map selection:`, iconURL:`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`})
+                embed.setAuthor({name:`${interaction.user.tag} has submitted a map for the map selection:`, iconURL:`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`})
             interaction.channel.send({embeds: [embed]}, {files: [file]});
             interaction.editReply('⠀')
-            await oldMap.save()
+            await map.save()
             } else {
-                interaction.editReply('That map does not exist.')
+                interaction.editReply('That map already exists!')
             }
         } catch (error) {
             console.log(error)
