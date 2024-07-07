@@ -2,7 +2,7 @@ const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, Attachme
 const maps = require('../../models/bloosinferno')
 module.exports = {
     name:'addblooword',
-    description:'heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic',
+    description:'heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic',
     options:[
         {
             name:'name',
