@@ -1,10 +1,10 @@
 const {Schema, model} = require('mongoose')
 
-const maps = new Schema({
+const bloowords = new Schema({
     words: {
         type: Array,
         required:true
     }
 })
 
-module.exports = model('Maps', maps)
+module.exports = model('Bloowords', maps)
