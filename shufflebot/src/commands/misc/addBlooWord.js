@@ -1,4 +1,4 @@
-const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction} = require("discord.js");
+const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, Attachment} = require("discord.js");
 const maps = require('../../models/bloosinferno')
 module.exports = {
     name:'addblooword',
@@ -23,6 +23,7 @@ module.exports = {
 
         
         try {
+            const banimage = new AttachmentBuilder('https://media.discordapp.net/attachments/1257792531156959303/1259291301489147945/banned.png?ex=668bceaa&is=668a7d2a&hm=693fc251547692b3782f2dc68ed58b32ee929f7ff1391358e2e4f7996f1c9a0e&=&format=webp&quality=lossless')
             const query = ({})
             const word = interaction.options.get('word').value
             const oldMap = await maps.findOne(query)
@@ -39,7 +40,10 @@ module.exports = {
                 }, options)
 
             } else {
-                interaction.editReply('That word already exists.')
+                interaction.editReply(
+                    {content: 'NO'},
+                    {files: [banimage]}
+                )
             }
         } catch (error) {
             console.log(error)

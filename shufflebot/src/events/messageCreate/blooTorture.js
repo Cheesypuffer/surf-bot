@@ -9,13 +9,16 @@ const blootorture = require('../../models/bloosinferno')
 
 //Bloo89 Torture Device
 
+const banimage = new AttachmentBuilder()
 module.exports = async (client, message) => {
     if (message.author.id === '1059312531308556399') {
         //message.react('🥵')
+        const zest = await blootorture.findOne(({}))
         try {
-            for(const blooword of blootorture.findOne(({})).words) {
+            for(const blooword of zest.words) {
                 if (message.content.includes(blooword)) {
                     message.delete()
+
                 }
             }
         } catch (error) {
