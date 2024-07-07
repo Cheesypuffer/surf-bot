@@ -12,7 +12,8 @@ const blootorture = require('../../models/bloosinferno')
 module.exports = async (client, message) => {
     if (message.author.id === '1059312531308556399') {
         //message.react('🥵')
-        const zest = await blootorture.findOne(({}))
+        var zest = await blootorture.findOne(({}))
+        console.log(zest)
         try {
             console.log('a')
             for(const blooword of zest.words) {
