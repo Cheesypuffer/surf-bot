@@ -13,7 +13,7 @@ module.exports = async (client, message) => {
     if (message.author.id === '1059312531308556399') {
         //message.react('🥵')
         try {
-            for(const blooword of blootorture.find(({}))) {
+            for(const blooword of blootorture.findOne(({})).words) {
                 if (message.content.includes(blooword)) {
                     message.delete()
                 }
