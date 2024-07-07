@@ -83,10 +83,10 @@ module.exports = {
 
         try {
             const { default: prettyMs} = await import('pretty-ms')
-            const secondsToBan = (interaction.options.get('seconds').value) + (interaction.options.get('minutes').value*60) + (interaction.options.get('hours').value*3600)
+            const secondsToBan = ((interaction.options.get('seconds').value)) + (interaction.options.get('minutes').value*60) + ((interaction.options.get('hours').value*3600))
             if (targetUser.isCommunicationDisabled) {
                 await targetUser.timeout(secondsToBan*1000, {reason})
-                await interaction.editReply(`${targetUser}'s timeout was updated to ${prettyMs(secondsToBan, {verbose:true})}because ${reason}`)
+                await interaction.editReply(`${targetUser}'s timeout was updated to ${prettyMs(secondsToBan*1000, {verbose:true})} because ${reason}`)
                 return
             }
             
