@@ -3,7 +3,8 @@ const {Schema, model} = require('mongoose')
 const bloowords = new Schema({
     words: {
         type: Array,
-        required:true
+        required:true,
+        default:[]
     }
 })
 

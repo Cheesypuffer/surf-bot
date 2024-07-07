@@ -34,6 +34,8 @@ module.exports = {
                 console.log(word)
                 var votes = oldMap.words.push(word)
                 console.log(votes)
+                console.log(oldMap)
+                console.log(oldMap.words)
                 const result = await bloosinferno.updateOne(query, {
                     $add: {
                         words: votes
