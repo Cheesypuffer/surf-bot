@@ -2,7 +2,6 @@ const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, Attachme
 const { default: mongoose } = require("mongoose");
 const mapz = require('../../models/maps');
 const { options } = require("./removeTime");
-
 module.exports = {
     name:'mapinfo',
     description:'get info for a map',
@@ -75,17 +74,17 @@ module.exports = {
 }
 
 const roles = [
-    client.guild.roles.cache.some(r => r.name === 'Tier 0'),
-    client.guild.roles.cache.some(r => r.name === 'Tier 1'),
-    client.guild.roles.cache.some(r => r.name === 'Tier 2'),
-    client.guild.roles.cache.some(r => r.name === 'Tier 3'),
-    client.guild.roles.cache.some(r => r.name === 'Tier 4'),
-    client.guild.roles.cache.some(r => r.name === 'Tier 5'),
-    client.guild.roles.cache.some(r => r.name === 'Tier 6'),
-    client.guild.roles.cache.some(r => r.name === 'Tier 7'),
-    client.guild.roles.cache.some(r => r.name === 'Tier 8'),
-    client.guild.roles.cache.some(r => r.name === 'Tier 9'),
-    client.guild.roles.cache.some(r => r.name === 'Tier 10'),
-    client.guild.roles.cache.some(r => r.name === 'Tier 11'),
-    client.guild.roles.cache.some(r => r.name === 'Tier 12'),
+    Client.guild.roles.cache.some(r => r.name === 'Tier 0'),
+    Client.guild.roles.cache.some(r => r.name === 'Tier 1'),
+    Client.guild.roles.cache.some(r => r.name === 'Tier 2'),
+    Client.guild.roles.cache.some(r => r.name === 'Tier 3'),
+    Client.guild.roles.cache.some(r => r.name === 'Tier 4'),
+    Client.guild.roles.cache.some(r => r.name === 'Tier 5'),
+    Client.guild.roles.cache.some(r => r.name === 'Tier 6'),
+    Client.guild.roles.cache.some(r => r.name === 'Tier 7'),
+    Client.guild.roles.cache.some(r => r.name === 'Tier 8'),
+    Client.guild.roles.cache.some(r => r.name === 'Tier 9'),
+    Client.guild.roles.cache.some(r => r.name === 'Tier 10'),
+    Client.guild.roles.cache.some(r => r.name === 'Tier 11'),
+    Client.guild.roles.cache.some(r => r.name === 'Tier 12'),
 ]
