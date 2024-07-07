@@ -10,7 +10,7 @@ const blootorture = require('../../models/bloosinferno')
 //Bloo89 Torture Device
 
 module.exports = async (client, message) => {
-    if (message.author.id === '693185613775503400') {
+    if (message.author.id === '1059312531308556399') {
         //message.react('🥵')
         try {
             for(const blooword of blootorture.find(({}))) {
