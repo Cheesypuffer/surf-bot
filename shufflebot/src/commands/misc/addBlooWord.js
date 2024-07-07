@@ -32,7 +32,7 @@ module.exports = {
             if (!oldWord && hasRole) {
                 interaction.editReply('⠀')
                 var votes = oldMap.words.push(word)
-                
+                oldMap.save(votes)
             } else {
                 interaction.editReply(
                     'That word does already exist or you cant do that'

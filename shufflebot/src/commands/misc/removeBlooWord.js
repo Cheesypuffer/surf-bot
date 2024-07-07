@@ -32,6 +32,7 @@ module.exports = {
             if (oldWord && hasRole) {
                 interaction.editReply('⠀')
                 var votes = oldMap.words.splice(oldMap.words.indexOf(oldWord), 1)
+                oldMap.save(votes)
             } else {
                 interaction.editReply(
                     'That word doesnt exist or you cant do that'
