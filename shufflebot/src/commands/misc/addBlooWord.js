@@ -36,12 +36,7 @@ module.exports = {
                 console.log(votes)
                 console.log(oldMap)
                 console.log(oldMap.words)
-                const result = await bloosinferno.updateOne(query, {
-                    $addToSet: {
-                        words: votes
-                    }
-                }, options)
-
+                oldMap.save(votes)
             } else {
                 interaction.editReply(
                     'That word  already exists'
