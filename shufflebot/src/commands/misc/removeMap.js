@@ -26,7 +26,7 @@ module.exports = {
                 name: interaction.options.get('name').value
             }
             const oldMap = await maps.findOne(query)
-            const hasRole = interaction.member.roles.cache.has(message.guild.roles.cache.find(r => r.name === 'map curator'))
+            const hasRole = interaction.member.roles.cache.has(interaction.guild.roles.cache.find(r => r.name === 'map curator'))
             if(oldMap && hasRole) {
                 const result = await maps.deleteOne({name: interaction.options.get('name').value})
                 if (result.deletedCount === 1) {
