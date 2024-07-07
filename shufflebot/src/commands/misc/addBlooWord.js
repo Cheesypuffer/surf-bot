@@ -23,7 +23,7 @@ module.exports = {
 
         
         try {
-            const query = ({})
+            var query = ({})
             const word = interaction.options.get('word').value
             const oldMap = await bloosinferno.findOne(query)
             const oldWord = oldMap.words.includes(interaction.options.get('word').value)
@@ -37,7 +37,7 @@ module.exports = {
                 console.log(oldMap)
                 console.log(oldMap.words)
                 const result = await bloosinferno.updateOne(query, {
-                    $add: {
+                    $addToSet: {
                         words: votes
                     }
                 }, options)
