@@ -40,7 +40,7 @@ module.exports = {
                 return
             }
         }
-        const role = interaction.guild.roles.cache.some(roles[map.tier])
+        const role = interaction.guild.roles.cache.some(r => r.name ===  roles[map.tier])
         const file = new AttachmentBuilder(map.icon)
         const file2 = new AttachmentBuilder(map.thumbnail)
         const embed = new EmbedBuilder()
@@ -74,17 +74,17 @@ module.exports = {
 }
 
 const roles = [
-    (r => r.name === 'Tier 0'),
-    (r => r.name === 'Tier 1'),
-    (r => r.name === 'Tier 2'),
-    (r => r.name === 'Tier 3'),
-    (r => r.name === 'Tier 4'),
-    (r => r.name === 'Tier 5'),
-    (r => r.name === 'Tier 6'),
-    (r => r.name === 'Tier 7'),
-    (r => r.name === 'Tier 8'),
-    (r => r.name === 'Tier 9'),
-    (r => r.name === 'Tier 10'),
-    (r => r.name === 'Tier 11'),
-    (r => r.name === 'Tier 12'),
-]
+    'Tier 0',
+    'Tier 1',
+    'Tier 2',
+    'Tier 3',
+    'Tier 4',
+    'Tier 5',
+    'Tier 6',
+    'Tier 7',
+    'Tier 8',
+    'Tier 9',
+    'Tier 10',
+    'Tier 11',
+    'Tier 12'
+];

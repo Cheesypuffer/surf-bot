@@ -1,5 +1,6 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction} = require("discord.js");
 const maps = require('../../models/maps')
+const rolez = require('../../models/roles')
 module.exports = {
     name:'submitmap',
     description:'Submits a map to be used in the map selection.',
@@ -76,7 +77,7 @@ module.exports = {
                     file = new AttachmentBuilder('https://media.discordapp.net/attachments/1256006687366713427/1257000435462570077/Untitled.jpg?ex=6682d061&is=66817ee1&hm=4a6f24c89a27314977d3e6dfa0f0112824a34ae4cd9ce7c14cd155a9c2eb5f48&=&format=webp')
                 }
                
-                const role = interaction.guild.roles.cache.some(roles[oldMap.tier])
+                const role = interaction.guild.roles.cache.some(r => r.name ===  roles[map.tier])
                 const embed = new EmbedBuilder()
                     .setTitle(`${map.name}`)
                     .setDescription(`Tier ${map.tier}`)
@@ -102,17 +103,17 @@ module.exports = {
 }
 
 const roles = [
-    (r => r.name === 'Tier 0'),
-    (r => r.name === 'Tier 1'),
-    (r => r.name === 'Tier 2'),
-    (r => r.name === 'Tier 3'),
-    (r => r.name === 'Tier 4'),
-    (r => r.name === 'Tier 5'),
-    (r => r.name === 'Tier 6'),
-    (r => r.name === 'Tier 7'),
-    (r => r.name === 'Tier 8'),
-    (r => r.name === 'Tier 9'),
-    (r => r.name === 'Tier 10'),
-    (r => r.name === 'Tier 11'),
-    (r => r.name === 'Tier 12'),
-]
+    'Tier 0',
+    'Tier 1',
+    'Tier 2',
+    'Tier 3',
+    'Tier 4',
+    'Tier 5',
+    'Tier 6',
+    'Tier 7',
+    'Tier 8',
+    'Tier 9',
+    'Tier 10',
+    'Tier 11',
+    'Tier 12'
+];
