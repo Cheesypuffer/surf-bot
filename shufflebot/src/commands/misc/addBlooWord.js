@@ -26,7 +26,7 @@ module.exports = {
             const query = ({})
             const word = interaction.options.get('word').value
             const oldMap = await maps.findOne(query)
-            const oldWord = await oldMap.words.includes()
+            const oldWord = oldMap.words.includes(interaction.options.get('word').value)
             const hasRole = interaction.member.roles.cache.has('1259292280272060478')
             const options = { upsert : false }
             if (!oldWord && hasRole) {
