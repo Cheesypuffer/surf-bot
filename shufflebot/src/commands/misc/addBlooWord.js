@@ -27,7 +27,7 @@ module.exports = {
                 word: interaction.options.get('word').value
             }
             const options = { upsert : false }
-            const oldMap = await blootorture.find({})
+            const oldMap = await blootorture.findOne({})
             console.log(oldMap)
             const hasRole = interaction.member.roles.cache.has('1257704302428815521')
             if (oldMap && hasRole) {
@@ -35,7 +35,7 @@ module.exports = {
                 var map = null
                 const result = await blootorture.updateOne(query, {
                     $set: {
-                        words: await blootorture.find({}).push(interaction.options.get('word').value)
+                        words: oldMap.words.push(interaction.options.get('word').value)
                     }
                 }, options)
 
