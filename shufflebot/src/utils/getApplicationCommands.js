@@ -2,11 +2,10 @@ module.exports = async (client, guildId) => {
     let applicationCommands;
 
     if (guildId) {
-        const guild = await client.guilds.fetch(guildId)
+        const guild = await client.guilds.fetch(client.guild.id)
         applicationCommands = guild.commands
         console.log('a')
-        console.log(guildId)
-        console.log(guildId.guildId)
+        console.log(guild)
 
     } else {
         console.log('b')
