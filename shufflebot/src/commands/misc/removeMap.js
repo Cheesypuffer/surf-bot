@@ -19,7 +19,7 @@ module.exports = {
      */
 
     
-    callback: async (client, interaction) => {
+    async execute(client, interaction) {
         try {
             await interaction.deferReply()
             const query = {

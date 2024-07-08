@@ -24,7 +24,7 @@ module.exports = {
      * @param {Interaction} interaction 
      */
     
-    callback: async (client, interaction) => {
+    async execute(client, interaction) {
         await interaction.deferReply()
         const query = await record.find({userId: interaction.options.get('user').value}, {map: interaction.options.get('map').value})
         const hasRole = interaction.member.roles.cache.has('1257704302428815521')

@@ -15,7 +15,7 @@ module.exports = {
         }
     ],
 
-    callback: async (client, interaction) => {
+    async execute(client, interaction) {
         await interaction.deferReply()
         var mapToVoteRaw = await mapz.findOne({name: interaction.options.get('map').value})
         var allMaps = await mapz.find({})
