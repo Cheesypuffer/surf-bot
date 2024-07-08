@@ -5,7 +5,7 @@ const path = require('node:path');
 
 const commands = [];
 // Grab all the command folders from the commands directory you created earlier
-const foldersPath = path.join('../../', 'commands');
+const foldersPath = path.join('/home/runner/surf-bot/shufflebot/src/', 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
