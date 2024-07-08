@@ -88,7 +88,7 @@ module.exports = {
                     }, options)
                 }
                
-                const role = interaction.guild.roles.cache.some(r => r.name ===  roles[map.tier])
+                const role = interaction.guild.roles.cache.find(r => r.name === `Tier ${map.tier}`)
                 const embed = new EmbedBuilder()
                     .setTitle(`${oldMap.name}`)
                     .setDescription(`Tier ${oldMap.tier}`)

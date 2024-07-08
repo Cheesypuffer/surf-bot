@@ -53,7 +53,7 @@ module.exports = {
                 if (role) {
                     embed.setColor(role.hexColor)
                     embed.addFields(
-                        { name: 'Ping:', value: `<@&${roles[map.tier]}>` },
+                        { name: 'Ping:', value: `<@&${role.id}>` },
                         { name: `Upvotes: ${map.upvotes.length}`, value: `Downvotes: ${map.downvotes.length}`}
                     )
                 } else {

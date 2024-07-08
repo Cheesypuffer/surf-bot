@@ -76,7 +76,7 @@ module.exports = {
                     file = new AttachmentBuilder('https://media.discordapp.net/attachments/1256006687366713427/1257000435462570077/Untitled.jpg?ex=6682d061&is=66817ee1&hm=4a6f24c89a27314977d3e6dfa0f0112824a34ae4cd9ce7c14cd155a9c2eb5f48&=&format=webp')
                 }
                
-                const role = interaction.guild.roles.cache.some(r => r.name ===  roles[map.tier])
+                const role = interaction.guild.roles.cache.find(r => r.name === `Tier ${map.tier}`)
                 const embed = new EmbedBuilder()
                     .setTitle(`${map.name}`)
                     .setDescription(`Tier ${map.tier}`)
