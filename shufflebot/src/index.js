@@ -2,6 +2,8 @@ require('dotenv').config();
 const {Client, IntentsBitField, EmbedBuilder, ActivityType, Collection, Events, GatewayIntentBits} = require('discord.js');
 const mongoose = require('mongoose');
 const eventHandler = require('./handlers/eventHandler');
+const fs = require('node:fs');
+const path = require('node:path');
 
 var http = require('http'); http.createServer(function (req, res) { res.write("I'm alive"); res.end(); }).listen(8080); 
 
