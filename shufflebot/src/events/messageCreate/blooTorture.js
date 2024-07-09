@@ -10,6 +10,7 @@ const blootorture = require('../../models/bloosinferno')
 //Bloo89 Torture Device
 
 module.exports = async (client, message) => {
+    console.log('sex')
     if (message.member.roles.cache.has('1259617536954208328')) {
         //message.react('🥵')
         var zest = await blootorture.findOne(({}))
