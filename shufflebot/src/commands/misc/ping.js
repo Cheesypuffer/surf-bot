@@ -1,8 +1,9 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, Colors} = require("discord.js");
 
 module.exports = {
-    name: 'ping',
-    description: 'returns client ping',
+    data: new SlashCommandBuilder()
+        .setName('ping')
+        .setDescription('returns client ping'),
     async execute(interaction) {
         await interaction.deferReply()
 

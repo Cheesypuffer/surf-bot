@@ -3,16 +3,14 @@ const { default: mongoose } = require("mongoose");
 const mapz = require('../../models/maps');
 const { options } = require("./removeTime");
 module.exports = {
-    name:'mapinfo',
-    description:'get info for a map',
-    options: [
-        {
-            name:'map',
-            description:'the map to collect info from',
-            required:true,
-            type: ApplicationCommandOptionType.String
-        }
-    ],
+    data: new SlashCommandBuilder()
+        .setName('mapinfo')
+        .setDescription('get info for a map.')
+        .addStringOption(option => 
+            option.setName('map')
+                .setDescription('the map to collect info from')
+                .setRequired(true)
+        ),
 
     async execute(interaction) {
         await interaction.deferReply()

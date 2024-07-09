@@ -10,8 +10,9 @@ const buttons = [
 ];
 
 module.exports = {
-    name: 'listmaps',
-    description: 'Lists the maps currently in the map selection.',
+    data: new SlashCommandBuilder()
+    .setName('listmaps')
+    .setDescription('Lists the maps currently in the map selection.'),
 
     async execute(interaction) {
         await interaction.deferReply();

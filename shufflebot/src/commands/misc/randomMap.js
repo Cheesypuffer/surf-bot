@@ -2,18 +2,14 @@ const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, Attachme
 const { default: mongoose } = require("mongoose");
 const mapz = require('../../models/maps')
 module.exports = {
-    name: 'randommap',
-    description: 'Selects a random map from the map selection',
-    devOnly: false,
-    //testOnly: boolean
-    options: [
-        {
-            name: 'tier',
-            description:'tier of maps included',
-            required:true,
-            type:ApplicationCommandOptionType.Integer
-        }
-    ],
+    data: new SlashCommandBuilder()
+        .setName('randommap')
+        .setDescription('Selects a random map from the map selection')
+        .addIntegerOption(option => 
+            option.setName('tier')
+                .setDescription('tier of maps included')
+                .setRequired(true)
+        ),
 
      /**
       * 
@@ -97,3 +93,4 @@ const roles = [
     'Tier 11',
     'Tier 12'
 ];
+//my magnum opus

@@ -1,16 +1,14 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, Attachment} = require("discord.js");
 const bloosinferno = require('../../models/bloosinferno')
 module.exports = {
-    name:'removeblooword',
-    description:'heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic',
-    options:[
-        {
-            name:'word',
-            description:'word of bloo',
-            required:true,
-            type:ApplicationCommandOptionType.String
-        }
-    ],
+    data: new SlashCommandBuilder()
+        .setName('removeblooword')
+        .setDescription('heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic')
+        .addStringOption(option => 
+            option.setName('word')
+                .setDescription('word of bloo')
+                .setRequired(true)
+        ),
 
         /**
      * 

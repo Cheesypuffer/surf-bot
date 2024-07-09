@@ -4,16 +4,14 @@ const mapz = require('../../models/maps');
 const { options } = require("./removeTime");
 
 module.exports = {
-    name:'downvote',
-    description:'downvote a map',
-    options: [
-        {
-            name:'map',
-            description:'the map to downvote',
-            required:true,
-            type: ApplicationCommandOptionType.String
-        }
-    ],
+    data: new SlashCommandBuilder()
+        .setName('downvote')
+        .setDescription('downvote a map')
+        .addStringOption(option => 
+            option.setName('map')
+                .setDescription('map to downvote')
+                .setRequired(true)
+        ),
 
     async execute(interaction) {
         await interaction.deferReply()

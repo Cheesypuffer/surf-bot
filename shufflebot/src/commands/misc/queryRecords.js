@@ -3,16 +3,9 @@ const { default: mongoose } = require("mongoose");
 const records  = require('../../models/times')
 const mapz = require('../../models/maps')
 module.exports = {
-    name:'queryrecords',
-    description:'Queries the map records for a certain map.',
-    options: [
-        {
-            name:'map',
-            description:'the map to query for records',
-            required:true,
-            type:ApplicationCommandOptionType.String
-        }
-    ],
+    data: new SlashCommandBuilder()
+        .setName('ping')
+        .setDescription('returns client ping'),
 
      /**
       * 

@@ -1,16 +1,14 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction} = require("discord.js");
 const maps = require('../../models/maps')
 module.exports = {
-    name:'removemap',
-    description:':wave:',
-    options:[
-        {
-            name:'name',
-            description:'name of map',
-            required:true,
-            type:ApplicationCommandOptionType.String
-        }
-    ],
+    data: new SlashCommandBuilder()
+        .setName('removemap')
+        .setDescription(':wave:')
+        .addStringOption(option => 
+            option.setName('name')
+                .setDescription('name of map')
+                .setRequired(true)
+        ),
 
            /**
      * 

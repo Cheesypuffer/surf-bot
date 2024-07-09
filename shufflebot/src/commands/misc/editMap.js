@@ -1,41 +1,34 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction} = require("discord.js");
 const maps = require('../../models/maps')
 module.exports = {
-    name:'editmap',
-    description:'editor.',
-    options:[
-        {
-            name:'name',
-            description:'name of map',
-            required:true,
-            type:ApplicationCommandOptionType.String
-        },
-        {
-            name:'tier',
-            description:'tier of map',
-            required:false,
-            type:ApplicationCommandOptionType.Integer
-        },
-        {
-            name:'link',
-            description:'link of map',
-            required:false,
-            type:ApplicationCommandOptionType.String
-        },
-        {
-            name:'icon',
-            description:'icon of map',
-            required:false,
-            type:ApplicationCommandOptionType.String
-        },
-        {
-            name:'thumbnail',
-            description:'thumbnail of map',
-            required:false,
-            type:ApplicationCommandOptionType.String
-        }
-    ],
-
+    data: new SlashCommandBuilder()
+        .setName('editmap')
+        .setDescription('editor.')
+        .addStringOption(option => 
+            option.setName('map name')
+                .setDescription('name of map')
+                .setRequired(true)
+        )
+        .addIntegerOption(option => 
+            option.setName('tier')
+                .setDescription('tier of map')
+                .setRequired(true)
+        )
+        .addStringOption(option => 
+            option.setName('link')
+                .setDescription('link of map')
+                .setRequired(true)
+        )
+        .addStringOption(option => 
+            option.setName('icon')
+                .setDescription('icon of map')
+                .setRequired(true)
+        )
+        .addStringOption(option => 
+            option.setName('thumbnail')
+                .setDescription('thumbnail of map')
+                .setRequired(true)
+        ),
         /**
      * 
      * @param {Client} client 

@@ -1,8 +1,9 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, Attachment} = require("discord.js");
 const bloosinferno = require('../../models/bloosinferno')
 module.exports = {
-    name:'initializebot',
-    description:'creates roles, channels, etc',
+    data: new SlashCommandBuilder()
+    .setName('initializebot')
+    .setDescription('create roles, channels, etc.'),
 
         /**
      * 
