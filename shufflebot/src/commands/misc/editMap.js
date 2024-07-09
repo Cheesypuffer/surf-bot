@@ -5,7 +5,7 @@ module.exports = {
         .setName('editmap')
         .setDescription('editor.')
         .addStringOption(option => 
-            option.setName('map name')
+            option.setName('name')
                 .setDescription('name of map')
                 .setRequired(true)
         )
