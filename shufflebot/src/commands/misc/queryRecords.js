@@ -21,7 +21,7 @@ module.exports = {
       * @returns 
       */
 
-     async execute(client, interaction) {
+     async execute(interaction) {
         const { default: prettyMs} = await import('pretty-ms')
         await interaction.deferReply()
         var mapRecords = await records.find({map:interaction.options.get('map').value})

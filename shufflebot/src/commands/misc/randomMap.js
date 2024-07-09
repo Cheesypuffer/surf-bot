@@ -21,7 +21,7 @@ module.exports = {
       * @param {Interaction} interaction 
       * @returns 
       */
-     async execute(client, interaction) {
+     async execute(interaction) {
         try {
             var maps = await mapz.find({})
             const tier = interaction.options.get('tier').value

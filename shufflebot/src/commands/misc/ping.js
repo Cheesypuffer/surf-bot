@@ -3,7 +3,7 @@ const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, Colors} 
 module.exports = {
     name: 'ping',
     description: 'returns client ping',
-    async execute(client, interaction) {
+    async execute(interaction) {
         await interaction.deferReply()
 
         const reply = await interaction.fetchReply()

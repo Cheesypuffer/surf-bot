@@ -13,7 +13,7 @@ module.exports = {
     name: 'listmaps',
     description: 'Lists the maps currently in the map selection.',
 
-    async execute(client, interaction) {
+    async execute(interaction) {
         await interaction.deferReply();
         //const { default: prettyMs} = await import('pretty-ms')
         try {

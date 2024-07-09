@@ -30,7 +30,7 @@ module.exports = {
      * @param {Interaction} interaction 
      */
     
-    async execute(client, interaction) {
+    async execute(interaction) {
         await interaction.deferReply()
         const query1 = {name: interaction.options.get('map').value}
         const query = await maps.findOne(query1)
