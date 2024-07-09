@@ -5,7 +5,7 @@ module.exports = {
         .setName('submitmap')
         .setDescription('Submits a map to be used in the map selection.')
         .addStringOption(option => 
-            option.setName('map name')
+            option.setName('name')
                 .setDescription('name of map')
                 .setRequired(true)
         )
