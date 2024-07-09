@@ -1,29 +1,25 @@
-const {Client, Interaction, ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
+const {Client, Interaction, ApplicationCommandOptionType, EmbedBuilder, SlashCommandBuilder } = require("discord.js");
 const record = require('../../models/times')
 const maps = require('../../models/maps')
 module.exports = {
-    name:'submittime',
-    description:'Submit your best time on a map to the database.',
-    options: [
-        {
-            name:'map',
-            description:'map you got the time on',
-            required:true,
-            type:ApplicationCommandOptionType.String
-        },
-        {
-            name:'time',
-            description:'the time that it took you to beat the surf, in seconds',
-            required:true,
-            type:ApplicationCommandOptionType.Number
-        },
-        {
-            name:'proof',
-            description:'a video of you achieving your time.',
-            required:true,
-            type:ApplicationCommandOptionType.String
-        }
-    ],
+    data: new SlashCommandBuilder()
+        .setName('submittime')
+        .setDescription('Submit your best time on a map to the database.')
+        .addStringOption(option => 
+            option.setName('map')
+                .setDescription('map you got the time on')
+                .setRequired(true)
+        )
+        .addNumberOption(option => 
+            option.setName('time')
+                .setDescription('the time that it took you to beat the surf, in seconds')
+                .setRequired(true)
+        )
+        .addStringOption(option => 
+            option.setName('proof')
+                .setDescription('a video of you achieving your time.')
+                .setRequired(true)
+        ),
     /**
      * 
      * @param {Client} client 

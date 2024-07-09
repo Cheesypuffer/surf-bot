@@ -1,23 +1,20 @@
-const {Client, Interaction, ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
+const {Client, Interaction, ApplicationCommandOptionType, EmbedBuilder, SlashCommandBuilder } = require("discord.js");
 const record = require('../../models/times')
 const mapzz = require('../../models/maps')
 module.exports = {
-    name:'removetime',
-    description:'Remove a time on a map from the database.',
-    options: [
-        {
-            name:'user',
-            description:'the user that achieved the time',
-            required:true,
-            type:ApplicationCommandOptionType.Mentionable
-        },
-        {
-            name:'map',
-            description:'the map that achieved the time',
-            required:true,
-            type:ApplicationCommandOptionType.String
-        }
-    ],
+    data: new SlashCommandBuilder()
+        .setName('removetime')
+        .setDescription('Remove a time on a map from the database.')
+        .addMentionableOption(option => 
+            option.setName('user')
+                .setDescription('the user that achieved the time')
+                .setRequired(true)
+        )
+        .addStringOption(option => 
+            option.setName('map')
+                .setDescription('the map that achieved the time')
+                .setRequired(true)
+        ),
     /**
      * 
      * @param {Client} client 

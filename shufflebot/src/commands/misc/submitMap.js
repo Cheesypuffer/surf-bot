@@ -1,40 +1,34 @@
-const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction} = require("discord.js");
+const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, SlashCommandBuilder} = require("discord.js");
 const maps = require('../../models/maps')
 module.exports = {
-    name:'submitmap',
-    description:'Submits a map to be used in the map selection.',
-    options:[
-        {
-            name:'name',
-            description:'name of map',
-            required:true,
-            type:ApplicationCommandOptionType.String
-        },
-        {
-            name:'tier',
-            description:'tier of map',
-            required:true,
-            type:ApplicationCommandOptionType.Integer
-        },
-        {
-            name:'link',
-            description:'link of map',
-            required:true,
-            type:ApplicationCommandOptionType.String
-        },
-        {
-            name:'icon',
-            description:'icon of map',
-            required:false,
-            type:ApplicationCommandOptionType.String
-        },
-        {
-            name:'thumbnail',
-            description:'thumbnail of map',
-            required:false,
-            type:ApplicationCommandOptionType.String
-        }
-    ],
+    data: new SlashCommandBuilder()
+        .setName('submitmap')
+        .setDescription('Submits a map to be used in the map selection.')
+        .addStringOption(option => 
+            option.setName('map name')
+                .setDescription('name of map')
+                .setRequired(true)
+        )
+        .addIntegerOption(option => 
+            option.setName('tier')
+                .setDescription('tier of map')
+                .setRequired(true)
+        )
+        .addStringOption(option => 
+            option.setName('link')
+                .setDescription('link of map')
+                .setRequired(true)
+        )
+        .addStringOption(option => 
+            option.setName('icon')
+                .setDescription('icon of map')
+                .setRequired(false)
+        )
+        .addStringOption(option => 
+            option.setName('thumbnail')
+                .setDescription('thumbnail of map')
+                .setRequired(false)
+        ),
 
         /**
      * 

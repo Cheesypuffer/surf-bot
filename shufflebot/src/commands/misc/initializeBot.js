@@ -1,4 +1,4 @@
-const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, Attachment} = require("discord.js");
+const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, Attachment,SlashCommandBuilder} = require("discord.js");
 const bloosinferno = require('../../models/bloosinferno')
 module.exports = {
     data: new SlashCommandBuilder()
