@@ -1,4 +1,4 @@
-const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, Message, ThreadOnlyChannel} = require("discord.js");
+const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, Message, ThreadOnlyChannel, Events} = require("discord.js");
 const maps = require('../../models/maps')
 const blootorture = require('../../models/bloosinferno')
 /**
@@ -9,28 +9,30 @@ const blootorture = require('../../models/bloosinferno')
 
 //Bloo89 Torture Device
 
-module.exports = async (client, message) => {
-    console.log('sex')
-    if (message.member.roles.cache.has('1259617536954208328')) {
-        //message.react('🥵')
-        var zest = await blootorture.findOne(({}))
-        try {
-            for(const blooword of zest.words) {
-                if (message.content.includes(blooword.toString())) {
-                    const banimage = new AttachmentBuilder('https://media.discordapp.net/attachments/1257792531156959303/1259291301489147945/banned.png?ex=668bceaa&is=668a7d2a&hm=693fc251547692b3782f2dc68ed58b32ee929f7ff1391358e2e4f7996f1c9a0e&=&format=webp&quality=lossless')
-                    message.channel.send(
-                        {content: gifs[Math.floor(Math.random()*5)]}
-                    )
-                    message.delete()
-                    return
+module.exports = {
+    name: Events.MessageCreate,
+    async execute(interaction) {
+        console.log('sex')
+        if (message.member.roles.cache.has('1259617536954208328')) {
+            //message.react('🥵')
+            var zest = await blootorture.findOne(({}))
+            try {
+                for(const blooword of zest.words) {
+                    if (message.content.includes(blooword.toString())) {
+                        const banimage = new AttachmentBuilder('https://media.discordapp.net/attachments/1257792531156959303/1259291301489147945/banned.png?ex=668bceaa&is=668a7d2a&hm=693fc251547692b3782f2dc68ed58b32ee929f7ff1391358e2e4f7996f1c9a0e&=&format=webp&quality=lossless')
+                        message.channel.send(
+                            {content: gifs[Math.floor(Math.random()*5)]}
+                        )
+                        message.delete()
+                        return
+                    }
                 }
+            } catch (error) {
+                console.log(error)
             }
-        } catch (error) {
-            console.log(error)
         }
-    }
+    }    
 }
-
 const gifs = [
     'https://media.discordapp.net/attachments/1256006687366713427/1259613083379302421/3dgifmaker25846.gif?ex=668c5199&is=668b0019&hm=2e89fb7da743499e13aabdd3f1f3070ec2151728375cfd34dc33a7a00571fbc1&=',
     'https://media.discordapp.net/attachments/1256006687366713427/1259613082502696960/3dgifmaker47700.gif?ex=668c5199&is=668b0019&hm=9bbcf168140bf9d8a719ddd5adf2d22b89747af168627e89c7ee078f3bfd8ed8&=',
