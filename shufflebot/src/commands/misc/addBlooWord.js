@@ -17,7 +17,7 @@ module.exports = {
      * @param {Interaction} interaction 
      */
 
-    async execute(client, interaction) {
+    async execute(interaction) {
         await interaction.deferReply()
 
         
