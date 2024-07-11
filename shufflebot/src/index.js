@@ -107,9 +107,6 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
-
-const fs = require('node:fs');
-const path = require('node:path');
 const getapplicationcommands = require('./utils/getApplicationCommands');
 const commands = [];
 // Grab all the command folders from the commands directory you created earlier
