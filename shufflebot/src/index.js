@@ -1,7 +1,6 @@
 require('dotenv').config();
 const {Client, IntentsBitField, EmbedBuilder, ActivityType, Collection, Events, GatewayIntentBits} = require('discord.js');
 const mongoose = require('mongoose');
-const eventHandler = require('./handlers/eventHandler');
 const fs = require('node:fs');
 const path = require('node:path');
 
