@@ -115,6 +115,20 @@ client.on(Events.InteractionCreate, async interaction => {
 	}
 });
 
+const eventsPath = path.join('/home/runner/surf-bot/shufflebot/src/events', '');
+const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
+
+for (const file of eventFiles) {
+	const filePath = path.join(eventsPath, file);
+	const event = require(filePath);
+	console.log(event)
+	if (event.once) {
+		client.once(event.name, (...args) => event.execute(...args));
+	} else {
+		client.on(event.name, (...args) => event.execute(...args));
+	}
+}
+
 
 
 
