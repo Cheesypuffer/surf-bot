@@ -1,6 +1,6 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, Message, ThreadOnlyChannel, Events} = require("discord.js");
-const maps = require('../models/maps')
-const blootorture = require('../models/bloosinferno')
+const maps = require('../../models/maps')
+const blootorture = require('../../models/bloosinferno')
 /**
  * 
  * @param {Client} client 
