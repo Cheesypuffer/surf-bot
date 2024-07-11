@@ -11,8 +11,9 @@ const blootorture = require('../models/bloosinferno')
 
 module.exports = {
     name: Events.MessageCreate,
-    async execute(message) {
+    async execute(interaction) {
         console.log('sex')
+        const message = interaction.content
         if (message.member.roles.cache.has('1259617536954208328')) {
             //message.react('🥵')
             var zest = await blootorture.findOne(({}))
