@@ -72,30 +72,6 @@ client.on('ready', (c) => {
     }, 10000)
 })
 
-client.on(Events.InteractionCreate, async interaction => {
-    console.log('a')
-	if (!interaction.isChatInputCommand()) return;
-    console.log('b')
-
-	const command = interaction.client.commands.get(interaction.commandName);
-
-	if (!command) {
-		console.error(`No command matching ${interaction.commandName} was found.`);
-		return;
-	}
-
-	try {
-		await command.execute(interaction);
-	} catch (error) {
-		console.error(error);
-		if (interaction.replied || interaction.deferred) {
-			await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
-		} else {
-			await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-		}
-	}
-});
-
 const eventsPath = path.join('/home/runner/surf-bot/shufflebot/src/events', '');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
@@ -157,6 +133,30 @@ const rest = new REST().setToken(process.env.TOKEN);
 		console.error(error);
 	}
 })();
+
+client.on(Events.InteractionCreate, async interaction => {
+    console.log('a')
+	if (!interaction.isChatInputCommand()) return;
+    console.log('b')
+
+	const command = interaction.client.commands.get(interaction.commandName);
+
+	if (!command) {
+		console.error(`No command matching ${interaction.commandName} was found.`);
+		return;
+	}
+
+	try {
+		await command.execute(interaction);
+	} catch (error) {
+		console.error(error);
+		if (interaction.replied || interaction.deferred) {
+			await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
+		} else {
+			await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+		}
+	}
+});
 
 
 
