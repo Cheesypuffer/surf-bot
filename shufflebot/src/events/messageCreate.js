@@ -13,7 +13,7 @@ module.exports = {
     name: Events.MessageCreate,
     async execute(interaction) {
         console.log('sex')
-        const message = interaction.content
+        const message = interaction
         if (message.member.roles.cache.has('1259617536954208328')) {
             //message.react('🥵')
             var zest = await blootorture.findOne(({}))
