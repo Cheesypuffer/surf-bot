@@ -64,13 +64,6 @@ let status = [
         type: ActivityType.Watching
     },
 ]
-client.on('ready', (c) => {
-    console.log(`${client.user.tag} is online.`)
-    setInterval(() => {
-        let random = Math.floor(Math.random()*status.length)
-        client.user.setActivity(status[random])
-    }, 10000)
-})
 
 const eventsPath = path.join('/home/runner/surf-bot/shufflebot/src/events', '');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
@@ -134,7 +127,7 @@ const rest = new REST().setToken(process.env.TOKEN);
 	}
 })();
 
-client.on('InteractionCreate', async interaction => {
+client.on('interactionCreate', async interaction => {
     console.log('a')
 	if (interaction.isChatInputCommand()) {
         console.log('b')
@@ -159,7 +152,13 @@ client.on('InteractionCreate', async interaction => {
     }
 });
 
-
+client.on('ready', (c) => {
+    console.log(`${client.user.tag} is online.`)
+    setInterval(() => {
+        let random = Math.floor(Math.random()*status.length)
+        client.user.setActivity(status[random])
+    }, 2000)
+})
 
 
 
