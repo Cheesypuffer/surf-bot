@@ -138,7 +138,7 @@ client.on('ready', (c) => {
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
-	const command = interaction.guild.commands.cache.get(interaction.commandName);
+	const command = interaction.client.commands.cache.get(interaction.commandName);
 
 	if (!command) {
 		console.error(`No command matching ${interaction.commandName} was found.`);
