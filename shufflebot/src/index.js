@@ -142,7 +142,8 @@ const rest = new REST().setToken(process.env.TOKEN);
 			Routes.applicationGuildCommands(clientId, guildId),
 			{ body: [] },
 		);
-
+        console.log(commands)
+        
 		const data = await rest.put(
 			Routes.applicationGuildCommands(clientId, guildId),
 			{ body: commands },
