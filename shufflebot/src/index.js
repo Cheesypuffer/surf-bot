@@ -127,12 +127,21 @@ const rest = new REST().setToken(process.env.TOKEN);
 	}
 })();
 
+client.on('ready', (c) => {
+    console.log(`${client.user.tag} is online.`)
+    setInterval(() => {
+        let random = Math.floor(Math.random()*status.length)
+        client.user.setActivity(status[random])
+    }, 2000)
+})
+
 client.on('interactionCreate', async interaction => {
     console.log('a')
 	if (interaction.isChatInputCommand()) {
         console.log('b')
-
-        const command = interaction.client.commands.get(interaction.commandName)
+        console.log(interaction.client)
+        console.log(interaction.client.commands)
+        //const command = interaction.client.commands.get(interaction.commandName)
     
         if (!command) {
             console.error(`No command matching ${interaction.commandName} was found.`);
@@ -152,13 +161,7 @@ client.on('interactionCreate', async interaction => {
     }
 });
 
-client.on('ready', (c) => {
-    console.log(`${client.user.tag} is online.`)
-    setInterval(() => {
-        let random = Math.floor(Math.random()*status.length)
-        client.user.setActivity(status[random])
-    }, 2000)
-})
+
 
 
 
