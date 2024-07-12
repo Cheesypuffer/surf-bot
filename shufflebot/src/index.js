@@ -73,7 +73,9 @@ client.on('ready', (c) => {
 })
 
 client.on(Events.InteractionCreate, async interaction => {
+    console.log('a')
 	if (!interaction.isChatInputCommand()) return;
+    console.log('b')
 
 	const command = interaction.client.commands.get(interaction.commandName);
 
@@ -143,7 +145,7 @@ const rest = new REST().setToken(process.env.TOKEN);
 			{ body: [] },
 		);
         console.log(commands)
-        
+
 		const data = await rest.put(
 			Routes.applicationGuildCommands(clientId, guildId),
 			{ body: commands },
