@@ -138,7 +138,7 @@ client.on('ready', (c) => {
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
-	const comands = await client.commands
+	const comands = await interaction.guild.commands
 	const comand = await comands.get(interaction.commandName)
 
 	if (!comand) {
