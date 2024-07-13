@@ -138,7 +138,7 @@ client.on('ready', (c) => {
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
-	const comand = client.commands.get(interaction.commandName)
+	const comand = await client.commands.get(interaction.commandName)
 
 	if (!comand) {
 		console.error(`No command matching ${interaction.commandName} was found.`);
