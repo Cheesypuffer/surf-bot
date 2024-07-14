@@ -1,4 +1,4 @@
-const {Client, Interaction, ApplicationCommandOptionType, PermissionFlagsBits} = require("discord.js");
+const {Client, Interaction, ApplicationCommandOptionType, PermissionFlagsBits, SlashCommandBuilder} = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
