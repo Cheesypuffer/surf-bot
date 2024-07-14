@@ -20,6 +20,7 @@ module.exports = {
             for (const role in roles) {
                 const oldRole = interaction.guild.roles.cache.find(r => r.name === role)
                 if (!oldRole) {
+                    console.log(role)
                     interaction.guild.roles.create({
                         data: {
                             name: role,
