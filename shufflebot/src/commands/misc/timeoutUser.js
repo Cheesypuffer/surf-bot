@@ -38,7 +38,7 @@ module.exports = {
      */
     async execute(interaction) {
         const targetUserId = interaction.options.get('target-user').value;
-        const reason = interaction.options.get('reason')?.value || "he was."
+        const reason = interaction.options.get('reason')?.value || "they didn't give a reason."
 
         await interaction.deferReply()
 
