@@ -14,7 +14,7 @@ module.exports = {
             .setDescription('why ban')
             .setRequired(false)
     )
-    .setDefaultMemberPermissons(PermissionsFlagsBits.BanMembers),
+    .setDefaultMemberPermissons(PermissionFlagsBits.BanMembers),
 
     /**
      * 
