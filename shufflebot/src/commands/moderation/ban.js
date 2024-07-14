@@ -1,26 +1,20 @@
 const {Client, Interaction, ApplicationCommandOptionType, PermissionFlagsBits} = require("discord.js");
 
 module.exports = {
-    name: 'ban',
-    description: 'Bans a member from the server',
-    devOnly: false,
-    //testOnly: boolean
-    options: [
-        {
-            name:'target-user',
-            description:'user to ban',
-            required:true,
-            type:ApplicationCommandOptionType.Mentionable
-        },
-        {
-            name:'reason',
-            description:'why ban',
-            required:false,
-            type:ApplicationCommandOptionType.String
-        }
-    ],
-    permissionsRequired: [PermissionFlagsBits.BanMembers],
-    botPermissions: [PermissionFlagsBits.BanMembers],
+    data: new SlashCommandBuilder()
+    .setName('ban')
+    .setDescription('Bans a member from the server')
+    .addMentionableOption(option => 
+        option.setName('target-user')
+            .setDescription('user to ban')
+            .setRequired(true)
+    )
+    .addStringOption(option => 
+        option.setName('reason')
+            .setDescription('why ban')
+            .setRequired(false)
+    )
+    .setDefaultMemberPermissons(PermissionsFlagsBits.BanMembers),
 
     /**
      * 
@@ -29,7 +23,7 @@ module.exports = {
      */
     async execute(interaction) {
         const targetUserId = interaction.options.get('target-user').value;
-        const reason = interaction.options.get('reason')?.value || "No reason lol"
+        const reason = interaction.options.get('reason')?.value || "i dont know ?? they didn't say. what am i supposed to do, come up with some BULLSHIT excuse, some ChatGPT shit? No. I'm not an omnipotent deity capable of reading minds, and neither are you."
 
         await interaction.deferReply()
 

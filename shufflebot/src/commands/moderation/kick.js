@@ -1,26 +1,20 @@
 const {Client, Interaction, ApplicationCommandOptionType, PermissionFlagsBits} = require("discord.js");
 
 module.exports = {
-    name: 'kick',
-    description: 'kick an user',
-    devOnly: false,
-    //testOnly: boolean
-    options: [
-        {
-            name:'target-user',
-            description:'user to kick',
-            required:true,
-            type:ApplicationCommandOptionType.Mentionable
-        },
-        {
-            name:'reason',
-            description:'why kick',
-            required:false,
-            type:ApplicationCommandOptionType.String
-        },
-    ],
-    permissionsRequired: [PermissionFlagsBits.ModerateMembers],
-    botPermissions: [PermissionFlagsBits.ModerateMembers],
+    data: new SlashCommandBuilder()
+        .setName('kick')
+        .setDescription('Kicks a member from the server.')
+        .setDefaultMemberPermissons(PermissionsFlagsBits.KickMembers)
+        .addMentionableOption(option => 
+            option.setName('target-user')
+                .setDescription('The user to kick.')
+                .setRequired(true)
+        )
+        .addStringOption(option => 
+            option.setName('reason')
+                .setDescription('Why the user must be kicked.')
+                .setRequired(false)
+        ),
 
     /**
      * 
@@ -29,7 +23,7 @@ module.exports = {
      */
     async execute(interaction) {
         const targetUserId = interaction.options.get('target-user').value;
-        const reason = interaction.options.get('reason')?.value || "he was."
+        const reason = interaction.options.get('reason')?.value || "i dont know ?? they didn't say. what am i supposed to do, come up with some BULLSHIT excuse, some ChatGPT shit? No. I'm not an omnipotent deity capable of reading minds, and neither are you."
 
         await interaction.deferReply()
 

@@ -1,44 +1,35 @@
 const {Client, Interaction, ApplicationCommandOptionType, PermissionFlagsBits} = require("discord.js");
 
 module.exports = {
-    name: 'timeout',
-    description: 'put someone in the chair',
-    devOnly: false,
-    //testOnly: boolean
-    options: [
-        {
-            name:'target-user',
-            description:'user to timeout',
-            required:true,
-            type:ApplicationCommandOptionType.Mentionable
-        },
-        {
-            name:'seconds',
-            description:'seconds',
-            required:true,
-            type:ApplicationCommandOptionType.Integer
-        },
-        {
-            name:'minutes',
-            description:'minutes',
-            required:true,
-            type:ApplicationCommandOptionType.Integer
-        },
-        {
-            name:'hours',
-            description:'hours',
-            required:true,
-            type:ApplicationCommandOptionType.Integer
-        },
-        {
-            name:'reason',
-            description:'why timeout',
-            required:false,
-            type:ApplicationCommandOptionType.String
-        },
-    ],
-    permissionsRequired: [PermissionFlagsBits.ModerateMembers],
-    botPermissions: [PermissionFlagsBits.ModerateMembers],
+    data: new SlashCommandBuilder()
+        .setName('timeout')
+        .setDescription('put someone in the chair')
+        .setDefaultMemberPermissons(PermissionsFlagsBits.TimeoutMembers)
+        .addMentionableOption(option => 
+            option.setName('target-user')
+                .setDescription('user to timeout')
+                .setRequired(true)
+        )
+        .addIntegerOption(option => 
+            option.setName('seconds')
+                .setDescription('seconds')
+                .setRequired(true)
+        )
+        .addIntegerOption(option => 
+            option.setName('minutes')
+                .setDescription('minutes')
+                .setRequired(true)
+        )
+        .addIntegerOption(option => 
+            option.setName('hours')
+                .setDescription('hours')
+                .setRequired(true)
+        )
+        .addStringOption(option => 
+            option.setName('reason')
+                .setDescription('why timeout')
+                .setRequired(false)
+        ),
 
     /**
      * 
