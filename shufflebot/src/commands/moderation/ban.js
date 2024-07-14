@@ -2,7 +2,7 @@ const {Client, Interaction, ApplicationCommandOptionType, PermissionFlagsBits, S
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName('ban')
+    .setName('banuser')
     .setDescription('Bans a member from the server')
     .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
     .addMentionableOption(option => 

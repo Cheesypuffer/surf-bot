@@ -2,7 +2,7 @@ const {Client, Interaction, ApplicationCommandOptionType, PermissionFlagsBits, S
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('kick')
+        .setName('kickuser')
         .setDescription('Kicks a member from the server.')
         .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
         .addMentionableOption(option => 

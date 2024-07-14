@@ -2,7 +2,7 @@ const {Client, Interaction, ApplicationCommandOptionType, PermissionFlagsBits, S
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('timeout')
+        .setName('timeoutuser')
         .setDescription('put someone in the chair')
         .setDefaultMemberPermissions(PermissionFlagsBits.TimeoutMembers)
         .addMentionableOption(option => 
