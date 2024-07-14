@@ -12,7 +12,6 @@ const blootorture = require('../models/bloosinferno')
 module.exports = {
     name: Events.MessageCreate,
     async execute(interaction) {
-        console.log('sex')
         const message = interaction
         if (interaction.member.roles.cache.some(r => r.name === 'Slimy Weasel')) {
             //message.react('🥵')
