@@ -4,7 +4,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('timeout')
         .setDescription('put someone in the chair')
-        .setDefaultMemberPermissons(PermissionFlagsBits.TimeoutMembers)
+        .setDefaultMemberPermissions(PermissionFlagsBits.TimeoutMembers)
         .addMentionableOption(option => 
             option.setName('target-user')
                 .setDescription('user to timeout')
