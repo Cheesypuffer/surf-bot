@@ -85,7 +85,7 @@ const commands = [];
 client.commands = new Collection()
 const foldersPath = path.join('/home/runner/surf-bot/shufflebot/src/', 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
-const { clientId } = require('../config.json');
+const { clientId, guildId } = require('../config.json');
 
 for (const folder of commandFolders) {
 	// Grab all the command files from the commands directory you created earlier
@@ -137,6 +137,11 @@ const rest = new REST().setToken(process.env.TOKEN);
 
         const data1 = await rest.put(
             Routes.applicationCommands(clientId),
+            { body: [] },
+        );
+
+        const data2 = await rest.put(
+            Routes.applicationGuildCommands(clientId, guildId),
             { body: [] },
         );
 
