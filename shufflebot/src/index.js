@@ -125,7 +125,31 @@ client.on(Events.InteractionCreate, async interaction => {
 	}
 });
 
+// Construct and prepare an instance of the REST module
+const rest = new REST().setToken(process.env.TOKEN);
 
+// and deploy your commands!
+(async () => {
+	try {
+		console.log(`Started refreshing ${commands.length} application (/) commands.`);
+		// The put method is used to fully refresh all commands in the guild with the current set
+        const data1 = await rest.put(
+			Routes.applicationCommands(clientId),
+			{ body: [] },
+		);
+        console.log(commands)
+
+		const data = await rest.put(
+			Routes.applicationCommands(clientId),
+			{ body: commands },
+		);
+
+		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+	} catch (error) {
+		// And of course, make sure you catch and log any errors!
+		console.error(error);
+	}
+})();
 
 client.on('ready', (c) => {
     console.log(`${client.user.tag} is online.`)
@@ -134,6 +158,8 @@ client.on('ready', (c) => {
         client.user.setActivity(status[random])
     }, 2000)
 })
+
+
 
 
 
