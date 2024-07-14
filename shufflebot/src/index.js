@@ -85,7 +85,7 @@ const commands = [];
 client.commands = new Collection()
 const foldersPath = path.join('/home/runner/surf-bot/shufflebot/src/', 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
-const { clientId, guildId} = require('../config.json');
+const { clientId } = require('../config.json');
 
 for (const folder of commandFolders) {
 	// Grab all the command files from the commands directory you created earlier
@@ -96,7 +96,7 @@ for (const folder of commandFolders) {
 		const filePath = path.join(commandsPath, file);
 		const command = require(filePath);
 		if ('data' in command && 'execute' in command) {
-			client.commands.set(command.data.name, command);
+			client.application.commands.set(command.data.name, command);
 		} else {
 			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 		}

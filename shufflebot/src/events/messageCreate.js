@@ -14,7 +14,7 @@ module.exports = {
     async execute(interaction) {
         console.log('sex')
         const message = interaction
-        if (message.member.roles.cache.has('1259617536954208328')) {
+        if (interaction.member.roles.cache.some(r => r.name === 'Slimy Weasel')) {
             //message.react('🥵')
             var zest = await blootorture.findOne(({}))
             try {

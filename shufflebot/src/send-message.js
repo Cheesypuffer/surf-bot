@@ -68,7 +68,7 @@ const client = new Client({
 
 client.on('ready', async (c) => {
     try {
-        const channel = await client.channels.cache.get('1256026413467832552');
+        const channel = await client.channels.cache.some(r => r.name === 'roles')
         if (!channel) return;
 
         const row1 = new ActionRowBuilder();
