@@ -1,5 +1,22 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, Attachment,SlashCommandBuilder} = require("discord.js");
 const bloosinferno = require('../../models/bloosinferno')
+
+const roles = [
+    'Tier 0',
+    'Tier 1',
+    'Tier 2',
+    'Tier 3',
+    'Tier 4',
+    'Tier 5',
+    'Tier 6',
+    'Tier 7',
+    'Tier 8',
+    'Tier 9',
+    'Tier 10',
+    'Tier 11',
+    'Tier 12'
+];
+
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('initializebot')
@@ -17,7 +34,7 @@ module.exports = {
         
         try {
             //The Purifier
-            for (const role in roles) {
+            for (const role of roles) {
                 const oldRole = interaction.guild.roles.cache.find(r => r.name === role)
                 if (!oldRole) {
                     console.log(role)
@@ -39,18 +56,3 @@ module.exports = {
     }
 }
 
-const roles = [
-    'Tier 0',
-    'Tier 1',
-    'Tier 2',
-    'Tier 3',
-    'Tier 4',
-    'Tier 5',
-    'Tier 6',
-    'Tier 7',
-    'Tier 8',
-    'Tier 9',
-    'Tier 10',
-    'Tier 11',
-    'Tier 12'
-];

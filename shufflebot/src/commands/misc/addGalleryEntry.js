@@ -1,14 +1,24 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, Attachment, SlashCommandBuilder} = require("discord.js");
-const bloosinferno = require('../../models/bloosinferno')
+const gallery = require('../../models/gallery')
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('addblooword')
-        .setDescription('add bloo word')
+        .setName('addgalleryentry')
+        .setDescription('<3')
         .addStringOption(option => 
-            option.setName('word')
-                .setDescription('bloo word')
+            option.setName('map')
+                .setDescription('Map attributed to the pic')
                 .setRequired(true)
+        )
+        .addStringOption(option => 
+            option.setName('pic')
+                .setDescription('picture link')
+                .setRequired(true)
+        )
+        .addStringOption(option => 
+            option.setName('caption')
+                .setDescription('caption')
+                .setRequired(false)
         ),
 
 
@@ -21,11 +31,16 @@ module.exports = {
     async execute(interaction) {
         await interaction.deferReply()
 
+        interaction.editReply('Sorry, but this is NOT implemented right now. I will probably work on it tommorow')
+
+        return
         
         try {
             var query = ({})
-            const word = interaction.options.get('word').value
-            const oldMap = await bloosinferno.findOne(query)
+            const caption = interaction.options.get('caption').value
+            const pic = interaction.options.get('pic').value
+            const map = interaction.options.get('map').value
+            const oldMap = await gallery.findOne(query)
             const oldWord = oldMap.words.includes(interaction.options.get('word').value)
             const hasRole = interaction.member.roles.cache.some(r => r.name === 'bailiff')
             const options = { upsert : false }
