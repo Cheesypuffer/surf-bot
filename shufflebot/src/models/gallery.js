@@ -6,7 +6,7 @@ const gallery = new Schema({
         required:true,
         default:'null'
     },
-    words: {
+    pics: {
         type: Array,
         required:true,
         default:[]

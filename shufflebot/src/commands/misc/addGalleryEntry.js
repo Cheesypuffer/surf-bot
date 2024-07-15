@@ -32,25 +32,23 @@ module.exports = {
         await interaction.deferReply()
 
         interaction.editReply('Sorry, but this is NOT implemented right now. I will probably work on it tommorow')
-
-        return
         
         try {
-            var query = ({})
             const caption = interaction.options.get('caption').value
             const pic = interaction.options.get('pic').value
             const map = interaction.options.get('map').value
+            var query = ({map: map})
             const oldMap = await gallery.findOne(query)
-            const oldWord = oldMap.words.includes(interaction.options.get('word').value)
-            const hasRole = interaction.member.roles.cache.some(r => r.name === 'bailiff')
+            const oldWord = oldMap.pics.includes(interaction.options.get('pic').value)
+            //const hasRole = interaction.member.roles.cache.some(r => r.name === 'balliff')
             const options = { upsert : false }
-            if (!oldWord && hasRole) {
+            if (!oldWord && hasRole && oldMap) {
                 interaction.editReply('⠀')
-                var votes = oldMap.words.push(word)
+                var votes = oldMap.pics.push({caption, pic})
                 oldMap.save(votes)
             } else {
                 interaction.editReply(
-                    'That word does already exist or you cant do that'
+                    'There is no board for that map. Create one with /createboard <map>'
                 )
             }
         } catch (error) {
