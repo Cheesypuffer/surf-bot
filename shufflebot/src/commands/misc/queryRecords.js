@@ -51,7 +51,7 @@ module.exports = {
         var mapTimes = []
         for(const mapRecord of mapRecords) {
             var recordTime = mapRecord.time
-            var user = await client.users.fetch(mapRecord.userId)
+            var user = await interaction.guild.users.fetch(mapRecord.userId)
             var userTag = user.tag
             var recordProof = mapRecord.proof
             mapTimes.push({recordTime, userTag, recordProof})
