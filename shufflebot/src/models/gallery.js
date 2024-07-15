@@ -8,7 +8,7 @@ const gallery = new Schema({
     },
     pics: {
         type: Array,
-        required:true,
+        required:false,
         default:[]
     }
 })
