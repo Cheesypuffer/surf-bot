@@ -31,6 +31,14 @@ const client = new Client({
     }
 })()
 
+client.on('ready', (c) => {
+    console.log(`${client.user.tag} is online.`)
+    setInterval(() => {
+        let random = Math.floor(Math.random()*status.length)
+        client.user.setActivity(status[random])
+    }, 2000)
+})
+
 client.on('interactionCreate', async (interaction) => {
     if (interaction.isButton()) {
         const role = interaction.guild.roles.cache.get(interaction.customId);
@@ -113,15 +121,14 @@ client.on(Events.InteractionCreate, async interaction => {
 		console.error(`No command matching ${interaction.commandName} was found.`);
 		return;
 	}
-
 	try {
 		await command.execute(interaction);
 	} catch (error) {
 		console.error(error);
 		if (interaction.replied || interaction.deferred) {
-			await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
+			///await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
 		} else {
-			await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+			///await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 		}
 	}
 });
@@ -157,13 +164,7 @@ const rest = new REST().setToken(process.env.TOKEN);
     }
 })();
 
-client.on('ready', (c) => {
-    console.log(`${client.user.tag} is online.`)
-    setInterval(() => {
-        let random = Math.floor(Math.random()*status.length)
-        client.user.setActivity(status[random])
-    }, 2000)
-})
+
 
 
 
