@@ -39,6 +39,12 @@ module.exports = {
             const map = interaction.options.get('map').value
             var query = ({map: map})
             const oldMap = await gallery.findOne(query)
+            if (!oldMap) {
+                interaction.editReply(
+                    'There is no board for that map. Create one with /createboard <map>'
+                )
+                return;
+            }
             const oldWord = oldMap.pics.includes(interaction.options.get('pic').value)
             //const hasRole = interaction.member.roles.cache.some(r => r.name === 'balliff')
             const options = { upsert : false }
@@ -48,7 +54,7 @@ module.exports = {
                 oldMap.save(votes)
             } else {
                 interaction.editReply(
-                    'There is no board for that map. Create one with /createboard <map>'
+                    'Nah.'
                 )
             }
         } catch (error) {
