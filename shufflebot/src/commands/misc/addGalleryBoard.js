@@ -27,15 +27,16 @@ module.exports = {
             var oldMap = await galleries.findOne(query)
             if (!oldMap) {
                 var file = null
-                var map = null
-                map = new galleries ({
+                interaction.channel.send(`Board ${interaction.options.get('name').value} has been created.`);
+                interaction.editReply('⠀')
+                
+                var map = new galleries ({
                     name: `${interaction.options.get('name').value}`,
                 })
-            interaction.channel.send(`Board ${interaction.options.get('name').value} has been created.`);
-            interaction.editReply('⠀')
-            await map.save()
+                await map.save()
+                
             } else {
-                interaction.editReply(`Board ${interaction.options.get('name').value} has already been created.`)
+                interaction.editReply(`Board ${map.name}| has already been created.`)
             }
         } catch (error) {
             console.log(error)
