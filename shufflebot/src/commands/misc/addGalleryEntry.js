@@ -18,7 +18,7 @@ module.exports = {
         .addStringOption(option => 
             option.setName('caption')
                 .setDescription('caption')
-                .setRequired(false)
+                .setRequired(true)
         ),
 
 
