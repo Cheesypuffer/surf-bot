@@ -4,9 +4,13 @@ const records  = require('../../models/times')
 const mapz = require('../../models/maps')
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('ping')
-        .setDescription('returns client ping'),
-
+        .setName('queryrecords')
+        .setDescription('get records for a map.')
+        .addStringOption(option => 
+            option.setName('map')
+                .setDescription('the map to collect info from')
+                .setRequired(true)
+        ),
      /**
       * 
       * @param {Client} client 

@@ -31,7 +31,7 @@ module.exports = {
     async execute(interaction) {
         await interaction.deferReply()
 
-        interaction.editReply('Sorry, but this is NOT implemented right now. I will probably work on it tommorow')
+        ///interaction.editReply('Sorry, but this is NOT implemented right now. I will probably work on it tommorow')
         
         try {
             const caption = interaction.options.get('caption').value
