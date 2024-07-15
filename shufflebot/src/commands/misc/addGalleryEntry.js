@@ -37,8 +37,8 @@ module.exports = {
             const caption = interaction.options.get('caption').value
             const pic = interaction.options.get('pic').value
             const map = interaction.options.get('map').value
-            var query = ({map: map})
-            const oldMap = await gallery.findOne(query)
+            var query = {map: map}
+            var oldMap = await gallery.findOne(query)
             if (!oldMap) {
                 interaction.editReply(
                     'There is no board for that map. Create one with /createboard <map>'
