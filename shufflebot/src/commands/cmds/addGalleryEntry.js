@@ -19,7 +19,13 @@ module.exports = {
             option.setName('caption')
                 .setDescription('caption')
                 .setRequired(true)
+        )
+        .addStringOption(option => 
+            option.setName('nsfw')
+                .setDescription('is the image nsfw, any entry into this field will mark it as such')
+                .setRequired(false)
         ),
+
 
 
         /**
@@ -37,6 +43,9 @@ module.exports = {
             const caption = interaction.options.get('caption').value
             const pic = interaction.options.get('pic').value
             const map = interaction.options.get('map').value
+            const nsfw = interaction.options.get('nsfw').value
+            const submitter = interaction.user.tag
+            const timestamp = Date.now()
             var query = {map: map}
             var oldMap = await gallery.findOne(query)
             if (!oldMap) {
@@ -50,7 +59,7 @@ module.exports = {
             const options = { upsert : false }
             if (!oldWord && oldMap) {
                 interaction.editReply('⠀')
-                var votes = oldMap.pics.push({caption, pic})
+                var votes = oldMap.pics.push({ caption: caption, pic: pic,timestamp: timestamp, nsfw: nsfw, submitter: submitter})
                 oldMap.save(votes)
             } else {
                 interaction.editReply(
