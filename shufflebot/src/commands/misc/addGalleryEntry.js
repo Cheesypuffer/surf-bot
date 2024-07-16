@@ -48,7 +48,7 @@ module.exports = {
             const oldWord = oldMap.pics.includes(interaction.options.get('pic').value)
             //const hasRole = interaction.member.roles.cache.some(r => r.name === 'balliff')
             const options = { upsert : false }
-            if (!oldWord && hasRole && oldMap) {
+            if (!oldWord && oldMap) {
                 interaction.editReply('⠀')
                 var votes = oldMap.pics.push({caption, pic})
                 oldMap.save(votes)
