@@ -1,6 +1,6 @@
 const { EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, SlashCommandBuilder } = require("discord.js");
-const mapz = require('../../models/maps');
-const record = require('../../models/times')
+const mapz = require('../models/maps');
+const record = require('../models/times')
 const buttons = [
   { id: 'PageLeft', label: '<--' },
   { id: 'PageRight', label: '-->' },

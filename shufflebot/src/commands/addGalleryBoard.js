@@ -1,5 +1,5 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, SlashCommandBuilder} = require("discord.js");
-const galleries = require('../../models/gallery')
+const galleries = require('../models/gallery')
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('addboard')

@@ -1,6 +1,6 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, SlashCommandBuilder} = require("discord.js");
 const { default: mongoose } = require("mongoose");
-const mapz = require('../../models/maps')
+const mapz = require('../models/maps')
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('randommap')

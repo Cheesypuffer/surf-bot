@@ -1,7 +1,7 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, SlashCommandBuilder} = require("discord.js");
 const { default: mongoose } = require("mongoose");
-const records  = require('../../models/times')
-const mapz = require('../../models/maps')
+const records  = require('../models/times')
+const mapz = require('../models/maps')
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('queryrecords')

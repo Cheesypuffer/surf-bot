@@ -1,17 +1,17 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, SlashCommandBuilder} = require("discord.js");
 const { default: mongoose } = require("mongoose");
-const mapz = require('../../models/maps');
+const mapz = require('../models/maps');
 const { options } = require("./removeTime");
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('downvote')
-        .setDescription('downvote a map')
-        .addStringOption(option => 
-            option.setName('map')
-                .setDescription('map to downvote')
-                .setRequired(true)
-        ),
+    .setName('upvote')
+    .setDescription('upvote a map')
+    .addStringOption(option => 
+        option.setName('map')
+            .setDescription('map to upvote')
+            .setRequired(true)
+    ),
 
     async execute(interaction) {
         await interaction.deferReply()
@@ -40,20 +40,20 @@ module.exports = {
             }
         }
         if ((mapToVote.upvotes.includes(interaction.user.id) === false) && (mapToVote.downvotes.includes(interaction.user.id) === false)) {
-            var votes = mapToVote.downvotes
+            var votes = mapToVote.upvotes
             votes.push(interaction.user.id)
             await mapToVote.save(votes)
-            interaction.editReply(`You hath downvoted ${mapToVote.name}`)
-        } else if(mapToVote.downvotes.includes(interaction.user.id) === false) {
-            var votes = mapToVote.downvotes
+            interaction.editReply(`You hath upvoted ${mapToVote.name}`)
+        } else if(mapToVote.upvotes.includes(interaction.user.id) === false) {
+            var votes = mapToVote.upvotes
             votes.push(interaction.user.id)
             await mapToVote.save(votes)
-            const indx = mapToVote.upvotes.indexOf(interaction.user.id)
-            mapToVote.upvotes.splice(indx, 1)
+            const indx = mapToVote.downvotes.indexOf(interaction.user.id)
+            mapToVote.downvotes.splice(indx, 1)
             await mapToVote.save(indx)
-            interaction.editReply(`You hath downvoted ${mapToVote.name}`)
+            interaction.editReply(`You hath upvoted ${mapToVote.name}`)
         } else {
-            interaction.editReply(`You hath already downvoted ${mapToVote.name}`)
+            interaction.editReply(`You hath already upvoted ${mapToVote.name}`)
         }
     }
 }
