@@ -31,7 +31,7 @@ module.exports = {
                 interaction.editReply('⠀')
                 
                 var map = new galleries ({
-                    name: `${interaction.options.get('name').value}`,
+                    map: `${interaction.options.get('name').value}`,
                 })
                 await map.save()
                 
