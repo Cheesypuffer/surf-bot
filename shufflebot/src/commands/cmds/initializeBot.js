@@ -1,5 +1,5 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, Attachment,SlashCommandBuilder} = require("discord.js");
-const bloosinferno = require('../models/bloosinferno')
+const bloosinferno = require('../../models/bloosinferno')
 
 const roles = [
     'Tier 0',

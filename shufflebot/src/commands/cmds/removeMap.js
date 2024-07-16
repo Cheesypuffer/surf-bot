@@ -1,5 +1,5 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, SlashCommandBuilder} = require("discord.js");
-const maps = require('../models/maps')
+const maps = require('../../models/maps')
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('removemap')

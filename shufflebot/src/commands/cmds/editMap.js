@@ -1,9 +1,9 @@
 const {ApplicationCommandOptionType, PermissionFlagsBits, EmbedBuilder, AttachmentBuilder, Client, Interaction, SlashCommandBuilder} = require("discord.js");
-const maps = require('../models/maps')
+const maps = require('../../models/maps')
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('submitmap')
-        .setDescription('Submits a map to be used in the map selection.')
+        .setName('editmap')
+        .setDescription('editor.')
         .addStringOption(option => 
             option.setName('name')
                 .setDescription('name of map')
@@ -22,14 +22,13 @@ module.exports = {
         .addStringOption(option => 
             option.setName('icon')
                 .setDescription('icon of map')
-                .setRequired(false)
+                .setRequired(true)
         )
         .addStringOption(option => 
             option.setName('thumbnail')
                 .setDescription('thumbnail of map')
-                .setRequired(false)
+                .setRequired(true)
         ),
-
         /**
      * 
      * @param {Client} client 
@@ -44,49 +43,61 @@ module.exports = {
             const query = {
                 name: interaction.options.get('name').value
             }
-            var oldMap = await maps.findOne(query)
+            const options = { upsert : false }
+            const oldMap = await maps.findOne(query)
             const hasRole = interaction.member.roles.cache.some(r => r.name === 'map curator')
-            if (!oldMap && hasRole) {
+            if (oldMap && hasRole) {
                 var file = null
                 var map = null
                 if (interaction.options.get('icon')) {
-                    map = new maps ({
-                        name: `${interaction.options.get('name').value}`,
-                        tier: `${interaction.options.get('tier').value}`,
-                        link: `${interaction.options.get('link').value}`,
-                        icon: `${interaction.options.get('icon').value}`,
-                        thumbnail: `${interaction.options.get('thumbnail').value}`
-                    })
                     file = new AttachmentBuilder(map.icon)
-                } else {
-                    map = new maps ({
-                        name: `${interaction.options.get('name').value}`,
-                        tier: `${interaction.options.get('tier').value}`,
-                        link: `${interaction.options.get('link').value}`,
-                        icon: 'https://media.discordapp.net/attachments/1256006687366713427/1257000435462570077/Untitled.jpg?ex=6682d061&is=66817ee1&hm=4a6f24c89a27314977d3e6dfa0f0112824a34ae4cd9ce7c14cd155a9c2eb5f48&=&format=webp',
-                        thumbnail: 'https://cdn.discordapp.com/attachments/1256006687366713427/1257771232955207820/missingno.png?ex=66859e3e&is=66844cbe&hm=53e5fc4c5178852dffa13a29e55f1617bb0166ebcdbb474accc6a61d6e6694a8&'
+                    const result = await maps.updateOne(query, {
+                        $set: {
+                            icon: interaction.options.get('icon').value
+                        }
+                    }, options)
+                }
 
-                    })
-                    file = new AttachmentBuilder('https://media.discordapp.net/attachments/1256006687366713427/1257000435462570077/Untitled.jpg?ex=6682d061&is=66817ee1&hm=4a6f24c89a27314977d3e6dfa0f0112824a34ae4cd9ce7c14cd155a9c2eb5f48&=&format=webp')
+                if (interaction.options.get('tier')) {
+                    const result = await maps.updateOne(query, {
+                        $set: {
+                            tier: interaction.options.get('tier').value
+                        }
+                    }, options)
+                }
+
+                if (interaction.options.get('link')) {
+                    const result = await maps.updateOne(query, {
+                        $set: {
+                            link: interaction.options.get('link').value
+                        }
+                    }, options)
+                }
+                if (interaction.options.get('thumbnail')) {
+                    const result = await maps.updateOne(query, {
+                        $set: {
+                            thumbnail: interaction.options.get('thumbnail').value
+                        }
+                    }, options)
                 }
                
                 const role = interaction.guild.roles.cache.find(r => r.name === `Tier ${map.tier}`)
                 const embed = new EmbedBuilder()
-                    .setTitle(`${map.name}`)
-                    .setDescription(`Tier ${map.tier}`)
+                    .setTitle(`${oldMap.name}`)
+                    .setDescription(`Tier ${oldMap.tier}`)
                     .setColor(0x0099FF)
-                    embed.setURL(map.link)
+                    embed.setURL(oldMap.link)
                     embed.setTimestamp()
                     embed.setThumbnail(`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`)
                     embed.addFields(
-                        { name: 'Ping:', value: `<@&${roles[map.tier]}>` },
+                        { name: 'Ping:', value: `<@&${roles[oldMap.tier]}>` },
                 )
-                embed.setAuthor({name:`${interaction.user.tag} has submitted a map for the map selection:`, iconURL:`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`})
+                embed.setAuthor({name:`${interaction.user.tag} has edited a map for the map selection:`, iconURL:`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`})
             interaction.channel.send({embeds: [embed]}, {files: [file]});
             interaction.editReply('⠀')
-            await map.save()
+            await oldMap.save()
             } else {
-                interaction.editReply('That map already exists!')
+                interaction.editReply('That map does not exist.')
             }
         } catch (error) {
             console.log(error)

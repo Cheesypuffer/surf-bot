@@ -1,6 +1,6 @@
 const {Client, Interaction, ApplicationCommandOptionType, EmbedBuilder, SlashCommandBuilder } = require("discord.js");
-const record = require('../models/times')
-const mapzz = require('../models/maps')
+const record = require('../../models/times')
+const mapzz = require('../../models/maps')
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('removetime')
