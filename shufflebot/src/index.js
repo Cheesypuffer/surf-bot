@@ -146,16 +146,19 @@ const rest = new REST().setToken(process.env.TOKEN);
             Routes.applicationCommands(clientId),
             { body: [] },
         );
+        console.log('a')
 
         const data2 = await rest.put(
             Routes.applicationGuildCommands(clientId, guildId),
             { body: [] },
         );
+        console.log('b')
 
         const data = await rest.put(
             Routes.applicationCommands(clientId),
             { body: commands },
         );
+        console.log('c')
 
         console.log(`Successfully reloaded ${data.length} application (/) commands.`);
     } catch (error) {
