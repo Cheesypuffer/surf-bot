@@ -40,35 +40,6 @@ client.on('ready', (c) => {
 })
 
 
-// Construct and prepare an instance of the REST module
-const rest = new REST().setToken(process.env.TOKEN);
-
-// and deploy your commands!
-(async () => {
-    try {
-        console.log(`Started refreshing ${commands.length} application (/) commands.`);
-        // The put method is used to fully refresh all commands in the guild with the current s
-
-        const data1 = await rest.put(
-            Routes.applicationCommands(clientId),
-            { body: [] },
-        )
-        console.log('a')
-        console.log(commands)
-        //deadass not working
-        const data = await rest.put(
-            Routes.applicationCommands(clientId),
-            { body: commands },
-        );
-        console.log('c')
-
-        console.log(`Successfully reloaded ${data.length} application (/) commands.`);
-    } catch (error) {
-        // And of course, make sure you catch and log any errors!
-        console.error(error);
-    }
-})();
-
 
 client.on('interactionCreate', async (interaction) => {
     if (interaction.isButton()) {
@@ -143,6 +114,37 @@ for (const folder of commandFolders) {
 		}
 	}
 } 
+
+
+// Construct and prepare an instance of the REST module
+const rest = new REST().setToken(process.env.TOKEN);
+
+// and deploy your commands!
+(async () => {
+    try {
+        console.log(`Started refreshing ${commands.length} application (/) commands.`);
+        // The put method is used to fully refresh all commands in the guild with the current s
+
+        const data1 = await rest.put(
+            Routes.applicationCommands(clientId),
+            { body: [] },
+        )
+        console.log('a')
+        console.log(commands)
+        //deadass not working
+        const data = await rest.put(
+            Routes.applicationCommands(clientId),
+            { body: commands },
+        );
+        console.log('c')
+
+        console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+    } catch (error) {
+        // And of course, make sure you catch and log any errors!
+        console.error(error);
+    }
+})();
+
 
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
