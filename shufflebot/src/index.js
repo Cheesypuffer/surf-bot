@@ -146,9 +146,9 @@ const rest = new REST().setToken(process.env.TOKEN);
         const data1 = await rest.put(
             Routes.applicationCommands(clientId),
             { body: [] },
-        );
+        )
         console.log('a')
-
+        console.log(commands)
         const data = await rest.put(
             Routes.applicationCommands(clientId),
             { body: commands },
