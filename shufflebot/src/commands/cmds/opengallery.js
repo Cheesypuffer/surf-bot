@@ -15,7 +15,7 @@ module.exports = {
     .setDescription('Opens the gallery for a certain map')
     .addStringOption(option => 
         option.setName('map')
-            .setDescription('the map to collect info from')
+            .setDescription('the map to collect information from')
             .setRequired(true)
     ),
 
