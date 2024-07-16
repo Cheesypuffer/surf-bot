@@ -39,6 +39,8 @@ client.on('ready', (c) => {
     }, 2000)
 })
 
+
+
 client.on('interactionCreate', async (interaction) => {
     if (interaction.isButton()) {
         const role = interaction.guild.roles.cache.get(interaction.customId);
@@ -104,34 +106,15 @@ for (const folder of commandFolders) {
 		const filePath = path.join(commandsPath, file);
 		const command = require(filePath);
 		if ('data' in command && 'execute' in command) {
-			client.commands.set(command.data.name, command);
+			//client.commands.set(command.data.name, command);
             commands.push(command.data.toJSON())
+            console.log('s')
 		} else {
 			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 		}
 	}
 } 
 
-client.on(Events.InteractionCreate, async interaction => {
-	if (!interaction.isChatInputCommand()) return;
-
-	const command = interaction.client.commands.get(interaction.commandName);  // ??????????
-
-	if (!command) {
-		console.error(`No command matching ${interaction.commandName} was found.`);
-		return;
-	}
-	try {
-		await command.execute(interaction);
-	} catch (error) {
-		console.error(error);
-		if (interaction.replied || interaction.deferred) {
-			///await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
-		} else {
-			///await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-		}
-	}
-});
 
 // Construct and prepare an instance of the REST module
 const rest = new REST().setToken(process.env.TOKEN);
@@ -145,17 +128,15 @@ const rest = new REST().setToken(process.env.TOKEN);
         const data1 = await rest.put(
             Routes.applicationCommands(clientId),
             { body: [] },
-        );
-
-        const data2 = await rest.put(
-            Routes.applicationGuildCommands(clientId, guildId),
-            { body: [] },
-        );
-
+        )
+        console.log('a')
+        console.log(commands)
+        //deadass not working
         const data = await rest.put(
             Routes.applicationCommands(clientId),
             { body: commands },
         );
+        console.log('c')
 
         console.log(`Successfully reloaded ${data.length} application (/) commands.`);
     } catch (error) {
@@ -163,6 +144,28 @@ const rest = new REST().setToken(process.env.TOKEN);
         console.error(error);
     }
 })();
+
+
+client.on(Events.InteractionCreate, async interaction => {
+	if (!interaction.isChatInputCommand()) return;
+
+	const command = interaction.client.commands.get(interaction.commandName);  // ??????????
+
+	if (!command) {
+		console.error(`No command matching ${interaction.commandName} was found.`);
+		return;
+	}
+	try {
+		await command.execute(interaction, client);
+	} catch (error) {
+		console.error(error);
+		if (interaction.replied || interaction.deferred) {
+			///await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
+		} else {
+			///await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+		}
+	}
+});
 
 
 
