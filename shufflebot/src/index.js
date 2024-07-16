@@ -39,6 +39,8 @@ client.on('ready', (c) => {
     }, 2000)
 })
 
+
+
 client.on('interactionCreate', async (interaction) => {
     if (interaction.isButton()) {
         const role = interaction.guild.roles.cache.get(interaction.customId);
@@ -104,13 +106,45 @@ for (const folder of commandFolders) {
 		const filePath = path.join(commandsPath, file);
 		const command = require(filePath);
 		if ('data' in command && 'execute' in command) {
-			client.commands.set(command.data.name, command);
+			//client.commands.set(command.data.name, command);
             commands.push(command.data.toJSON())
+            console.log('s')
 		} else {
 			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 		}
 	}
 } 
+
+
+// Construct and prepare an instance of the REST module
+const rest = new REST().setToken(process.env.TOKEN);
+
+// and deploy your commands!
+(async () => {
+    try {
+        console.log(`Started refreshing ${commands.length} application (/) commands.`);
+        // The put method is used to fully refresh all commands in the guild with the current s
+
+        const data1 = await rest.put(
+            Routes.applicationCommands(clientId),
+            { body: [] },
+        )
+        console.log('a')
+        console.log(commands)
+        //deadass not working
+        const data = await rest.put(
+            Routes.applicationCommands(clientId),
+            { body: commands },
+        );
+        console.log('c')
+
+        console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+    } catch (error) {
+        // And of course, make sure you catch and log any errors!
+        console.error(error);
+    }
+})();
+
 
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
@@ -132,37 +166,6 @@ client.on(Events.InteractionCreate, async interaction => {
 		}
 	}
 });
-
-// Construct and prepare an instance of the REST module
-const rest = new REST().setToken(process.env.TOKEN);
-
-// and deploy your commands!
-(async () => {
-    try {
-        console.log(`Started refreshing ${commands.length} application (/) commands.`);
-        // The put method is used to fully refresh all commands in the guild with the current s
-
-        const data1 = await rest.put(
-            Routes.applicationCommands(clientId),
-            { body: [] },
-        );
-
-        const data2 = await rest.put(
-            Routes.applicationGuildCommands(clientId, guildId),
-            { body: [] },
-        );
-
-        const data = await rest.put(
-            Routes.applicationCommands(clientId),
-            { body: commands },
-        );
-
-        console.log(`Successfully reloaded ${data.length} application (/) commands.`);
-    } catch (error) {
-        // And of course, make sure you catch and log any errors!
-        console.error(error);
-    }
-})();
 
 
 
