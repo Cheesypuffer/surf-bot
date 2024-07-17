@@ -4,9 +4,7 @@ const record = require('../../models/times')
 const galleries = require('../../models/gallery')
 const buttons = [
   { id: 'PageLeft', label: '<--' },
-  { id: 'PageRight', label: '-->' },
-  { id: 'ModeA', label: 'Date'},
-  { id: 'ModeB', label: 'Poster'},
+  { id: 'PageRight', label: '-->' }
 ];
 
 module.exports = {
@@ -30,6 +28,7 @@ module.exports = {
             const gallery = await galleries.findOne({map: interaction.options.get('map').value})
             if (!gallery) {
                 interaction.editReply('No board for that map.')
+                return
             }
             for (const RecordToDisplayRn in gallery.pics) {
               matches.push(RecordToDisplayRn)
@@ -39,26 +38,7 @@ module.exports = {
             while (true) {
                 const startIndex = (pageNumber - 1) * mapsPerPage;
                 const endIndex = startIndex + mapsPerPage;
-                
-
-
-
-                if (sortingMode === 1) {
-                 gallery.pics.sort((a, b) => a.timestamp - b.timestamp);
-                } else if (sortingMode === 2) {
-                 gallery.pics.sort((a, b) => {
-                    const nameA = a.submitter.toUpperCase(); // ignore upper and lowercase
-                    const nameB = b.submitter.toUpperCase(); // ignore upper and lowercase
-                    if (nameA < nameB) {
-                        return -1;
-                    }
-                    if (nameA > nameB) {
-                        return 1;
-                    }
-
-                    return 0;
-                 })
-                
+                console.log('a')
                 const readablemaps = gallery.pics.slice(startIndex, endIndex);
                 //readablemaps.sort((a, b) => {
                   //const nameA = a.split('| ')[2]
@@ -79,6 +59,7 @@ module.exports = {
                     .setImage(readablemaps[1].pic)
                 const row = new ActionRowBuilder();
                 buttons.forEach((role) => {
+                  console.log('b')
                     row.components.push(
                         new ButtonBuilder()
                             .setCustomId(role.id)
@@ -86,6 +67,8 @@ module.exports = {
                             .setStyle(ButtonStyle.Primary)
                     );
                 });
+
+                console.log('c')
 
                const response = await interaction.editReply({
                     content: '⠀', // Workaround for a Discord API bug where an empty string might cause the embed not to display
@@ -110,31 +93,9 @@ module.exports = {
                   } else {
                     await confirmation.update('⠀')
                   }
-                } else if (confirmation.customId === 'ModeA') {
-                  if (!(sortingMode===1)) {
-                    sortingMode = 1
-                    await confirmation.update('⠀')
-                  } else {
-                    await confirmation.update('⠀')
-                  }
-                } else if (confirmation.customId === 'ModeB') {
-                  if (!(sortingMode===2)) {
-                    sortingMode = 2
-                    await confirmation.update('⠀')
-                  } else {
-                    await confirmation.update('⠀')
-                  }
-                } else if (confirmation.customId === 'ModeC') {
-                  if (!(sortingMode===3)) {
-                    sortingMode = 3
-                    await confirmation.update('⠀')
-                  } else {
-                    await confirmation.update('⠀')
-                  }
                 }
             }
-        } 
-    } catch (e) {
+        }  catch (e) {
         console.error(e);
         await interaction.editReply({ content: 'Timeout', components: [] });
     }
