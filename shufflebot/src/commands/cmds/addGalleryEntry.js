@@ -42,8 +42,12 @@ module.exports = {
         try {
             const caption = interaction.options.get('caption').value
             const pic = interaction.options.get('pic').value
+            if (!pic.includes('http')) {
+                interaction.editReply('Not an image URL')
+                return
+            }
             const map = interaction.options.get('map').value
-            const nsfw = interaction.options.get('nsfw').value
+            const nsfw = interaction.options.get('nsfw').value || 0
             const submitter = interaction.user.tag
             const timestamp = Date.now()
             var query = {map: map}
