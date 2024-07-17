@@ -24,7 +24,7 @@ module.exports = {
         //const { default: prettyMs} = await import('pretty-ms')
         try {
             let sortingMode = 1;
-            let pageNumber = 1;
+            let pageNumber = 1
             var matches = []
             const maps = await mapz.find({});
             const gallery = await galleries.findOne({map: interaction.options.get('map').value})
