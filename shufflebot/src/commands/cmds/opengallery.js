@@ -51,12 +51,14 @@ module.exports = {
 
                   //})
                 //})
+                console.log(readablemaps)
+                console.log(readablemaps[0])
 
                 const embed = new EmbedBuilder()
-                    .setTitle(readablemaps[1].submitter)
-                    .setDescription(readablemaps[1].caption)
-                    .setFooter({text: `Entry ${pageNumber}, ${new Date(readablemaps[1].timestamp)}`})
-                    .setImage(readablemaps[1].pic)
+                    .setTitle(readablemaps[0].submitter)
+                    .setDescription(readablemaps[0].caption)
+                    .setFooter({text: `Entry ${pageNumber}, ${new Date(readablemaps[0].timestamp)}`})
+                    .setImage(readablemaps[0].pic)
                 const row = new ActionRowBuilder();
                 buttons.forEach((role) => {
                   console.log('b')
