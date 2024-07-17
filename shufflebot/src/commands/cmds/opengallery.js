@@ -89,7 +89,7 @@ module.exports = {
                       await confirmation.update('⠀')
                     }
                 } else if (confirmation.customId === 'PageRight') {
-                  if (pageNumber < Math.ceil(maps.length)) {
+                  if (pageNumber < Math.ceil(gallery.pics.length)) {
                     pageNumber++;
                     await confirmation.update('⠀')
                   } else {
