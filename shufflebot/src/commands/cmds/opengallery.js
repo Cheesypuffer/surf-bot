@@ -89,7 +89,7 @@ module.exports = {
                       await confirmation.update('⠀')
                     }
                 } else if (confirmation.customId === 'PageRight') {
-                  if (pageNumber < Math.ceil(maps.length/20)) {
+                  if (pageNumber < Math.ceil(maps.length)) {
                     pageNumber++;
                     await confirmation.update('⠀')
                   } else {
