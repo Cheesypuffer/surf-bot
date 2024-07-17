@@ -28,7 +28,7 @@ module.exports = {
             var matches = []
             const maps = await mapz.find({});
             const gallery = await galleries.findOne({map: interaction.options.get('map').value})
-            if (!records) {
+            if (!gallery) {
                 interaction.editReply('No board for that map.')
             }
             for (const RecordToDisplayRn in gallery.pics) {
