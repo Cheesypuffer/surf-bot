@@ -47,7 +47,11 @@ module.exports = {
                 return
             }
             const map = interaction.options.get('map').value
-            const nsfw = interaction.options.get('nsfw').value || 0
+            if (interaction.options.get('nsfw')) {
+                var nsfw = interaction.options.get('nsfw').value
+            } else {
+                var nsfw = 0
+            }
             const submitter = interaction.user.tag
             const timestamp = Date.now()
             var query = {map: map}
