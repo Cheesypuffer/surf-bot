@@ -97,7 +97,7 @@ module.exports = {
                   }
                 }
             }
-        }  catch (e) {
+        }  catch (e) { 
         console.error(e);
         await interaction.editReply({ content: 'Timeout', components: [] });
     }
