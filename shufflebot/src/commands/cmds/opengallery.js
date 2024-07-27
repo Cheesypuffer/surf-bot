@@ -58,7 +58,6 @@ module.exports = {
                 //})
                 console.log(readablemaps)
                 console.log(readablemaps[0])
-
                 const embed = new EmbedBuilder()
                     .setTitle(readablemaps[0].submitter)
                     .setDescription(readablemaps[0].caption)

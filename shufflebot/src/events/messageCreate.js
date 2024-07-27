@@ -34,9 +34,9 @@ module.exports = {
     }    
 }
 const gifs = [
-    'Pen',
-    'pens',
-    'pencil',
-    'what',
-    'no'
+    'https://media.tenor.com/9blMyS3kX0UAAAAi/illegal.gif',
+    'https://media.tenor.com/U5dYvSpkw8AAAAAi/illegal.gif',
+    'https://media.tenor.com/LXSq0UdUYawAAAAi/illegal.gif',
+    'https://media.tenor.com/Hul1wMbG7usAAAAi/illegal.gif',
+    'https://media.tenor.com/LXSq0UdUYawAAAAi/illegal.gif'
 ]
