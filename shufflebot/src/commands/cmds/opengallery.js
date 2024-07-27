@@ -25,10 +25,10 @@ module.exports = {
             let pageNumber = 1
             var matches = []
             const maps = await mapz.find({});
-            if (interaction.options.map.value.includes("nsfw")) {
-              var newmap = interaction.options.map.value.replace('nsfw', '')
+            if (interaction.options.get('map').value.includes("nsfw")) {
+              var newmap = interaction.options.get('map').value.replace('nsfw', '')
             } else {
-              var newmap = interaction.options.map.value
+              var newmap = interaction.options.get('map').value
             }
             const gallery = await galleries.findOne({map: newmap})
             if (!gallery) {
