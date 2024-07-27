@@ -25,7 +25,12 @@ module.exports = {
             let pageNumber = 1
             var matches = []
             const maps = await mapz.find({});
-            const gallery = await galleries.findOne({map: interaction.options.get('map').value})
+            if (interaction.options.map.value.includes("nsfw")) {
+              var newmap = interaction.options.map.value.replace('nsfw', '')
+            } else {
+              var newmap = interaction.options.map.value
+            }
+            const gallery = await galleries.findOne({map: newmap})
             if (!gallery) {
                 interaction.editReply('No board for that map.')
                 return
