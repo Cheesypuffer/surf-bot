@@ -3,7 +3,7 @@ const bloosinferno = require('../../models/bloosinferno')
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('removeblooword')
-        .setDescription('heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic heretic')
+        .setDescription('removes a bloo word')
         .addStringOption(option => 
             option.setName('word')
                 .setDescription('word of bloo')

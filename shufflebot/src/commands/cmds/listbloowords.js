@@ -22,6 +22,8 @@ module.exports = {
             const mapsPerPage = 20;
 
             while (true) {
+              const startIndex = (pageNumber - 1) * mapsPerPage;
+              const endIndex = startIndex + mapsPerPage;
 
                 const readablemaps = maps.words.slice(startIndex, endIndex);
                 //readablemaps.sort((a, b) => {
