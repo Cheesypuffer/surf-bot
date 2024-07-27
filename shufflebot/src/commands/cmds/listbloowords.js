@@ -71,29 +71,8 @@ module.exports = {
                       await confirmation.update('⠀')
                     }
                 } else if (confirmation.customId === 'PageRight') {
-                  if (pageNumber < Math.ceil(maps.length/20)) {
+                  if (pageNumber < Math.ceil(maps.words.length/20)) {
                     pageNumber++;
-                    await confirmation.update('⠀')
-                  } else {
-                    await confirmation.update('⠀')
-                  }
-                } else if (confirmation.customId === 'ModeA') {
-                  if (!(sortingMode===1)) {
-                    sortingMode = 1
-                    await confirmation.update('⠀')
-                  } else {
-                    await confirmation.update('⠀')
-                  }
-                } else if (confirmation.customId === 'ModeB') {
-                  if (!(sortingMode===2)) {
-                    sortingMode = 2
-                    await confirmation.update('⠀')
-                  } else {
-                    await confirmation.update('⠀')
-                  }
-                } else if (confirmation.customId === 'ModeC') {
-                  if (!(sortingMode===3)) {
-                    sortingMode = 3
                     await confirmation.update('⠀')
                   } else {
                     await confirmation.update('⠀')
