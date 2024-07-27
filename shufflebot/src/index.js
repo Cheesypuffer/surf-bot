@@ -4,8 +4,6 @@ const mongoose = require('mongoose');
 const fs = require('node:fs');
 const path = require('node:path');
 
-var http = require('http'); http.createServer(function (req, res) { res.write("I'm alive"); res.end(); }).listen(8080); 
-
 const client = new Client({
     intents: [
         IntentsBitField.Flags.Guilds,
