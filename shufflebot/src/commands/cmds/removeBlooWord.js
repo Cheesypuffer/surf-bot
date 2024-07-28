@@ -30,9 +30,9 @@ module.exports = {
             const options = { upsert : false }
             if (oldWord && hasRole) {
                 interaction.editReply(`${oldMap.words.indexOf(oldWord)}`)
+                console.log(oldMap.words.indexOf(oldWord))
                 var votes = oldMap.words.splice(oldMap.words.indexOf(oldWord), 1)
                 console.log(votes)
-                console.log(oldMap.words.indexOf(oldWord))
                 oldMap.save(oldMap.words.indexOf(oldWord))
             } else {
                 interaction.editReply(
