@@ -25,10 +25,11 @@ module.exports = {
             const word = interaction.options.get('word').value
             const oldMap = await bloosinferno.findOne(query)
             const oldWord = oldMap.words.includes(interaction.options.get('word').value)
+            console.log(interaction.options.get('word').value)
             const hasRole = interaction.member.roles.cache.some(r => r.name === 'bailiff')
             const options = { upsert : false }
             if (oldWord && hasRole) {
-                interaction.editReply(``)
+                interaction.editReply(`${oldMap.words.indexOf(oldWord)}`)
                 var votes = oldMap.words.splice(oldMap.words.indexOf(oldWord), 1)
                 console.log(votes)
                 console.log(oldMap.words.indexOf(oldWord))
