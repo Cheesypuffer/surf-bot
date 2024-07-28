@@ -28,8 +28,10 @@ module.exports = {
             const hasRole = interaction.member.roles.cache.some(r => r.name === 'bailiff')
             const options = { upsert : false }
             if (oldWord && hasRole) {
-                interaction.editReply('⠀')
+                interaction.editReply(``)
                 var votes = oldMap.words.splice(oldMap.words.indexOf(oldWord), 1)
+                console.log(votes)
+                console.log(oldMap.words.indexOf(oldWord))
                 oldMap.save(oldMap.words.indexOf(oldWord))
             } else {
                 interaction.editReply(
