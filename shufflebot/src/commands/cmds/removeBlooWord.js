@@ -29,11 +29,11 @@ module.exports = {
             const hasRole = interaction.member.roles.cache.some(r => r.name === 'bailiff')
             const options = { upsert : false }
             if (oldWord && hasRole) {
-                interaction.editReply(`${oldMap.words.indexOf(oldWord)}`)
-                console.log(oldMap.words.indexOf(oldWord))
-                var votes = oldMap.words.splice(oldMap.words.indexOf(oldWord), 1)
+                interaction.editReply(`Successfully removed ${interaction.options.get('word').value}}`)
+                console.log(oldMap.words.indexOf(interaction.options.get('word').value))
+                var votes = oldMap.words.splice(oldMap.words.indexOf(interaction.options.get('word').value), 1)
                 console.log(votes)
-                oldMap.save(oldMap.words.indexOf(oldWord))
+                oldMap.save(oldMap.words.indexOf(interaction.options.get('word').value))
             } else {
                 interaction.editReply(
                     'That word doesnt exist or you cant do that'
