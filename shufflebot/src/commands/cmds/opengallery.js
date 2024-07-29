@@ -26,7 +26,7 @@ module.exports = {
             var matches = []
             const maps = await mapz.find({});
             if (interaction.options.get('map').value.includes("nsfw")) {
-              var newmap = interaction.options.get('map').value.replace('nsfw', '')
+              var newmap = interaction.options.get('map').value
             } else {
               var newmap = interaction.options.get('map').value
             }
@@ -77,7 +77,7 @@ module.exports = {
                 console.log('c')
 
                const response = await interaction.editReply({
-                    content: '⠀', // Workaround for a Discord API bug where an empty string might cause the embed not to display
+                    content: 'NSFW gallery, watch out.', // Workaround for a Discord API bug where an empty string might cause the embed not to display
                     components: [row],
                     embeds: [embed],
                 });
