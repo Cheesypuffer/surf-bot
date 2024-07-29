@@ -27,8 +27,10 @@ module.exports = {
             const maps = await mapz.find({});
             if (interaction.options.get('map').value.includes("nsfw")) {
               var newmap = interaction.options.get('map').value
+              var continent = 'NSFW gallery, watch out.'
             } else {
               var newmap = interaction.options.get('map').value
+              var continent = '​'
             }
             const gallery = await galleries.findOne({map: newmap})
             if (!gallery) {
@@ -77,7 +79,7 @@ module.exports = {
                 console.log('c')
 
                const response = await interaction.editReply({
-                    content: 'NSFW gallery, watch out.', // Workaround for a Discord API bug where an empty string might cause the embed not to display
+                    content: `${continent}`, // Workaround for a Discord API bug where an empty string might cause the embed not to display
                     components: [row],
                     embeds: [embed],
                 });
