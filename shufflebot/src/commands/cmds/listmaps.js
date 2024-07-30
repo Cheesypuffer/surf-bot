@@ -1,6 +1,7 @@
 const { EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, SlashCommandBuilder } = require("discord.js");
 const mapz = require('../../models/maps');
 const record = require('../../models/times')
+const dmaps = require('../../models/dmaps')
 const buttons = [
   { id: 'PageLeft', label: '<--' },
   { id: 'PageRight', label: '-->' },
@@ -40,7 +41,11 @@ module.exports = {
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
                     const tier = `T${chosenMap.tier}`;
                     ///var mapRecordForMap = await record.findOne(query)
-                    return `${starsToString(stars)} | ${tier} | ${name}`
+                    if(dmaps.findOne({map: chosenMap.name})===true) {
+                      return `${starsToString(stars)} | ${dmaps.findOne({map: chosenMap.name}).dtier} ${tier} | ${name}`
+                    } else {
+                      return `${starsToString(stars)} | ${tier} | ${name}`
+                    }
                 });
                 if (selectedMaps.length === 0) {
                   break; // No more maps to display
