@@ -42,6 +42,8 @@ module.exports = {
                     const tier = `T${chosenMap.tier}`;
                     const query3 = ({map: chosenMap.name})
                     for(const dmap in dmapz) {
+                      console.log(dmap.name)
+                      console.log(chosenMap.name)
                       console.log('a')
                       if(dmap.map === chosenMap.name) {
                         var dtier = dmap.dtier
