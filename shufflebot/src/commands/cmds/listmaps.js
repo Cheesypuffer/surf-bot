@@ -41,11 +41,16 @@ module.exports = {
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
                     const tier = `T${chosenMap.tier}`;
                     const query3 = ({map: chosenMap.name})
-                    const dmap = dmapz.indexOf(chosenMap.name)
+                    for(const dmap in dmapz) {
+                      if(dmap.map === chosenMap.name) {
+                        var dtier = dmap.dtier
+                        break
+                      }
+                    }
                     ///var mapRecordForMap = await record.findOne(query)
-                    if(dmap) {
+                    if(dtier) {
                       console.log('found dmap')
-                      return `${starsToString(stars)} | ${dmap.dtier} ${tier} | ${name}`
+                      return `${starsToString(stars)} | ${dtier} ${tier} | ${name}`
                     } else {
                       return `${starsToString(stars)} | ${tier} | ${name}`
                     }
