@@ -33,30 +33,20 @@ module.exports = {
                 const startIndex = (pageNumber - 1) * mapsPerPage;
                 const endIndex = startIndex + mapsPerPage;
                 var dmapz = await dmaps.find({})
-                console.log(dmapz)
 
                 const selectedMaps = maps.map(chosenMap => {
                     const name = (chosenMap.name)
-                    ///const query = ({userId: interaction.user.id}, {map: name})
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
                     const tier = `T${chosenMap.tier}`;
-                    const query3 = ({map: chosenMap.name})
-                    console.log(dmapz)
                     for(const dmap of dmapz) {
-                      console.log(dmap)
-                      console.log(dmap.map)
-                      console.log(chosenMap.name)
-                      console.log('a')
                       if(dmap.map === chosenMap.name) {
                         var dtier = dmap.dtier
-                        console.log('dtier found')
                         break
                       }
                     }
                     ///var mapRecordForMap = await record.findOne(query)
                     if(dtier) {
-                      console.log('found dmap')
-                      return `${starsToString(stars)} | ${dtier} ${tier} | ${name}`
+                      return `${starsToString(stars)} | D${dtier} | ${tier} | ${name}`
                     } else {
                       return `${starsToString(stars)} | ${tier} | ${name}`
                     }
