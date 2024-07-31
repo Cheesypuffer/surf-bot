@@ -41,7 +41,8 @@ module.exports = {
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
                     const tier = `T${chosenMap.tier}`;
                     const query3 = ({map: chosenMap.name})
-                    for(const dmap in dmapz) {
+                    console.log(dmapz)
+                    for(const dmap of dmapz) {
                       console.log(dmap)
                       console.log(dmap.map)
                       console.log(chosenMap.name)
