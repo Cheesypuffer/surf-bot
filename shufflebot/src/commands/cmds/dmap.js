@@ -35,7 +35,7 @@ module.exports = {
             })
 
             if (oldRecord) {
-                const deletedRecord = await record.deleteOne({userId: interaction.user.id}, {map: interaction.options.get('map').value})
+                const deletedRecord = await dmaps.deleteOne({map: interaction.options.get('map').value})
                 newRecord.save()
                 interaction.editReply(`New (replaced) tier for ${interaction.options.get('map').value}`)
             }
