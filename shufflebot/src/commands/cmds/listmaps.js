@@ -41,7 +41,8 @@ module.exports = {
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
                     const tier = `T${chosenMap.tier}`;
                     ///var mapRecordForMap = await record.findOne(query)
-                    if(dmaps.findOne({map: chosenMap.name})===true) {
+                    if(dmaps.findOne(({map: name}))) {
+                      console.log('found dmap')
                       return `${starsToString(stars)} | ${dmaps.findOne({map: chosenMap.name}).dtier} ${tier} | ${name}`
                     } else {
                       return `${starsToString(stars)} | ${tier} | ${name}`
