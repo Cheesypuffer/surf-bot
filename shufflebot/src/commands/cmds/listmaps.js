@@ -32,8 +32,8 @@ module.exports = {
             while (true) {
                 const startIndex = (pageNumber - 1) * mapsPerPage;
                 const endIndex = startIndex + mapsPerPage;
-                
-
+                var dmapz = await dmaps.find({})
+                console.log(dmapz)
 
                 const selectedMaps = maps.map(chosenMap => {
                     const name = (chosenMap.name)
@@ -41,10 +41,11 @@ module.exports = {
                     const stars = votesToStars(chosenMap.upvotes.length, chosenMap.downvotes.length);
                     const tier = `T${chosenMap.tier}`;
                     const query3 = ({map: chosenMap.name})
+                    const dmap = dmapz.indexOf(chosenMap.name)
                     ///var mapRecordForMap = await record.findOne(query)
-                    if(dmaps.find(query3)) {
+                    if(dmap) {
                       console.log('found dmap')
-                      return `${starsToString(stars)} | ${dmaps.findOne({map: chosenMap.name}).dtier} ${tier} | ${name}`
+                      return `${starsToString(stars)} | ${dmap.dtier} ${tier} | ${name}`
                     } else {
                       return `${starsToString(stars)} | ${tier} | ${name}`
                     }
