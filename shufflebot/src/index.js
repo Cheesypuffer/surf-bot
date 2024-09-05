@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({debug:true});
 const {Client, IntentsBitField, EmbedBuilder, ActivityType, Collection, Events, GatewayIntentBits, REST, Routes} = require('discord.js');
 const mongoose = require('mongoose');
 const fs = require('node:fs');
@@ -13,17 +13,12 @@ const client = new Client({
     ]
 });
 
-
-
-
 (async() => {
     try {
         await mongoose.connect(process.env.MONGODB_URI, {})
         console.log('Connected to DB')
         
-        client.login(
-            process.env.TOKEN
-        );
+        client.login(process.env.TOKEN)
     } catch (error) {
         console.log(error)
     }
