@@ -68,7 +68,7 @@ let status = [
     },
 ]
 
-const eventsPath = path.join('C:/Users/cheesy_pufferfish/Documents/GitHub/surf-bot/shufflebot/src/events', '');
+const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
@@ -86,7 +86,7 @@ const commands = [];
 // Grab all the command folders from the commands directory you created earlier
 
 client.commands = new Collection()
-const foldersPath = path.join('C:/Users/cheesy_pufferfish/Documents/GitHub/surf-bot/shufflebot/src/', 'commands');
+const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 const { clientId, guildId } = require('../config.json');
 
