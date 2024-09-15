@@ -4,7 +4,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('timeoutuser')
         .setDescription('put someone in the chair')
-        .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
+        ///.setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
         .addMentionableOption(option => 
             option.setName('target-user')
                 .setDescription('user to timeout')
@@ -62,12 +62,12 @@ module.exports = {
 
         if (targetUserRolePosition >=  requestUserRolePosition) {
             await interaction.editReply('no')
-            return
+            ///return
         }
 
         if (targetUserRolePosition >= botRolePosition) {
             await interaction.editReply("the bot cant do that")
-            return
+            ///return
         }
 
         //ban that guy
