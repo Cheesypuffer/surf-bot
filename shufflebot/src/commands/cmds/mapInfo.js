@@ -38,24 +38,28 @@ module.exports = {
                 return
             }
         }
-        const role = interaction.guild.roles.cache.find(r => r.name === `Tier ${map.tier}`)
+        
         const file = new AttachmentBuilder(map.icon)
         const file2 = new AttachmentBuilder(map.thumbnail)
         const embed = new EmbedBuilder()
             .setTitle(`${map.name}`)
             .setDescription(`Tier ${map.tier} \n [Servers hosting this map](https://teamwork.tf/community/quickplay/map/${map.name}?gamemode=)`)
-            if (role) {
-                embed.setColor(role.hexColor)
-                embed.addFields(
-                    { name: 'Ping:', value: `<@&${roles[map.tier]}>` },
-                    { name: `Upvotes: ${map.upvotes.length}`, value: `Downvotes: ${map.downvotes.length}`}
-                )
-            } else {
-                embed.setColor('Blurple')
-                embed.addFields(
-                    { name: `Upvotes: ${map.upvotes.length}`, value: `Downvotes: ${map.downvotes.length}`}
-                )
-            }
+            ///if (role) {
+                ///embed.setColor(role.hexColor)
+                ///embed.addFields(
+                    ///{ name: 'Ping:', value: `<@&${roles[map.tier]}>` },
+                    ///{ name: `Upvotes: ${map.upvotes.length}`, value: `Downvotes: ${map.downvotes.length}`}
+                ///)
+            ///} else {
+                ///embed.setColor('Blurple')
+                ///embed.addFields(
+                  ///{ name: `Upvotes: ${map.upvotes.length}`, value: `Downvotes: ${map.downvotes.length}`}
+                ///)
+            ///}
+            embed.setColor('Blurple')
+            embed.addFields(
+                { name: `Upvotes: ${map.upvotes.length}`, value: `Downvotes: ${map.downvotes.length}`}
+            )
             if (map.icon) {
                 embed.setImage(map.icon)
             } else {
@@ -66,7 +70,7 @@ module.exports = {
             embed.setTimestamp()
             ///embed.setThumbnail(`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`)
             embed.setAuthor({name:`${interaction.user.tag} wants to get map info`, iconURL:`https://cdn.discordapp.com/avatars/${interaction.user.id}/${interaction.user.avatar}.png?size=256`})
-        interaction.channel.send({embeds: [embed]}, {files: [file, file2]});
+        interaction.editReply({embeds: [embed]}, {files: [file, file2]});
         interaction.editReply('⠀')
     }
 }
