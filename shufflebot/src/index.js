@@ -99,6 +99,7 @@ for (const folder of commandFolders) {
 		const filePath = path.join(commandsPath, file);
 		const command = require(filePath);
 		if ('data' in command && 'execute' in command) {
+            client.commands.set([])
 			client.commands.set(command.data.name, command);
             commands.push(command.data.toJSON())
             console.log('s')
