@@ -14,20 +14,32 @@ module.exports = {
     async execute(interaction) {
         const message = interaction
         try {
-        if (interaction.member.roles.cache.some(r => r.name === 'Slimy Weasel')) {
             //message.react('🥵')
             var zest = await blootorture.findOne(({}))
                 for(const blooword of zest.words) {
                     if (message.content.toUpperCase().includes(blooword.toString())) {
                         const banimage = new AttachmentBuilder('https://media.discordapp.net/attachments/1257792531156959303/1259291301489147945/banned.png?ex=668bceaa&is=668a7d2a&hm=693fc251547692b3782f2dc68ed58b32ee929f7ff1391358e2e4f7996f1c9a0e&=&format=webp&quality=lossless')
-                        ///message.channel.send(
-                            ///{content: gifs[Math.floor(Math.random()*5)]}
-                        ///)
-                        message.delete()
-                        return
+
+                        try {
+                            message.delete()
+                            message.channel.send(
+                            {content: gifs[Math.floor(Math.random()*5)]}
+                            )
+                            try {
+                                var mapss = await maps.findOne(({}))
+                                console.log(mapss)
+                            } catch (error) {
+                                console.log(error)
+                            }
+
+                            return
+                        }
+                        catch (error) {
+                            console.log(error)
+                        }
+                        
                     }
                 }
-            }   
             } catch (error) {
                 console.log(error)
             }
@@ -40,3 +52,4 @@ const gifs = [
     'https://media.tenor.com/Hul1wMbG7usAAAAi/illegal.gif',
     'https://media.tenor.com/LXSq0UdUYawAAAAi/illegal.gif'
 ]
+
