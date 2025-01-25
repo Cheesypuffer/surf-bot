@@ -49,7 +49,7 @@ module.exports = {
                     interaction.editReply(`You have submitted a new best time for ${interaction.options.get('map').value}`)
                     return
                 } else if (oldRecord.time===newRecord.time) {
-                    interaction.editReply('Down to the millisecond? No.')
+                    interaction.editReply('No.')
                     return
                 } else if (oldRecord.time<newRecord.time) {
                     interaction.editReply('That is not your best time')
