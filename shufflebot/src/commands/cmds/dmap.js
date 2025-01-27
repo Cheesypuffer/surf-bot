@@ -4,15 +4,15 @@ const maps = require('../../models/maps')
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('dmap')
-        .setDescription('New d tiers')
+        .setDescription('Adds a D tier to a map')
         .addStringOption(option => 
             option.setName('map')
-                .setDescription('d map')
+                .setDescription('The map to add the D tier to')
                 .setRequired(true)
         )
         .addNumberOption(option => 
             option.setName('dtier')
-                .setDescription('d tier')
+                .setDescription('The d tier to set')
                 .setRequired(true)
         ),
     /**
@@ -40,9 +40,9 @@ module.exports = {
                 interaction.editReply(`New (replaced) tier for ${interaction.options.get('map').value}`)
             }
             newRecord.save()
-            interaction.editReply(`New tier for ${interaction.options.get('map').value}`)
+            interaction.editReply(`New D tier for ${interaction.options.get('map').value} has been set`)
         } else if (!query) {
-            interaction.editReply('The map that you are trying to submit a tier to does not exist. Please ask a Curator to create the map, or check for typos.')
+            interaction.editReply('The map that you are trying to submit a D tier to does not exist. Please create the map, or check for typos.')
         } else {
             interaction.editReply(`You aren't allowed to do that`)
         }
