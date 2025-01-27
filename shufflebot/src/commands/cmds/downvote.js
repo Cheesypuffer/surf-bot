@@ -51,9 +51,9 @@ module.exports = {
             const indx = mapToVote.upvotes.indexOf(interaction.user.id)
             mapToVote.upvotes.splice(indx, 1)
             await mapToVote.save(indx)
-            interaction.editReply(`You hath downvoted ${mapToVote.name}`)
+            interaction.editReply(`User has downvoted ${mapToVote.name}`)
         } else {
-            interaction.editReply(`You hath already downvoted ${mapToVote.name}`)
+            interaction.editReply(`User has already downvoted ${mapToVote.name}`)
         }
     }
 }
