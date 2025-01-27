@@ -3,7 +3,7 @@ const maps = require('../../models/maps')
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('editmap')
-        .setDescription('editor.')
+        .setDescription('Edit properties of a map')
         .addStringOption(option => 
             option.setName('name')
                 .setDescription('name of map')
