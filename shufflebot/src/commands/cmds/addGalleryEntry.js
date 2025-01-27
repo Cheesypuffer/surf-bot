@@ -22,7 +22,7 @@ module.exports = {
         )
         .addStringOption(option => 
             option.setName('nsfw')
-                .setDescription('is the image nsfw, any entry into this field will mark it as such')
+                .setDescription('Any entry into this field will mark it as NSFW')
                 .setRequired(false)
         ),
 
@@ -36,8 +36,6 @@ module.exports = {
 
     async execute(interaction) {
         await interaction.deferReply()
-
-        ///interaction.editReply('Sorry, but this is NOT implemented right now. I will probably work on it tommorow')
         
         try {
             const caption = interaction.options.get('caption').value
@@ -58,7 +56,7 @@ module.exports = {
             var oldMap = await gallery.findOne(query)
             if (!oldMap) {
                 interaction.editReply(
-                    'There is no board for that map. Create one with /createboard <map>'
+                    'There is no board for that map. Create one with /addboard <map>'
                 )
                 return;
             }
