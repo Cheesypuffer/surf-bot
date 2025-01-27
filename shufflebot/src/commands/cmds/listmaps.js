@@ -186,5 +186,5 @@ function starsToString(stars) {
 
 async function getRecord(user, map) {
   const recordToReturn = await record.findOne(({map: map}, {userId: user}))
-  return recordToReturn
+  return recordToReturn /// I was cooking here
 }
