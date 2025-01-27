@@ -4,20 +4,20 @@ const gallery = require('../../models/gallery')
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('addgalleryentry')
-        .setDescription('<3')
+        .setDescription('Adds a gallery entry to a board')
         .addStringOption(option => 
             option.setName('map')
-                .setDescription('Map attributed to the pic')
+                .setDescription('The board to post the entry to')
                 .setRequired(true)
         )
         .addStringOption(option => 
             option.setName('pic')
-                .setDescription('picture link')
+                .setDescription('The URL of the picture')
                 .setRequired(true)
         )
         .addStringOption(option => 
             option.setName('caption')
-                .setDescription('caption')
+                .setDescription('The caption of the gallery entry')
                 .setRequired(true)
         )
         .addStringOption(option => 
